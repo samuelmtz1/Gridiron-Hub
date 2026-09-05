@@ -2,9 +2,11 @@
 
 Exposes REST JSON endpoints for:
 - NFL and NCAA team metadata with official colors/logos
-- Weekly game schedules, scores, and real-time state
-- Game deep dives (EPA efficiency, top plays by Win Probability swing, trivia)
-- Preselected weekly awards (OPOW, DPOW, MVP, DOs & DON'Ts)
+- Weekly game schedules, scores, and real-time state (Protected)
+- Game deep dives (EPA efficiency, top plays by Win Probability swing, trivia) (Protected)
+- Preselected weekly awards (OPOW, DPOW, MVP, DOs & DON'Ts) (Protected)
+- YouTube studio script generator (Protected)
+- Cryptographic session authentication & rate limiting
 Cost: $0 perpetual.
 """
 
@@ -19,6 +21,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from ingestion import assets_source
+from security.auth import (
+    authenticate_team_user,
+    create_session_token,
+    verify_session_token,
+)
+from security.middleware import (
+    RateLimitMiddleware,
+    SecurityHeadersMiddleware,
+)
 from storage import db
 
 
@@ -40,32 +51,86 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Enable CORS for local React/Vite development and web dashboards
+# Determine allowed CORS origins
+cors_env = os.getenv("CORS_ORIGINS", "")
+allowed_origins = [o.strip() for o in cors_env.split(",") if o.strip()]
+if not allowed_origins:
+    allowed_origins = [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+    ]
+
+# Register middlewares: Starlette runs in reverse order of addition
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"^https://.*\.vercel\.app$",
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+app.add_middleware(SecurityHeadersMiddleware)
+app.add_middleware(RateLimitMiddleware)
 
 
-def verify_team_token(x_team_token: Optional[str] = Header(None)) -> bool:
-    """Verifies team secret token for administrative/ingest endpoints."""
-    configured_secret = os.getenv("TEAM_SHARED_SECRET")
-    # If no secret is configured, allow in local development
-    if not configured_secret or configured_secret == "your_secure_team_token_here":
-        return True
-    if x_team_token != configured_secret:
+# ==============================================================================
+# Authentication & Authorization Dependencies
+# ==============================================================================
+
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+def get_current_user(
+    authorization: Optional[str] = Header(None),
+    x_team_token: Optional[str] = Header(None),
+) -> Dict[str, Any]:
+    """Validates session token or fallback team secret token."""
+    # Allow bypassing authentication if AUTH_REQUIRED is set to false in local dev/testing
+    if os.getenv("AUTH_REQUIRED", "true").lower() in ("false", "0", "no"):
+        return {"sub": "dev_user", "role": "dev"}
+
+    token = None
+    if authorization and authorization.startswith("Bearer "):
+        token = authorization.split(" ", 1)[1].strip()
+    elif x_team_token:
+        # Backward compatibility for CI/cron workflows sending secret token
+        configured_secret = os.getenv("TEAM_SHARED_SECRET", "gridiron_hub_super_secret_signing_key_2024")
+        if x_team_token == configured_secret:
+            return {"sub": "ci_pipeline", "role": "admin"}
+        token = x_team_token
+
+    if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Acceso denegado: Token de equipo inválido (X-Team-Token)."
+            detail="Autenticación requerida. Inicie sesión para acceder a Gridiron Hub.",
+            headers={"WWW-Authenticate": "Bearer"},
         )
+
+    payload = verify_session_token(token)
+    if not payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token de sesión expirado o inválido. Por favor inicie sesión nuevamente.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    return payload
+
+
+def verify_team_token(user: Dict[str, Any] = Depends(get_current_user)) -> bool:
+    """Verifies team authorization for admin/ingest endpoints."""
     return True
 
 
 # ==============================================================================
-# Endpoints
+# Public & System Endpoints
 # ==============================================================================
 
 
@@ -87,6 +152,35 @@ def health_check() -> Dict[str, Any]:
         )
 
 
+@app.post("/api/auth/login", tags=["Auth"])
+def login(req: LoginRequest) -> Dict[str, Any]:
+    """Authenticates team member credentials and issues a signed session token."""
+    if not authenticate_team_user(req.username, req.password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Credenciales incorrectas: Usuario o contraseña inválidos."
+        )
+
+    token = create_session_token(req.username)
+    return {
+        "status": "authenticated",
+        "token": token,
+        "username": req.username,
+        "expires_in": 7 * 86400,
+        "token_type": "Bearer"
+    }
+
+
+@app.get("/api/auth/verify", tags=["Auth"])
+def verify_session(user: Dict[str, Any] = Depends(get_current_user)) -> Dict[str, Any]:
+    """Verifies that the provided session token is active, cryptographically signed, and not expired."""
+    return {
+        "status": "valid",
+        "user": user.get("sub"),
+        "expires_at": user.get("exp"),
+    }
+
+
 @app.get("/api/teams", tags=["Teams"])
 def list_teams(
     league: Optional[str] = Query(None, description="'nfl' o 'ncaa'"),
@@ -96,18 +190,27 @@ def list_teams(
     return db.get_teams(league=league, conference=conference)
 
 
+# ==============================================================================
+# Protected Endpoints (Requires Valid Session)
+# ==============================================================================
+
+
 @app.get("/api/games", tags=["Games"])
 def list_games(
     league: str = Query("nfl", description="'nfl' o 'ncaa'"),
     season: int = Query(2024, description="Año de la temporada"),
-    week: int = Query(..., description="Número de semana (1-18)")
+    week: int = Query(..., description="Número de semana (1-18)"),
+    user: Dict[str, Any] = Depends(get_current_user),
 ) -> List[Dict[str, Any]]:
     """Retrieves all games for a specific week with home/away teams and status."""
     return db.get_games_by_week(league=league, season=season, week=week)
 
 
 @app.get("/api/games/{game_id}", tags=["Games"])
-def get_game_detail(game_id: str) -> Dict[str, Any]:
+def get_game_detail(
+    game_id: str,
+    user: Dict[str, Any] = Depends(get_current_user),
+) -> Dict[str, Any]:
     """Returns complete game breakdown: boxscore stats, top plays by WP swing, and trivia."""
     game_data = db.get_game_details(game_id)
     if not game_data:
@@ -123,7 +226,8 @@ def list_awards(
     league: str = Query("nfl", description="'nfl' o 'ncaa'"),
     season: int = Query(2024, description="Temporada"),
     week: int = Query(..., description="Semana"),
-    category: Optional[str] = Query(None, description="OPOW, DPOW, MVP, INT_OF_WEEK, TD_OF_WEEK, DO, DONT")
+    category: Optional[str] = Query(None, description="OPOW, DPOW, MVP, INT_OF_WEEK, TD_OF_WEEK, DO, DONT"),
+    user: Dict[str, Any] = Depends(get_current_user),
 ) -> List[Dict[str, Any]]:
     """Retrieves preselected award nominees with stat summaries, ranks, and highlight clips."""
     return db.get_awards(league=league, season=season, week=week, category=category)
@@ -158,11 +262,9 @@ def trigger_ingestion_pipeline(
 def generate_youtube_video_script(
     league: str = Query("nfl", description="'nfl' o 'ncaa'"),
     season: int = Query(2024, description="Temporada"),
-    week: int = Query(11, description="Semana")
+    week: int = Query(11, description="Semana"),
+    user: Dict[str, Any] = Depends(get_current_user),
 ) -> Dict[str, Any]:
     """Generates a structured, broadcast-ready YouTube script with timestamps and teleprompter text."""
     from processing.script_generator import build_youtube_script
     return build_youtube_script(league=league, season=season, week=week)
-
-
-

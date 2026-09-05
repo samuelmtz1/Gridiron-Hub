@@ -229,3 +229,4 @@ def build_youtube_script(
         "metadata": duration_meta,
         "script_markdown": full_script_md,
     }
+
