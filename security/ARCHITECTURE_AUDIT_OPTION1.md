@@ -49,7 +49,7 @@ Para proteger **Gridiron Hub** de accesos no autorizados, fugas de contenido ant
 ### 🔐 Variables de Entorno en Render (Backend):
 Configurar en el panel de Render (`Environment Secrets`):
 * `APP_ENV=production`
-* `TEAM_USERNAME=samuel_team`
+* `TEAM_USERNAME=<tu_usuario_privado>`
 * `TEAM_PASSWORD_HASH=<generado_por_security/auth.py>`
 * `TEAM_SHARED_SECRET=<clave_aleatoria_de_32_caracteres>`
 * `CFBD_API_KEY=<token_privado_de_collegefootballdata>`
@@ -60,5 +60,15 @@ Configurar en el panel de Vercel (`Environment Variables`):
 
 ---
 
-## 4. Conclusión de la Auditoría
+## 4. Política de Cero Secretos en Repositorio Público (Security Cleanse)
+
+Para garantizar que nadie en internet o en GitHub pueda vulnerar el sistema:
+1. **Cero credenciales por defecto:** No existen usuarios ni contraseñas "default" en el código fuente.
+2. **Fail-Closed:** Si las variables `TEAM_USERNAME` o `TEAM_PASSWORD_HASH` no están presentes en el entorno, el sistema deniega el acceso automáticamente.
+3. **Cero claves estáticas de firma:** Los tokens de sesión se firman mediante claves criptográficas aleatorias en memoria si no se provee `TEAM_SHARED_SECRET`, impidiendo la falsificación de tokens.
+4. **Formularios limpios:** La interfaz web no incluye credenciales prellenadas, pistas ni botones de demostración que expongan accesos.
+
+---
+
+## 5. Conclusión de la Auditoría
 La arquitectura resultante para la **Opción 1** cuenta con aislamiento de red, protección contra filtración de secretos mediante Gitleaks, control de acceso privado para el equipo de YouTube y mitigaciones activas para los 10 riesgos críticos de OWASP.

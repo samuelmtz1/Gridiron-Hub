@@ -4,6 +4,7 @@ Implements:
 - Salted password hashing with PBKDF2-HMAC-SHA256 (100,000 iterations).
 - Cryptographically signed session tokens with HMAC-SHA256 and expiration tracking.
 - Constant-time string comparisons to prevent timing attacks.
+- Zero hardcoded fallback secrets: fails closed unless configured in environment.
 Pure Python standard library. Cost: $0 perpetual.
 """
 
@@ -18,10 +19,18 @@ import secrets
 import time
 from typing import Any, Dict, Optional
 
-# Secret key used for signing session tokens
-SECRET_KEY = os.getenv("TEAM_SHARED_SECRET", "gridiron_hub_super_secret_signing_key_2024")
-DEFAULT_USERNAME = os.getenv("TEAM_USERNAME", "gridiron_team")
-DEFAULT_PASSWORD = os.getenv("TEAM_PASSWORD", "gridiron2024!")
+# Ephemeral in-memory key generated per process lifecycle if TEAM_SHARED_SECRET is not configured
+_DEV_EPHEMERAL_SECRET = secrets.token_hex(32)
+
+
+def get_signing_secret() -> str:
+    """Retrieves secret key from environment or returns an ephemeral in-memory secret in dev/testing."""
+    secret = os.getenv("TEAM_SHARED_SECRET")
+    if secret and secret != "your_secure_team_token_here":
+        return secret
+    if os.getenv("APP_ENV") == "production":
+        raise RuntimeError("CRITICAL CONFIG ERROR: TEAM_SHARED_SECRET must be configured in production.")
+    return _DEV_EPHEMERAL_SECRET
 
 
 def hash_password(password: str) -> str:
@@ -57,7 +66,8 @@ def create_session_token(username: str, expires_in_seconds: int = 7 * 86400) -> 
     payload_json = json.dumps(payload, separators=(",", ":")).encode("utf-8")
     payload_b64 = base64.urlsafe_b64encode(payload_json).decode("utf-8").rstrip("=")
 
-    signature = hmac.new(SECRET_KEY.encode("utf-8"), payload_b64.encode("utf-8"), hashlib.sha256).digest()
+    secret_key = get_signing_secret()
+    signature = hmac.new(secret_key.encode("utf-8"), payload_b64.encode("utf-8"), hashlib.sha256).digest()
     sig_b64 = base64.urlsafe_b64encode(signature).decode("utf-8").rstrip("=")
 
     return f"{payload_b64}.{sig_b64}"
@@ -72,7 +82,8 @@ def verify_session_token(token: str) -> Optional[Dict[str, Any]]:
         payload_b64, sig_b64 = token.split(".", 1)
 
         # Verify signature
-        expected_sig = hmac.new(SECRET_KEY.encode("utf-8"), payload_b64.encode("utf-8"), hashlib.sha256).digest()
+        secret_key = get_signing_secret()
+        expected_sig = hmac.new(secret_key.encode("utf-8"), payload_b64.encode("utf-8"), hashlib.sha256).digest()
         expected_sig_b64 = base64.urlsafe_b64encode(expected_sig).decode("utf-8").rstrip("=")
 
         if not hmac.compare_digest(sig_b64, expected_sig_b64):
@@ -94,15 +105,22 @@ def verify_session_token(token: str) -> Optional[Dict[str, Any]]:
 
 
 def authenticate_team_user(username: str, password: str) -> bool:
-    """Validates user credentials against configured team environment variables."""
-    expected_user = os.getenv("TEAM_USERNAME", DEFAULT_USERNAME)
-    if username != expected_user:
+    """Validates user credentials against configured team environment variables.
+    Fails closed if credentials are not configured in environment.
+    """
+    expected_user = os.getenv("TEAM_USERNAME")
+    if not expected_user:
+        return False
+
+    if not hmac.compare_digest(username, expected_user):
         return False
 
     stored_hash = os.getenv("TEAM_PASSWORD_HASH")
     if stored_hash:
         return verify_password(password, stored_hash)
 
-    # Fallback to configured plain default password in development
-    expected_pass = os.getenv("TEAM_PASSWORD", DEFAULT_PASSWORD)
-    return hmac.compare_digest(password, expected_pass)
+    expected_pass = os.getenv("TEAM_PASSWORD")
+    if expected_pass:
+        return hmac.compare_digest(password, expected_pass)
+
+    return False

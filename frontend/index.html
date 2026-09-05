@@ -48,7 +48,7 @@
 
         <!-- User Session Indicator & Controls -->
         <div id="auth-controls" style="display: flex; align-items: center; gap: 0.5rem;">
-          <span class="brand-badge" id="auth-user-badge" style="display: none; background: rgba(34, 197, 94, 0.15); color: var(--metric-positive); border-color: rgba(34, 197, 94, 0.3);">👤 gridiron_team</span>
+          <span class="brand-badge" id="auth-user-badge" style="display: none; background: rgba(34, 197, 94, 0.15); color: var(--metric-positive); border-color: rgba(34, 197, 94, 0.3);"></span>
           <button class="pill-btn" id="btn-logout" onclick="logoutUser()" style="display: none; font-size: 0.72rem; padding: 0.25rem 0.55rem;">Cerrar Sesión</button>
           <button class="pill-btn active" id="btn-login-trigger" onclick="openLoginModal()" style="font-size: 0.72rem; padding: 0.25rem 0.55rem;">🔑 Acceso Equipo</button>
         </div>
@@ -213,7 +213,7 @@
       <form class="login-form" id="login-form" onsubmit="handleLoginSubmit(event)">
         <div class="login-input-group">
           <label class="login-label" for="login-username">Usuario</label>
-          <input class="login-input" type="text" id="login-username" name="username" placeholder="gridiron_team" required autocomplete="username">
+          <input class="login-input" type="text" id="login-username" name="username" placeholder="Nombre de usuario" required autocomplete="username">
         </div>
 
         <div class="login-input-group">
@@ -227,12 +227,11 @@
       </form>
 
       <div class="login-footer-info">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
           <span>🔒 Cifrado PBKDF2 + HMAC-SHA256</span>
-          <button type="button" class="login-quick-fill" onclick="quickFillCredentials()">Prellenar Demo</button>
         </div>
-        <span style="font-size: 0.7rem; color: var(--text-muted);">
-          Credenciales predeterminadas: <code>gridiron_team</code> / <code>gridiron2024!</code>
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-align: center; line-height: 1.4;">
+          Acceso restringido al equipo de producción. Los accesos no autorizados son auditados y limitados por IP.
         </span>
       </div>
     </div>

@@ -16,8 +16,8 @@ services:
       - key: AUTH_REQUIRED
         value: "true"
       - key: TEAM_USERNAME
-        value: gridiron_team
-      - key: TEAM_PASSWORD
+        sync: false
+      - key: TEAM_PASSWORD_HASH
         sync: false
       - key: TEAM_SHARED_SECRET
         generateValue: true
