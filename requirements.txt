@@ -1,0 +1,18 @@
+# Core API and Server
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+python-dotenv>=1.0.1
+
+# Data Ingestion & Manipulation
+requests>=2.31.0
+httpx>=0.27.0
+nflreadpy>=0.1.0
+pandas>=2.2.0
+
+# Storage & Analytics
+duckdb>=0.10.0
+
+# Testing & Linting
+pytest>=8.0.0
+pytest-mock>=3.12.0

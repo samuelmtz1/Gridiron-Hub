@@ -1,0 +1,25 @@
+# Gitleaks configuration for Gridiron Hub
+title = "Gridiron Hub Secret Scan"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Ignore example and test fixtures"
+files = [
+    '''^\.env\.example$''',
+    '''^mock/.*''',
+    '''^tests/.*'''
+]
+
+[[rules]]
+id = "cfbd-api-key"
+description = "Detected CollegeFootballData API Token"
+regex = '''(?i)(cfbd[_-]?api[_-]?key|collegefootball[_-]?token)\s*[:=]\s*['"][a-zA-Z0-9_\-\.]{20,}['"]'''
+tags = ["key", "cfbd"]
+
+[[rules]]
+id = "team-shared-secret"
+description = "Detected Hardcoded Team Shared Secret"
+regex = '''(?i)(team[_-]?shared[_-]?secret)\s*[:=]\s*['"][a-zA-Z0-9_\-\.]{16,}['"]'''
+tags = ["secret", "auth"]
