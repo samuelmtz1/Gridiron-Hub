@@ -37,6 +37,7 @@
         <div class="btn-group">
           <button class="btn-toggle active" id="btn-view-games" onclick="switchView('games')">Partidos & Fichas</button>
           <button class="btn-toggle" id="btn-view-awards" onclick="switchView('awards')">🏆 Premios Semanales</button>
+          <button class="btn-toggle" id="btn-view-script" onclick="switchView('script')">🎙️ Guion YouTube</button>
         </div>
 
         <!-- Staging / Mock Indicator -->
@@ -110,6 +111,36 @@
     <div id="view-awards" style="display: none;">
       <div class="awards-grid" id="awards-container">
         <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- View 3: YouTube Script Studio -->
+    <div id="view-script" style="display: none;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">🎙️ YouTube Studio — Guion y Teleprompter</h2>
+            <div style="display: flex; gap: 0.75rem; margin-top: 0.35rem; flex-wrap: wrap;">
+              <span class="badge-metric badge-wp-swing" id="script-duration-badge">⏱️ 13m 45s estimados</span>
+              <span class="badge-metric badge-epa-pos" id="script-words-badge">1,780 palabras</span>
+              <span class="badge-metric" style="background: rgba(250, 204, 21, 0.15); color: var(--metric-gold);">Estructura 6 Bloques</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="pill-btn active" onclick="copyFullScript()">📋 Copiar Guion Completo</button>
+            <button class="pill-btn" onclick="downloadScriptFile()">📥 Descargar .md</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">📌 Títulos Sugeridos para YouTube (Alto CTR):</h4>
+          <div id="script-titles-list" style="display: flex; flex-direction: column; gap: 0.4rem;"></div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">📖 Texto del Teleprompter:</h4>
+          <pre id="script-content-pre" style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; color: var(--text-primary); font-family: var(--font-sans); white-space: pre-wrap; line-height: 1.7; font-size: 0.92rem; max-height: 650px; overflow-y: auto;"></pre>
+        </div>
       </div>
     </div>
   </main>
