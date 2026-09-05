@@ -50,10 +50,17 @@ def test_api_script_generation_endpoint(tmp_path: Path, monkeypatch):
     monkeypatch.setenv("DATABASE_URL", f"sqlite:///{test_db}")
     dataset.seed_mock_environment(custom_db_path=test_db)
 
+    from security.auth import create_session_token
+    token = create_session_token("script_admin")
+
     with TestClient(app) as client:
-        resp = client.get("/api/scripts/generate?league=nfl&season=2024&week=11")
+        resp = client.get(
+            "/api/scripts/generate?league=nfl&season=2024&week=11",
+            headers={"Authorization": f"Bearer {token}"}
+        )
         assert resp.status_code == 200
         data = resp.json()
         assert "script_markdown" in data
         assert "metadata" in data
         assert data["week"] == 11
+

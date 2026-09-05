@@ -1,11 +1,19 @@
 """Integration tests for Gridiron Hub FastAPI endpoints."""
 
+from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
-from pathlib import Path
 
 from api.main import app
+from security.auth import create_session_token
 from storage import db
+
+
+@pytest.fixture
+def auth_headers():
+    """Generates valid Bearer authentication headers for test client."""
+    token = create_session_token("test_user")
+    return {"Authorization": f"Bearer {token}"}
 
 
 @pytest.fixture
@@ -62,7 +70,7 @@ def client_with_db(tmp_path: Path, monkeypatch):
 
 
 def test_health_endpoint(client_with_db):
-    """Verifies that /health returns 200 and healthy status."""
+    """Verifies that /health returns 200 and healthy status (public endpoint)."""
     resp = client_with_db.get("/health")
     assert resp.status_code == 200
     data = resp.json()
@@ -72,7 +80,7 @@ def test_health_endpoint(client_with_db):
 
 
 def test_list_teams_filtered_by_conference(client_with_db):
-    """Verifies /api/teams filters by conference."""
+    """Verifies /api/teams filters by conference (public directory)."""
     resp = client_with_db.get("/api/teams?league=nfl&conference=AFC")
     assert resp.status_code == 200
     teams = resp.json()
@@ -82,9 +90,18 @@ def test_list_teams_filtered_by_conference(client_with_db):
         assert t["primary_color"].startswith("#")
 
 
-def test_list_games_by_week(client_with_db):
-    """Verifies /api/games returns games matching season and week."""
+def test_unauthenticated_requests_rejected(client_with_db):
+    """Verifies that protected endpoints return 401 Unauthorized without auth headers."""
     resp = client_with_db.get("/api/games?league=nfl&season=2024&week=10")
+    assert resp.status_code == 401
+
+    resp_awards = client_with_db.get("/api/awards?league=nfl&season=2024&week=10")
+    assert resp_awards.status_code == 401
+
+
+def test_list_games_by_week(client_with_db, auth_headers):
+    """Verifies /api/games returns games matching season and week when authenticated."""
+    resp = client_with_db.get("/api/games?league=nfl&season=2024&week=10", headers=auth_headers)
     assert resp.status_code == 200
     games = resp.json()
     assert len(games) == 1
@@ -93,9 +110,9 @@ def test_list_games_by_week(client_with_db):
     assert games[0]["away_code"] == "DEN"
 
 
-def test_get_game_details_success(client_with_db):
-    """Verifies /api/games/{id} returns full game details."""
-    resp = client_with_db.get("/api/games/nfl_2024_w10_den_kc")
+def test_get_game_details_success(client_with_db, auth_headers):
+    """Verifies /api/games/{id} returns full game details when authenticated."""
+    resp = client_with_db.get("/api/games/nfl_2024_w10_den_kc", headers=auth_headers)
     assert resp.status_code == 200
     data = resp.json()
     assert data["venue"] == "Arrowhead Stadium"
@@ -103,18 +120,17 @@ def test_get_game_details_success(client_with_db):
     assert "trivia" in data
 
 
-def test_get_game_details_not_found(client_with_db):
-    """Verifies 404 response for unknown game ID."""
-    resp = client_with_db.get("/api/games/nfl_unknown_game")
+def test_get_game_details_not_found(client_with_db, auth_headers):
+    """Verifies 404 response for unknown game ID when authenticated."""
+    resp = client_with_db.get("/api/games/nfl_unknown_game", headers=auth_headers)
     assert resp.status_code == 404
 
 
-def test_list_awards(client_with_db):
-    """Verifies /api/awards returns weekly candidates."""
-    resp = client_with_db.get("/api/awards?league=nfl&season=2024&week=10")
+def test_list_awards(client_with_db, auth_headers):
+    """Verifies /api/awards returns weekly candidates when authenticated."""
+    resp = client_with_db.get("/api/awards?league=nfl&season=2024&week=10", headers=auth_headers)
     assert resp.status_code == 200
     awards = resp.json()
     assert len(awards) == 1
     assert awards[0]["candidate_name"] == "Patrick Mahomes"
     assert awards[0]["category"] == "MVP"
-

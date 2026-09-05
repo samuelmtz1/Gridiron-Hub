@@ -13,7 +13,155 @@ const state = {
   games: [],
   awards: [],
   selectedGame: null,
+  authToken: sessionStorage.getItem("gridiron_token") || null,
+  currentUser: sessionStorage.getItem("gridiron_user") || null,
 };
+
+// Authentication & API Helpers
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? ""
+  : (window.GRIDIRON_API_URL || localStorage.getItem("gridiron_api_url") || "");
+
+function getAuthHeaders() {
+  const headers = {};
+  if (state.authToken) {
+    headers["Authorization"] = `Bearer ${state.authToken}`;
+  }
+  return headers;
+}
+
+function apiFetch(path, options = {}) {
+  const url = `${API_BASE}${path}`;
+  const headers = { ...getAuthHeaders(), ...(options.headers || {}) };
+  return fetch(url, { ...options, headers });
+}
+
+function openLoginModal() {
+  const overlay = document.getElementById("login-overlay");
+  const errorBox = document.getElementById("login-error");
+  if (errorBox) {
+    errorBox.style.display = "none";
+    errorBox.textContent = "";
+  }
+  if (overlay) overlay.classList.add("active");
+}
+
+function closeLoginModal() {
+  const overlay = document.getElementById("login-overlay");
+  if (overlay) overlay.classList.remove("active");
+}
+
+function updateAuthUI() {
+  const userBadge = document.getElementById("auth-user-badge");
+  const logoutBtn = document.getElementById("btn-logout");
+  const loginTrigger = document.getElementById("btn-login-trigger");
+
+  if (state.authToken && state.currentUser) {
+    if (userBadge) {
+      userBadge.textContent = `👤 ${state.currentUser}`;
+      userBadge.style.display = "inline-block";
+    }
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+    if (loginTrigger) loginTrigger.style.display = "none";
+    closeLoginModal();
+  } else {
+    if (userBadge) userBadge.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "none";
+    if (loginTrigger) loginTrigger.style.display = "inline-block";
+  }
+}
+
+function quickFillCredentials() {
+  const userInput = document.getElementById("login-username");
+  const passInput = document.getElementById("login-password");
+  if (userInput) userInput.value = "gridiron_team";
+  if (passInput) passInput.value = "gridiron2024!";
+}
+
+async function handleLoginSubmit(event) {
+  event.preventDefault();
+  const usernameInput = document.getElementById("login-username");
+  const passwordInput = document.getElementById("login-password");
+  const errorBox = document.getElementById("login-error");
+  const submitBtn = document.getElementById("btn-submit-login");
+
+  const username = usernameInput ? usernameInput.value.trim() : "";
+  const password = passwordInput ? passwordInput.value : "";
+
+  if (!username || !password) return;
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Verificando credenciales...";
+  }
+  if (errorBox) {
+    errorBox.style.display = "none";
+  }
+
+  try {
+    const res = await apiFetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      state.authToken = data.token;
+      state.currentUser = data.username;
+      sessionStorage.setItem("gridiron_token", data.token);
+      sessionStorage.setItem("gridiron_user", data.username);
+      updateAuthUI();
+      // Refresh current dataset with authorized session
+      await initApp();
+      if (state.view === "script") {
+        await loadYoutubeScript();
+      }
+    } else {
+      const err = await res.json().catch(() => ({}));
+      if (errorBox) {
+        errorBox.textContent = err.detail || "Error de inicio de sesión. Verifique sus credenciales.";
+        errorBox.style.display = "block";
+      }
+    }
+  } catch (err) {
+    if (errorBox) {
+      errorBox.textContent = "Error al conectar con el servidor de autenticación.";
+      errorBox.style.display = "block";
+    }
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Iniciar Sesión Segura";
+    }
+  }
+}
+
+function logoutUser() {
+  state.authToken = null;
+  state.currentUser = null;
+  sessionStorage.removeItem("gridiron_token");
+  sessionStorage.removeItem("gridiron_user");
+  updateAuthUI();
+  openLoginModal();
+}
+
+async function checkAuthSession() {
+  updateAuthUI();
+  if (state.authToken) {
+    try {
+      const res = await apiFetch("/api/auth/verify");
+      if (!res.ok) {
+        logoutUser();
+        return;
+      }
+    } catch (e) {
+      // Offline fallback
+    }
+  } else {
+    openLoginModal();
+  }
+}
 
 // Embedded Fallback Mock Dataset for Standalone Staging
 const MOCK_DATA = {
@@ -211,8 +359,11 @@ const MOCK_DATA = {
 // Initial Fetch
 async function initApp() {
   try {
-    const res = await fetch(`/api/games?league=${state.league}&season=${state.season}&week=${state.week}`);
-    if (res.ok) {
+    const res = await apiFetch(`/api/games?league=${state.league}&season=${state.season}&week=${state.week}`);
+    if (res.status === 401) {
+      openLoginModal();
+      state.games = MOCK_DATA.games;
+    } else if (res.ok) {
       const data = await res.json();
       state.games = data.length > 0 ? data : MOCK_DATA.games;
     } else {
@@ -223,8 +374,11 @@ async function initApp() {
   }
 
   try {
-    const awardsRes = await fetch(`/api/awards?league=${state.league}&season=${state.season}&week=${state.week}`);
-    if (awardsRes.ok) {
+    const awardsRes = await apiFetch(`/api/awards?league=${state.league}&season=${state.season}&week=${state.week}`);
+    if (awardsRes.status === 401) {
+      openLoginModal();
+      state.awards = MOCK_DATA.awards;
+    } else if (awardsRes.ok) {
       const aData = await awardsRes.json();
       state.awards = aData.length > 0 ? aData : MOCK_DATA.awards;
     } else {
@@ -343,8 +497,10 @@ function renderGames() {
 async function openGameDrawer(gameId) {
   let game = state.games.find(g => g.id === gameId);
   try {
-    const res = await fetch(`/api/games/${gameId}`);
-    if (res.ok) {
+    const res = await apiFetch(`/api/games/${gameId}`);
+    if (res.status === 401) {
+      openLoginModal();
+    } else if (res.ok) {
       game = await res.json();
     }
   } catch (e) {
@@ -550,7 +706,11 @@ async function loadYoutubeScript() {
   titlesList.innerHTML = "";
 
   try {
-    const res = await fetch(`/api/scripts/generate?league=${state.league}&season=${state.season}&week=${state.week}`);
+    const res = await apiFetch(`/api/scripts/generate?league=${state.league}&season=${state.season}&week=${state.week}`);
+    if (res.status === 401) {
+      openLoginModal();
+      return;
+    }
     if (res.ok) {
       const data = await res.json();
       currentGeneratedScript = data.script_markdown;
@@ -612,6 +772,10 @@ function downloadScriptFile() {
 }
 
 // Bootstrap on Load
-window.addEventListener("DOMContentLoaded", initApp);
+window.addEventListener("DOMContentLoaded", async () => {
+  await checkAuthSession();
+  await initApp();
+});
+
 
 
