@@ -69,6 +69,15 @@ def client_with_db(tmp_path: Path, monkeypatch):
         yield client
 
 
+def test_root_endpoint(client_with_db):
+    """Verifies that GET / returns 200 and service metadata."""
+    resp = client_with_db.get("/")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["status"] == "online"
+    assert data["service"] == "Gridiron Hub API"
+
+
 def test_health_endpoint(client_with_db):
     """Verifies that /health returns 200 and healthy status (public endpoint)."""
     resp = client_with_db.get("/health")

@@ -134,6 +134,19 @@ def verify_team_token(user: Dict[str, Any] = Depends(get_current_user)) -> bool:
 # ==============================================================================
 
 
+@app.get("/", tags=["System"])
+def root_info() -> Dict[str, Any]:
+    """Root landing endpoint for Gridiron Hub API."""
+    return {
+        "service": "Gridiron Hub API",
+        "status": "online",
+        "version": "1.0.1",
+        "docs": "/docs",
+        "health": "/health",
+        "message": "Bienvenido a Gridiron Hub API. El frontend está disponible en Vercel."
+    }
+
+
 @app.get("/health", tags=["System"])
 def health_check() -> Dict[str, Any]:
     """Returns service health, active environment, and database connectivity status."""
