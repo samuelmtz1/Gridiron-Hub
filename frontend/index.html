@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gridiron Hub — Plataforma de Research NFL/NCAA</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏈</text></svg>">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-title">
+          <span>🏈 GRIDIRON HUB</span>
+          <span class="brand-badge">Research & YouTube Studio</span>
+        </div>
+      </div>
+
+      <div class="controls-section">
+        <!-- League Selector -->
+        <div class="btn-group">
+          <button class="btn-toggle active" id="btn-league-nfl" onclick="switchLeague('nfl')">NFL</button>
+          <button class="btn-toggle" id="btn-league-ncaa" onclick="switchLeague('ncaa')">NCAA</button>
+        </div>
+
+        <!-- Week Selector -->
+        <select class="select-input" id="select-week" onchange="changeWeek(this.value)">
+          <option value="11" selected>Semana 11 (2024)</option>
+          <option value="10">Semana 10 (2024)</option>
+          <option value="9">Semana 9 (2024)</option>
+        </select>
+
+        <!-- View Switcher -->
+        <div class="btn-group">
+          <button class="btn-toggle active" id="btn-view-games" onclick="switchView('games')">Partidos & Fichas</button>
+          <button class="btn-toggle" id="btn-view-awards" onclick="switchView('awards')">🏆 Premios Semanales</button>
+          <button class="btn-toggle" id="btn-view-script" onclick="switchView('script')">🎙️ Guion YouTube</button>
+        </div>
+
+        <!-- Staging / Mock Indicator -->
+        <div class="staging-indicator" onclick="toggleTestPanel()" title="Solo para tus ojos: Entorno de pruebas y simulación">
+          <span class="staging-dot"></span>
+          <span>Staging Preview</span>
+        </div>
+
+        <!-- User Session Indicator & Controls -->
+        <div id="auth-controls" style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="brand-badge" id="auth-user-badge" style="display: none; background: rgba(34, 197, 94, 0.15); color: var(--metric-positive); border-color: rgba(34, 197, 94, 0.3);"></span>
+          <button class="pill-btn" id="btn-logout" onclick="logoutUser()" style="display: none; font-size: 0.72rem; padding: 0.25rem 0.55rem;">Cerrar Sesión</button>
+          <button class="pill-btn active" id="btn-login-trigger" onclick="openLoginModal()" style="font-size: 0.72rem; padding: 0.25rem 0.55rem;">🔑 Acceso Equipo</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Testing & Simulation Control Panel (Solo para tus ojos) -->
+  <section class="test-panel" id="test-panel">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+      <strong style="color: var(--metric-gold); font-size: 0.85rem;">🛠 ENTORNO DE STAGING MOCK PREVIEW (SOLO PARA TUS OJOS)</strong>
+      <span style="font-size: 0.75rem; color: var(--text-muted);">Usa este panel para simular updates antes de fusionar a producción.</span>
+    </div>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="pill-btn active" onclick="loadMockDataset()">🔄 Recargar Fixtures Semanales</button>
+      <button class="pill-btn" onclick="simulateGameEnd()">⚡ Simular Partido Finalizado en Vivo</button>
+      <button class="pill-btn" onclick="copyYoutubeNotes()">📋 Copiar Resumen para Teleprompter</button>
+    </div>
+  </section>
+
+  <!-- Filter Pills -->
+  <nav class="filter-bar" id="division-filters">
+    <button class="pill-btn active" onclick="filterDivision('ALL')">Todos los Juegos</button>
+    <button class="pill-btn" onclick="filterDivision('AFC')">AFC</button>
+    <button class="pill-btn" onclick="filterDivision('NFC')">NFC</button>
+    <button class="pill-btn" onclick="filterDivision('AFC West')">AFC West</button>
+    <button class="pill-btn" onclick="filterDivision('AFC East')">AFC East</button>
+    <button class="pill-btn" onclick="filterDivision('AFC North')">AFC North</button>
+    <button class="pill-btn" onclick="filterDivision('NFC North')">NFC North</button>
+    <button class="pill-btn" onclick="filterDivision('SEC')">SEC (NCAA)</button>
+  </nav>
+
+  <!-- KPI Banner -->
+  <section class="kpi-banner" id="kpi-banner">
+    <div class="kpi-card">
+      <span class="kpi-label">Partidos Procesados</span>
+      <span class="kpi-value" id="kpi-games-count">5</span>
+      <span class="kpi-sub">100% data play-by-play ingesta</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Mayor Impacto WP Swing</span>
+      <span class="kpi-value" style="color: var(--metric-cyan);">+76.0%</span>
+      <span class="kpi-sub">K. Brooks FG Bloqueado (GB vs CHI)</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Líder Ofensivo EPA</span>
+      <span class="kpi-value" style="color: var(--metric-positive);">+21.4</span>
+      <span class="kpi-sub">Josh Allen (Bills vs Chiefs)</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Líder Defensivo</span>
+      <span class="kpi-value" style="color: var(--metric-gold);">2.5 Sacks</span>
+      <span class="kpi-sub">T.J. Watt (Steelers vs Ravens)</span>
+    </div>
+  </section>
+
+  <!-- Main Content View Container -->
+  <main class="main-content">
+    <!-- View 1: Matchup Cards Grid -->
+    <div id="view-games">
+      <div class="games-grid" id="games-container">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- View 2: Weekly Awards Hub -->
+    <div id="view-awards" style="display: none;">
+      <div class="awards-grid" id="awards-container">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- View 3: YouTube Script Studio -->
+    <div id="view-script" style="display: none;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">🎙️ YouTube Studio — Guion y Teleprompter</h2>
+            <div style="display: flex; gap: 0.75rem; margin-top: 0.35rem; flex-wrap: wrap;">
+              <span class="badge-metric badge-wp-swing" id="script-duration-badge">⏱️ 13m 45s estimados</span>
+              <span class="badge-metric badge-epa-pos" id="script-words-badge">1,780 palabras</span>
+              <span class="badge-metric" style="background: rgba(250, 204, 21, 0.15); color: var(--metric-gold);">Estructura 6 Bloques</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="pill-btn active" onclick="copyFullScript()">📋 Copiar Guion Completo</button>
+            <button class="pill-btn" onclick="downloadScriptFile()">📥 Descargar .md</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">📌 Títulos Sugeridos para YouTube (Alto CTR):</h4>
+          <div id="script-titles-list" style="display: flex; flex-direction: column; gap: 0.4rem;"></div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">📖 Texto del Teleprompter:</h4>
+          <pre id="script-content-pre" style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; color: var(--text-primary); font-family: var(--font-sans); white-space: pre-wrap; line-height: 1.7; font-size: 0.92rem; max-height: 650px; overflow-y: auto;"></pre>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Drawer Modal for Game Details -->
+  <div class="drawer-overlay" id="drawer-modal" onclick="closeDrawer(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+      <div class="drawer-header">
+        <div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;" id="drawer-venue">Highmark Stadium</div>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);" id="drawer-title">Bills vs Chiefs</h2>
+        </div>
+        <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Boxscore Analítico -->
+        <section>
+          <div class="section-title">📊 Boxscore Analítico & Eficiencia EPA</div>
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Métrica</th>
+                <th id="th-away-team">KC</th>
+                <th id="th-home-team">BUF</th>
+              </tr>
+            </thead>
+            <tbody id="drawer-stats-body">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Top Jugadas Clave -->
+        <section>
+          <div class="section-title">⚡ Top Jugadas Clave (Por Win Probability Swing & EPA)</div>
+          <div id="drawer-plays-list">
+            <!-- Rendered via app.js -->
+          </div>
+        </section>
+
+        <!-- Trivia y Contexto Narrativo para YouTube -->
+        <section>
+          <div class="section-title">🎙 Trivia & Puntos Narrativos para el Guion</div>
+          <div id="drawer-trivia-list">
+            <!-- Rendered via app.js -->
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Overlay Modal (OWASP Compliant Session Gate) -->
+  <div class="login-overlay" id="login-overlay">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-title">🏈 GRIDIRON HUB</div>
+        <div class="login-subtitle">Acceso exclusivo al panel de producción e investigación</div>
+      </div>
+
+      <div class="login-error" id="login-error"></div>
+
+      <form class="login-form" id="login-form" onsubmit="handleLoginSubmit(event)">
+        <div class="login-input-group">
+          <label class="login-label" for="login-username">Usuario</label>
+          <input class="login-input" type="text" id="login-username" name="username" placeholder="Nombre de usuario" required autocomplete="username">
+        </div>
+
+        <div class="login-input-group">
+          <label class="login-label" for="login-password">Contraseña</label>
+          <input class="login-input" type="password" id="login-password" name="password" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+
+        <button class="login-submit-btn" type="submit" id="btn-submit-login">
+          Iniciar Sesión Segura
+        </button>
+      </form>
+
+      <div class="login-footer-info">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+          <span>🔒 Cifrado PBKDF2 + HMAC-SHA256</span>
+        </div>
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-align: center; line-height: 1.4;">
+          Acceso restringido al equipo de producción. Los accesos no autorizados son auditados y limitados por IP.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
