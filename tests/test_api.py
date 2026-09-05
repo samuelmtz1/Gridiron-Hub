@@ -113,10 +113,11 @@ def test_list_games_by_week(client_with_db, auth_headers):
     resp = client_with_db.get("/api/games?league=nfl&season=2024&week=10", headers=auth_headers)
     assert resp.status_code == 200
     games = resp.json()
-    assert len(games) == 1
-    assert games[0]["id"] == "nfl_2024_w10_den_kc"
-    assert games[0]["home_code"] == "KC"
-    assert games[0]["away_code"] == "DEN"
+    assert len(games) >= 1
+    sample_game = next((g for g in games if g["id"] == "nfl_2024_w10_den_kc"), None)
+    assert sample_game is not None
+    assert sample_game["home_code"] == "KC"
+    assert sample_game["away_code"] == "DEN"
 
 
 def test_get_game_details_success(client_with_db, auth_headers):

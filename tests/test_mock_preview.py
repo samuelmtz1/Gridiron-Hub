@@ -19,10 +19,11 @@ def test_seed_mock_environment(tmp_path: Path):
     assert chiefs_bills["home_score"] == 30
     assert chiefs_bills["away_score"] == 21
 
-    # Verify NCAA game
+    # Verify NCAA games
     ncaa_games = db.get_games_by_week("ncaa", 2024, 11, custom_path=test_db)
-    assert len(ncaa_games) == 1
-    assert ncaa_games[0]["home_code"] == "ALA"
+    assert len(ncaa_games) == 3
+    ala_game = next((g for g in ncaa_games if g["home_code"] == "ALA"), None)
+    assert ala_game is not None
 
     # Verify game details with key plays and trivia
     details = db.get_game_details("nfl_2024_w11_kc_buf", custom_path=test_db)

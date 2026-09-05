@@ -31,6 +31,7 @@
           <option value="11" selected>Semana 11 (2024)</option>
           <option value="10">Semana 10 (2024)</option>
           <option value="9">Semana 9 (2024)</option>
+          <option value="2026_sb">Super Bowl LX (2026)</option>
         </select>
 
         <!-- View Switcher -->
@@ -38,12 +39,6 @@
           <button class="btn-toggle active" id="btn-view-games" onclick="switchView('games')">Partidos & Fichas</button>
           <button class="btn-toggle" id="btn-view-awards" onclick="switchView('awards')">🏆 Premios Semanales</button>
           <button class="btn-toggle" id="btn-view-script" onclick="switchView('script')">🎙️ Guion YouTube</button>
-        </div>
-
-        <!-- Staging / Mock Indicator -->
-        <div class="staging-indicator" onclick="toggleTestPanel()" title="Solo para tus ojos: Entorno de pruebas y simulación">
-          <span class="staging-dot"></span>
-          <span>Staging Preview</span>
         </div>
 
         <!-- User Session Indicator & Controls -->
@@ -55,19 +50,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Testing & Simulation Control Panel (Solo para tus ojos) -->
-  <section class="test-panel" id="test-panel">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-      <strong style="color: var(--metric-gold); font-size: 0.85rem;">🛠 ENTORNO DE STAGING MOCK PREVIEW (SOLO PARA TUS OJOS)</strong>
-      <span style="font-size: 0.75rem; color: var(--text-muted);">Usa este panel para simular updates antes de fusionar a producción.</span>
-    </div>
-    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-      <button class="pill-btn active" onclick="loadMockDataset()">🔄 Recargar Fixtures Semanales</button>
-      <button class="pill-btn" onclick="simulateGameEnd()">⚡ Simular Partido Finalizado en Vivo</button>
-      <button class="pill-btn" onclick="copyYoutubeNotes()">📋 Copiar Resumen para Teleprompter</button>
-    </div>
-  </section>
 
   <!-- Filter Pills -->
   <nav class="filter-bar" id="division-filters">

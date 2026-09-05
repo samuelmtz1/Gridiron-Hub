@@ -274,6 +274,36 @@ NCAA_TEAMS: List[Dict[str, Any]] = [
         "primary_color": "#F56600", "secondary_color": "#522D80",
         "logo_url": f"{CFB_LOGO_BASE}/228.png"
     },
+    {
+        "id": "ncaa_PSU", "league": "ncaa", "code": "PSU", "name": "Penn State Nittany Lions",
+        "short_name": "Penn State", "city": "University Park", "conference": "Big Ten", "division": None,
+        "primary_color": "#041E42", "secondary_color": "#FFFFFF",
+        "logo_url": f"{CFB_LOGO_BASE}/213.png"
+    },
+    {
+        "id": "ncaa_MISS", "league": "ncaa", "code": "MISS", "name": "Ole Miss Rebels",
+        "short_name": "Ole Miss", "city": "Oxford", "conference": "SEC", "division": None,
+        "primary_color": "#CE1126", "secondary_color": "#00205B",
+        "logo_url": f"{CFB_LOGO_BASE}/145.png"
+    },
+    {
+        "id": "ncaa_LSU", "league": "ncaa", "code": "LSU", "name": "LSU Tigers",
+        "short_name": "LSU", "city": "Baton Rouge", "conference": "SEC", "division": None,
+        "primary_color": "#461D7C", "secondary_color": "#FDD023",
+        "logo_url": f"{CFB_LOGO_BASE}/99.png"
+    },
+    {
+        "id": "ncaa_ARK", "league": "ncaa", "code": "ARK", "name": "Arkansas Razorbacks",
+        "short_name": "Arkansas", "city": "Fayetteville", "conference": "SEC", "division": None,
+        "primary_color": "#9D2235", "secondary_color": "#FFFFFF",
+        "logo_url": f"{CFB_LOGO_BASE}/8.png"
+    },
+    {
+        "id": "ncaa_NW", "league": "ncaa", "code": "NW", "name": "Northwestern Wildcats",
+        "short_name": "Northwestern", "city": "Evanston", "conference": "Big Ten", "division": None,
+        "primary_color": "#4E2A84", "secondary_color": "#FFFFFF",
+        "logo_url": f"{CFB_LOGO_BASE}/77.png"
+    },
 ]
 
 

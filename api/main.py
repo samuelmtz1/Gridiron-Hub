@@ -35,21 +35,13 @@ from storage import db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initializes the SQLite schema on startup and seeds default team assets and tactical analysis."""
+    """Initializes the SQLite schema on startup and seeds default team assets, multi-week games, and tactical analyses."""
     db.init_db()
-    existing_teams = db.get_teams()
-    if not existing_teams:
-        all_teams = assets_source.load_all_teams()
-        db.save_teams(all_teams)
-
-    # Ensure week 11 games and tactical research data are seeded
-    existing_games = db.get_games_by_week(league="nfl", season=2024, week=11)
-    if not existing_games:
-        from mock import dataset
-        dataset.seed_mock_environment()
-    else:
-        from mock import dataset
-        db.save_game_tactical_analysis(dataset.get_mock_tactical_analyses())
+    from ingestion import assets_source
+    from mock import dataset
+    all_teams = assets_source.load_all_teams()
+    db.save_teams(all_teams)
+    dataset.seed_mock_environment()
     yield
 
 
@@ -100,10 +92,16 @@ def get_current_user(
     authorization: Optional[str] = Header(None),
     x_team_token: Optional[str] = Header(None),
 ) -> Dict[str, Any]:
-    """Validates session token or fallback team secret token."""
-    # Allow bypassing authentication if AUTH_REQUIRED is set to false in local dev/testing
+    # Allow public read / guest access when token is not provided and AUTH_REQUIRED is false
     if os.getenv("AUTH_REQUIRED", "true").lower() in ("false", "0", "no"):
-        return {"sub": "dev_user", "role": "dev"}
+        token = None
+        if authorization and authorization.startswith("Bearer "):
+            token = authorization.split(" ", 1)[1].strip()
+        if token:
+            payload = verify_session_token(token)
+            if payload:
+                return payload
+        return {"sub": "guest_user", "role": "guest"}
 
     token = None
     if authorization and authorization.startswith("Bearer "):
@@ -135,6 +133,12 @@ def get_current_user(
 
 def verify_team_token(user: Dict[str, Any] = Depends(get_current_user)) -> bool:
     """Verifies team authorization for admin/ingest endpoints."""
+    if user.get("role") == "guest":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Autenticación requerida para operaciones de administración o ingestión.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     return True
 
 
@@ -198,6 +202,11 @@ def login(req: LoginRequest) -> Dict[str, Any]:
 @app.get("/api/auth/verify", tags=["Auth"])
 def verify_session(user: Dict[str, Any] = Depends(get_current_user)) -> Dict[str, Any]:
     """Verifies that the provided session token is active, cryptographically signed, and not expired."""
+    if user.get("role") == "guest":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="No hay sesión de equipo activa.",
+        )
     return {
         "status": "valid",
         "user": user.get("sub"),

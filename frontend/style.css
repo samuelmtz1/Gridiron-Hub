@@ -106,28 +106,6 @@ body {
   outline: none;
 }
 
-.staging-indicator {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--metric-gold);
-  background: rgba(250, 204, 21, 0.1);
-  border: 1px solid rgba(250, 204, 21, 0.25);
-  padding: 0.35rem 0.7rem;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-}
-
-.staging-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--metric-gold);
-  box-shadow: 0 0 6px var(--metric-gold);
-}
-
 /* Secondary Filter Bar */
 .filter-bar {
   max-width: 1400px;
@@ -520,21 +498,6 @@ body {
   font-size: 0.78rem;
   color: var(--text-secondary);
   margin-top: 0.15rem;
-}
-
-/* Testing Drawer */
-.test-panel {
-  display: none;
-  background: var(--bg-surface);
-  border: 1px dashed var(--metric-gold);
-  border-radius: var(--radius-md);
-  padding: 1rem;
-  margin: 1rem auto;
-  max-width: 1400px;
-}
-
-.test-panel.active {
-  display: block;
 }
 
 /* ==============================================================================

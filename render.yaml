@@ -14,7 +14,7 @@ services:
       - key: APP_ENV
         value: production
       - key: AUTH_REQUIRED
-        value: "true"
+        value: "false"
       - key: TEAM_USERNAME
         sync: false
       - key: TEAM_PASSWORD_HASH
