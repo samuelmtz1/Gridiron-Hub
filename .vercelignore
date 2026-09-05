@@ -1,0 +1,12 @@
+api/
+ingestion/
+processing/
+security/
+storage/
+tests/
+venv/
+requirements.txt
+runtime.txt
+render.yaml
+Dockerfile
+.env*

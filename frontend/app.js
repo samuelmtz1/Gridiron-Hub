@@ -18,9 +18,10 @@ const state = {
 };
 
 // Authentication & API Helpers
+const DEFAULT_API_URL = "https://gridiron-hub-2lr3.onrender.com";
 const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? ""
-  : (window.GRIDIRON_API_URL || localStorage.getItem("gridiron_api_url") || "");
+  : (window.GRIDIRON_API_URL || localStorage.getItem("gridiron_api_url") || DEFAULT_API_URL);
 
 function getAuthHeaders() {
   const headers = {};
@@ -56,7 +57,7 @@ function toggleApiConfig() {
   if (!sec) return;
   sec.style.display = sec.style.display === "none" ? "block" : "none";
   const input = document.getElementById("custom-api-url");
-  if (input) input.value = localStorage.getItem("gridiron_api_url") || "";
+  if (input) input.value = localStorage.getItem("gridiron_api_url") || DEFAULT_API_URL;
 }
 
 function saveCustomApiUrl() {
