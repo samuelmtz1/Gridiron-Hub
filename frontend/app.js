@@ -51,6 +51,28 @@ function closeLoginModal() {
   if (overlay) overlay.classList.remove("active");
 }
 
+function toggleApiConfig() {
+  const sec = document.getElementById("api-config-section");
+  if (!sec) return;
+  sec.style.display = sec.style.display === "none" ? "block" : "none";
+  const input = document.getElementById("custom-api-url");
+  if (input) input.value = localStorage.getItem("gridiron_api_url") || "";
+}
+
+function saveCustomApiUrl() {
+  const input = document.getElementById("custom-api-url");
+  if (!input) return;
+  let url = input.value.trim().replace(/\/+$/, "");
+  if (url) {
+    localStorage.setItem("gridiron_api_url", url);
+    alert(`URL del backend en Render configurada: ${url}`);
+  } else {
+    localStorage.removeItem("gridiron_api_url");
+    alert("Usando servidor local / relativo por defecto.");
+  }
+  window.location.reload();
+}
+
 function updateAuthUI() {
   const userBadge = document.getElementById("auth-user-badge");
   const logoutBtn = document.getElementById("btn-logout");
