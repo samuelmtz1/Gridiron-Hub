@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gridiron Hub — Plataforma de Research NFL/NCAA</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏈</text></svg>">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-title">
+          <span>🏈 GRIDIRON HUB</span>
+          <span class="brand-badge">Research & YouTube Studio</span>
+        </div>
+      </div>
+
+      <div class="controls-section">
+        <!-- League Selector -->
+        <div class="btn-group">
+          <button class="btn-toggle active" id="btn-league-nfl" onclick="switchLeague('nfl')">NFL</button>
+          <button class="btn-toggle" id="btn-league-ncaa" onclick="switchLeague('ncaa')">NCAA</button>
+        </div>
+
+        <!-- Week Selector -->
+        <select class="select-input" id="select-week" onchange="changeWeek(this.value)">
+          <option value="11" selected>Semana 11 (2024)</option>
+          <option value="10">Semana 10 (2024)</option>
+          <option value="9">Semana 9 (2024)</option>
+        </select>
+
+        <!-- View Switcher -->
+        <div class="btn-group">
+          <button class="btn-toggle active" id="btn-view-games" onclick="switchView('games')">Partidos & Fichas</button>
+          <button class="btn-toggle" id="btn-view-awards" onclick="switchView('awards')">🏆 Premios Semanales</button>
+        </div>
+
+        <!-- Staging / Mock Indicator -->
+        <div class="staging-indicator" onclick="toggleTestPanel()" title="Solo para tus ojos: Entorno de pruebas y simulación">
+          <span class="staging-dot"></span>
+          <span>Staging Preview</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Testing & Simulation Control Panel (Solo para tus ojos) -->
+  <section class="test-panel" id="test-panel">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+      <strong style="color: var(--metric-gold); font-size: 0.85rem;">🛠 ENTORNO DE STAGING MOCK PREVIEW (SOLO PARA TUS OJOS)</strong>
+      <span style="font-size: 0.75rem; color: var(--text-muted);">Usa este panel para simular updates antes de fusionar a producción.</span>
+    </div>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="pill-btn active" onclick="loadMockDataset()">🔄 Recargar Fixtures Semanales</button>
+      <button class="pill-btn" onclick="simulateGameEnd()">⚡ Simular Partido Finalizado en Vivo</button>
+      <button class="pill-btn" onclick="copyYoutubeNotes()">📋 Copiar Resumen para Teleprompter</button>
+    </div>
+  </section>
+
+  <!-- Filter Pills -->
+  <nav class="filter-bar" id="division-filters">
+    <button class="pill-btn active" onclick="filterDivision('ALL')">Todos los Juegos</button>
+    <button class="pill-btn" onclick="filterDivision('AFC')">AFC</button>
+    <button class="pill-btn" onclick="filterDivision('NFC')">NFC</button>
+    <button class="pill-btn" onclick="filterDivision('AFC West')">AFC West</button>
+    <button class="pill-btn" onclick="filterDivision('AFC East')">AFC East</button>
+    <button class="pill-btn" onclick="filterDivision('AFC North')">AFC North</button>
+    <button class="pill-btn" onclick="filterDivision('NFC North')">NFC North</button>
+    <button class="pill-btn" onclick="filterDivision('SEC')">SEC (NCAA)</button>
+  </nav>
+
+  <!-- KPI Banner -->
+  <section class="kpi-banner" id="kpi-banner">
+    <div class="kpi-card">
+      <span class="kpi-label">Partidos Procesados</span>
+      <span class="kpi-value" id="kpi-games-count">5</span>
+      <span class="kpi-sub">100% data play-by-play ingesta</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Mayor Impacto WP Swing</span>
+      <span class="kpi-value" style="color: var(--metric-cyan);">+76.0%</span>
+      <span class="kpi-sub">K. Brooks FG Bloqueado (GB vs CHI)</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Líder Ofensivo EPA</span>
+      <span class="kpi-value" style="color: var(--metric-positive);">+21.4</span>
+      <span class="kpi-sub">Josh Allen (Bills vs Chiefs)</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Líder Defensivo</span>
+      <span class="kpi-value" style="color: var(--metric-gold);">2.5 Sacks</span>
+      <span class="kpi-sub">T.J. Watt (Steelers vs Ravens)</span>
+    </div>
+  </section>
+
+  <!-- Main Content View Container -->
+  <main class="main-content">
+    <!-- View 1: Matchup Cards Grid -->
+    <div id="view-games">
+      <div class="games-grid" id="games-container">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- View 2: Weekly Awards Hub -->
+    <div id="view-awards" style="display: none;">
+      <div class="awards-grid" id="awards-container">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Drawer Modal for Game Details -->
+  <div class="drawer-overlay" id="drawer-modal" onclick="closeDrawer(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+      <div class="drawer-header">
+        <div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;" id="drawer-venue">Highmark Stadium</div>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);" id="drawer-title">Bills vs Chiefs</h2>
+        </div>
+        <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Boxscore Analítico -->
+        <section>
+          <div class="section-title">📊 Boxscore Analítico & Eficiencia EPA</div>
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Métrica</th>
+                <th id="th-away-team">KC</th>
+                <th id="th-home-team">BUF</th>
+              </tr>
+            </thead>
+            <tbody id="drawer-stats-body">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Top Jugadas Clave -->
+        <section>
+          <div class="section-title">⚡ Top Jugadas Clave (Por Win Probability Swing & EPA)</div>
+          <div id="drawer-plays-list">
+            <!-- Rendered via app.js -->
+          </div>
+        </section>
+
+        <!-- Trivia y Contexto Narrativo para YouTube -->
+        <section>
+          <div class="section-title">🎙 Trivia & Puntos Narrativos para el Guion</div>
+          <div id="drawer-trivia-list">
+            <!-- Rendered via app.js -->
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
