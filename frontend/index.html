@@ -224,6 +224,17 @@
         <button class="login-submit-btn" type="submit" id="btn-submit-login">
           Iniciar Sesión Segura
         </button>
+
+        <div style="margin-top: 0.5rem; text-align: right;">
+          <a href="javascript:void(0)" onclick="toggleApiConfig()" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: none;">⚙️ Servidor API (Render)</a>
+        </div>
+        <div id="api-config-section" style="display: none; margin-top: 0.5rem; background: var(--bg-card); padding: 0.65rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); text-align: left;">
+          <label class="login-label" style="margin-bottom: 0.35rem; display: block;">URL del Backend en Render:</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input class="login-input" type="url" id="custom-api-url" placeholder="https://tu-api.onrender.com" style="flex: 1; font-size: 0.8rem; padding: 0.4rem 0.6rem;">
+            <button type="button" class="pill-btn active" onclick="saveCustomApiUrl()" style="font-size: 0.72rem; padding: 0.4rem 0.7rem;">Guardar</button>
+          </div>
+        </div>
       </form>
 
       <div class="login-footer-info">
