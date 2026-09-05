@@ -136,3 +136,21 @@ def seed_default_teams(authorized: bool = Depends(verify_team_token)) -> Dict[st
     db.save_teams(teams)
     return {"status": "success", "message": f"{len(teams)} equipos sincronizados correctamente."}
 
+
+class IngestRequest(BaseModel):
+    league: str = "nfl"
+    season: int = 2024
+    week: int = 11
+    force: bool = False
+
+
+@app.post("/api/ingest/run", tags=["Admin"])
+def trigger_ingestion_pipeline(
+    req: IngestRequest,
+    authorized: bool = Depends(verify_team_token)
+) -> Dict[str, Any]:
+    """Manually triggers the ingestion and analytics pipeline."""
+    from ingestion.pipeline import run_pipeline
+    return run_pipeline(league=req.league, season=req.season, week=req.week, force=req.force)
+
+
