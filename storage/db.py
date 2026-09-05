@@ -88,6 +88,8 @@ def save_games(games: List[Dict[str, Any]], custom_path: Optional[str | Path] = 
         :home_team_id, :away_team_id, :home_score, :away_score, :status,
         :venue, :weather_temp, :weather_desc, :highlight_url
     ) ON CONFLICT(id) DO UPDATE SET
+        season = excluded.season,
+        week = excluded.week,
         home_score = excluded.home_score,
         away_score = excluded.away_score,
         status = excluded.status,
@@ -196,6 +198,8 @@ def save_awards_candidates(awards: List[Dict[str, Any]], custom_path: Optional[s
         :id, :league, :season, :week, :category, :candidate_name, :team_id,
         :stat_summary, :metric_value, :clip_url, :rank
     ) ON CONFLICT(id) DO UPDATE SET
+        season = excluded.season,
+        week = excluded.week,
         stat_summary = excluded.stat_summary,
         metric_value = excluded.metric_value,
         clip_url = excluded.clip_url,

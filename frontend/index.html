@@ -26,12 +26,16 @@
           <button class="btn-toggle" id="btn-league-ncaa" onclick="switchLeague('ncaa')">NCAA</button>
         </div>
 
-        <!-- Week Selector -->
-        <select class="select-input" id="select-week" onchange="changeWeek(this.value)">
-          <option value="11" selected>Semana 11 (2024)</option>
-          <option value="10">Semana 10 (2024)</option>
-          <option value="9">Semana 9 (2024)</option>
-          <option value="2026_sb">Super Bowl LX (2026)</option>
+        <!-- Season Selector -->
+        <select class="select-input" id="select-season" onchange="changeSeason(this.value)" title="Seleccionar Temporada">
+          <option value="2026" selected>Temporada 2026-2027 (Actual)</option>
+          <option value="2025">Temporada 2025-2026</option>
+          <option value="2024">Temporada 2024-2025</option>
+        </select>
+
+        <!-- Week Selector (Dinámico según Temporada) -->
+        <select class="select-input" id="select-week" onchange="changeWeek(this.value)" title="Seleccionar Semana">
+          <option value="1" selected>Semana 1 (Kickoff Septiembre 2026)</option>
         </select>
 
         <!-- View Switcher -->

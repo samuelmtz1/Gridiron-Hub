@@ -304,6 +304,12 @@ NCAA_TEAMS: List[Dict[str, Any]] = [
         "primary_color": "#4E2A84", "secondary_color": "#FFFFFF",
         "logo_url": f"{CFB_LOGO_BASE}/77.png"
     },
+    {
+        "id": "ncaa_TAMU", "league": "ncaa", "code": "TAMU", "name": "Texas A&M Aggies",
+        "short_name": "Texas A&M", "city": "College Station", "conference": "SEC", "division": None,
+        "primary_color": "#500000", "secondary_color": "#FFFFFF",
+        "logo_url": f"{CFB_LOGO_BASE}/245.png"
+    },
 ]
 
 

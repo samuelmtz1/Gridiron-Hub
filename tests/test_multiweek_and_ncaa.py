@@ -47,8 +47,8 @@ def test_nfl_week_10_games(client_multiweek):
 
 
 def test_super_bowl_lx_game_and_tactical_analysis(client_multiweek):
-    """Verifies Super Bowl LX 2026 data and deep tactical research."""
-    resp = client_multiweek.get("/api/games?league=nfl&season=2026&week=22")
+    """Verifies Super Bowl LX 2026 data and deep tactical research under Season 2025."""
+    resp = client_multiweek.get("/api/games?league=nfl&season=2025&week=22")
     assert resp.status_code == 200
     games = resp.json()
     assert len(games) == 1
@@ -66,3 +66,70 @@ def test_super_bowl_lx_game_and_tactical_analysis(client_multiweek):
     assert len(tactical["historic_facts"]) >= 3
     assert len(tactical["award_deep_dives"]) >= 3
     assert len(tactical["tactical_dos_donts"]) >= 2
+
+
+def test_nfl_season_2026_week_1_kickoff(client_multiweek):
+    """Verifies Season 2026-2027 NFL Kickoff Week 1 games, boxscores, and tactical analyses."""
+    resp = client_multiweek.get("/api/games?league=nfl&season=2026&week=1")
+    assert resp.status_code == 200
+    games = resp.json()
+    assert len(games) == 3
+
+    game_ids = [g["id"] for g in games]
+    assert "nfl_2026_w1_bal_kc" in game_ids
+    assert "nfl_2026_w1_gb_phi" in game_ids
+    assert "nfl_2026_w1_lar_det" in game_ids
+
+    # Check Chiefs vs Ravens game detail
+    kc_resp = client_multiweek.get("/api/games/nfl_2026_w1_bal_kc")
+    assert kc_resp.status_code == 200
+    kc_detail = kc_resp.json()
+    assert kc_detail["home_score"] == 27
+    assert kc_detail["away_score"] == 20
+    assert len(kc_detail["key_plays"]) >= 3
+    assert len(kc_detail["trivia"]) >= 2
+    assert "tactical_analysis" in kc_detail
+    assert "Worthy" in kc_detail["tactical_analysis"]["narrative_summary"]
+
+
+def test_ncaa_season_2026_week_1_marquee(client_multiweek):
+    """Verifies Season 2026-2027 NCAA Week 1 Saturday marquee matchups and tactical analyses."""
+    resp = client_multiweek.get("/api/games?league=ncaa&season=2026&week=1")
+    assert resp.status_code == 200
+    games = resp.json()
+    assert len(games) == 3
+
+    game_ids = [g["id"] for g in games]
+    assert "ncaa_2026_w1_tex_mich" in game_ids
+    assert "ncaa_2026_w1_clem_uga" in game_ids
+    assert "ncaa_2026_w1_nd_tamu" in game_ids
+
+    # Check Texas @ Michigan detail
+    tex_resp = client_multiweek.get("/api/games/ncaa_2026_w1_tex_mich")
+    assert tex_resp.status_code == 200
+    tex_detail = tex_resp.json()
+    assert tex_detail["away_score"] == 31
+    assert tex_detail["home_score"] == 12
+    assert len(tex_detail["key_plays"]) >= 2
+    assert "tactical_analysis" in tex_detail
+    assert "Big House" in tex_detail["tactical_analysis"]["headline"]
+
+
+def test_season_2026_awards_categories(client_multiweek):
+    """Verifies preselected award candidates for NFL and NCAA Season 2026 Week 1."""
+    nfl_awards = client_multiweek.get("/api/awards?league=nfl&season=2026&week=1").json()
+    assert len(nfl_awards) >= 5
+    nfl_cats = {a["category"] for a in nfl_awards}
+    assert "MVP" in nfl_cats
+    assert "OPOW" in nfl_cats
+    assert "DPOW" in nfl_cats
+    assert "DO" in nfl_cats
+    assert "DONT" in nfl_cats
+
+    ncaa_awards = client_multiweek.get("/api/awards?league=ncaa&season=2026&week=1").json()
+    assert len(ncaa_awards) >= 5
+    ncaa_cats = {a["category"] for a in ncaa_awards}
+    assert "MVP" in ncaa_cats
+    assert "OPOW" in ncaa_cats
+    assert "DPOW" in ncaa_cats
+
