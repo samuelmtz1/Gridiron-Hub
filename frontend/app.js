@@ -24,10 +24,10 @@ const MOCK_DATA = {
       season: 2024,
       week: 11,
       home_code: "BUF", home_name: "Buffalo Bills", home_short: "Bills",
-      home_score: 30, home_primary: "#00338D", home_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/buf.svg",
+      home_score: 30, home_primary: "#00338D", home_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
       home_conference: "AFC", home_division: "East",
       away_code: "KC", away_name: "Kansas City Chiefs", away_short: "Chiefs",
-      away_score: 21, away_primary: "#E31837", away_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/kc.svg",
+      away_score: 21, away_primary: "#E31837", away_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
       away_conference: "AFC", away_division: "West",
       status: "final", venue: "Highmark Stadium", weather_temp: 46, weather_desc: "Nublado, Viento 12 mph",
       highlight_url: "https://www.youtube.com/results?search_query=Chiefs+vs+Bills+Week+11+2024+highlights",
@@ -60,10 +60,10 @@ const MOCK_DATA = {
       season: 2024,
       week: 11,
       home_code: "PIT", home_name: "Pittsburgh Steelers", home_short: "Steelers",
-      home_score: 18, home_primary: "#FFB612", home_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/pit.svg",
+      home_score: 18, home_primary: "#FFB612", home_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
       home_conference: "AFC", home_division: "North",
       away_code: "BAL", away_name: "Baltimore Ravens", away_short: "Ravens",
-      away_score: 16, away_primary: "#241773", away_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/bal.svg",
+      away_score: 16, away_primary: "#241773", away_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
       away_conference: "AFC", away_division: "North",
       status: "final", venue: "Acrisure Stadium", weather_temp: 52, weather_desc: "Despejado",
       highlight_url: "https://www.youtube.com/results?search_query=Ravens+vs+Steelers+Week+11+2024+highlights",
@@ -89,10 +89,10 @@ const MOCK_DATA = {
       season: 2024,
       week: 11,
       home_code: "CHI", home_name: "Chicago Bears", home_short: "Bears",
-      home_score: 19, home_primary: "#0B162A", home_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/chi.svg",
+      home_score: 19, home_primary: "#0B162A", home_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
       home_conference: "NFC", home_division: "North",
       away_code: "GB", away_name: "Green Bay Packers", away_short: "Packers",
-      away_score: 20, away_primary: "#203731", away_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/gb.svg",
+      away_score: 20, away_primary: "#203731", away_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       away_conference: "NFC", away_division: "North",
       status: "final", venue: "Soldier Field", weather_temp: 48, weather_desc: "Viento 18 mph",
       highlight_url: "https://www.youtube.com/results?search_query=Packers+vs+Bears+Week+11+2024+highlights",
@@ -115,10 +115,10 @@ const MOCK_DATA = {
       season: 2024,
       week: 11,
       home_code: "DET", home_name: "Detroit Lions", home_short: "Lions",
-      home_score: 52, home_primary: "#0076B6", home_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/det.svg",
+      home_score: 52, home_primary: "#0076B6", home_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
       home_conference: "NFC", home_division: "North",
       away_code: "JAX", away_name: "Jacksonville Jaguars", away_short: "Jaguars",
-      away_score: 6, away_primary: "#006778", away_logo: "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/jax.svg",
+      away_score: 6, away_primary: "#006778", away_logo: "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
       away_conference: "AFC", away_division: "South",
       status: "final", venue: "Ford Field", weather_temp: 70, weather_desc: "Domo",
       highlight_url: "https://www.youtube.com/results?search_query=Jaguars+vs+Lions+Week+11+2024+highlights",
@@ -134,10 +134,10 @@ const MOCK_DATA = {
       season: 2024,
       week: 11,
       home_code: "ALA", home_name: "Alabama Crimson Tide", home_short: "Alabama",
-      home_score: 41, home_primary: "#9E1B32", home_logo: "https://raw.githubusercontent.com/Kazink36/cfbplotR/main/data-raw/logos/Alabama.svg",
+      home_score: 41, home_primary: "#9E1B32", home_logo: "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png",
       home_conference: "SEC", home_division: null,
       away_code: "UGA", away_name: "Georgia Bulldogs", away_short: "Georgia",
-      away_score: 34, away_primary: "#BA0C2F", away_logo: "https://raw.githubusercontent.com/Kazink36/cfbplotR/main/data-raw/logos/Georgia.svg",
+      away_score: 34, away_primary: "#BA0C2F", away_logo: "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
       away_conference: "SEC", away_division: null,
       status: "final", venue: "Bryant-Denny Stadium", weather_temp: 64, weather_desc: "Despejado",
       highlight_url: "https://www.youtube.com/results?search_query=Georgia+vs+Alabama+2024+highlights",
@@ -294,8 +294,10 @@ function renderGames() {
     card.className = "game-card";
     card.onclick = () => openGameDrawer(game.id);
 
-    const awayLogo = game.away_logo || "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/default.svg";
-    const homeLogo = game.home_logo || "https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/default.svg";
+    const awayCode = (game.away_code || "NFL").toLowerCase();
+    const homeCode = (game.home_code || "NFL").toLowerCase();
+    const awayLogo = game.away_logo || (game.league === "ncaa" ? "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png" : `https://a.espncdn.com/i/teamlogos/nfl/500/${awayCode}.png`);
+    const homeLogo = game.home_logo || (game.league === "ncaa" ? "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png" : `https://a.espncdn.com/i/teamlogos/nfl/500/${homeCode}.png`);
 
     card.innerHTML = `
       <div class="game-card-meta">
@@ -305,7 +307,7 @@ function renderGames() {
 
       <div class="scoreboard-row">
         <div class="team-info">
-          <img src="${awayLogo}" class="team-logo" alt="${game.away_code}" onerror="this.src='https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/buf.svg'">
+          <img src="${awayLogo}" class="team-logo" alt="${game.away_code}" onerror="this.onerror=null; this.src='https://a.espncdn.com/i/teamlogos/nfl/500/nfl.png'">
           <span class="team-name">${game.away_name || game.away_code}</span>
         </div>
         <span class="team-score">${game.away_score}</span>
@@ -313,7 +315,7 @@ function renderGames() {
 
       <div class="scoreboard-row">
         <div class="team-info">
-          <img src="${homeLogo}" class="team-logo" alt="${game.home_code}" onerror="this.src='https://raw.githubusercontent.com/nflverse/nflplotR/main/data-raw/logos/kc.svg'">
+          <img src="${homeLogo}" class="team-logo" alt="${game.home_code}" onerror="this.onerror=null; this.src='https://a.espncdn.com/i/teamlogos/nfl/500/nfl.png'">
           <span class="team-name">${game.home_name || game.home_code}</span>
         </div>
         <span class="team-score">${game.home_score}</span>
@@ -533,3 +535,4 @@ function copyYoutubeNotes() {
 
 // Bootstrap on Load
 window.addEventListener("DOMContentLoaded", initApp);
+

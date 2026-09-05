@@ -14,7 +14,7 @@ def test_assets_source_nfl_teams_completeness():
         assert t["code"] is not None
         assert t["primary_color"].startswith("#")
         assert t["secondary_color"].startswith("#")
-        assert t["logo_url"].endswith(".svg")
+        assert t["logo_url"].endswith((".png", ".svg"))
         assert t["conference"] in ["AFC", "NFC"]
         assert t["division"] in ["East", "North", "South", "West"]
 
