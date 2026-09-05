@@ -154,3 +154,15 @@ def trigger_ingestion_pipeline(
     return run_pipeline(league=req.league, season=req.season, week=req.week, force=req.force)
 
 
+@app.get("/api/scripts/generate", tags=["YouTube Studio"])
+def generate_youtube_video_script(
+    league: str = Query("nfl", description="'nfl' o 'ncaa'"),
+    season: int = Query(2024, description="Temporada"),
+    week: int = Query(11, description="Semana")
+) -> Dict[str, Any]:
+    """Generates a structured, broadcast-ready YouTube script with timestamps and teleprompter text."""
+    from processing.script_generator import build_youtube_script
+    return build_youtube_script(league=league, season=season, week=week)
+
+
+

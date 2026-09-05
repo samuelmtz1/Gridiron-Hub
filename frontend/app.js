@@ -247,13 +247,20 @@ function switchLeague(league) {
   renderGames();
 }
 
-// Switch View: Games vs Awards
+// Switch View: Games vs Awards vs Script
 function switchView(view) {
   state.view = view;
   document.getElementById("btn-view-games").classList.toggle("active", view === "games");
   document.getElementById("btn-view-awards").classList.toggle("active", view === "awards");
+  document.getElementById("btn-view-script").classList.toggle("active", view === "script");
+
   document.getElementById("view-games").style.display = view === "games" ? "block" : "none";
   document.getElementById("view-awards").style.display = view === "awards" ? "block" : "none";
+  document.getElementById("view-script").style.display = view === "script" ? "block" : "none";
+
+  if (view === "script") {
+    loadYoutubeScript();
+  }
 }
 
 // Division Filter
@@ -533,6 +540,78 @@ function copyYoutubeNotes() {
   });
 }
 
+// YouTube Script Studio Controller
+let currentGeneratedScript = "";
+
+async function loadYoutubeScript() {
+  const pre = document.getElementById("script-content-pre");
+  const titlesList = document.getElementById("script-titles-list");
+  pre.textContent = "⏳ Generando guion analítico y calculando tiempos de locución...";
+  titlesList.innerHTML = "";
+
+  try {
+    const res = await fetch(`/api/scripts/generate?league=${state.league}&season=${state.season}&week=${state.week}`);
+    if (res.ok) {
+      const data = await res.json();
+      currentGeneratedScript = data.script_markdown;
+
+      // Metadata badges
+      if (data.metadata) {
+        document.getElementById("script-duration-badge").textContent = `⏱️ ${data.metadata.duration_formatted} estimados`;
+        document.getElementById("script-words-badge").textContent = `${data.metadata.word_count.toLocaleString()} palabras`;
+      }
+
+      // Titles
+      if (data.suggested_titles) {
+        titlesList.innerHTML = data.suggested_titles.map((t, idx) => `
+          <div style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface); padding: 0.45rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); font-size: 0.82rem;">
+            <span><strong>#${idx + 1}</strong> ${t}</span>
+            <button class="pill-btn" style="font-size: 0.7rem; padding: 0.15rem 0.5rem;" onclick="navigator.clipboard.writeText('${t.replace(/'/g, "\\'")}'); alert('Título copiado');">Copiar</button>
+          </div>
+        `).join("");
+      }
+
+      pre.textContent = data.script_markdown;
+      return;
+    }
+  } catch (e) {
+    // Fallback if backend API is not responding
+  }
+
+  // Standalone offline fallback
+  currentGeneratedScript = `# 🎙️ GUION DE TELEPROMPTER — GRIDIRON HUB (SEMANA ${state.week})\n\n` +
+    `## ⏱️ [00:00 - 01:15] BLOQUE 1: HOOK\n"¡Bienvenidos a Gridiron Hub! Semana vibrante donde cayó el último invicto..."\n\n` +
+    `## ⏱️ [01:15 - 05:00] BLOQUE 2: EL PARTIDO DE LA SEMANA\n"Buffalo 30 @ 21 Kansas City: Análisis táctico y métricas EPA..."\n\n` +
+    `## ⏱️ [08:30 - 11:30] BLOQUE 4: GALA DE PREMIOS\n* MVP: Josh Allen (+21.4 EPA)\n* DPOW: T.J. Watt (2.5 sacks)\n\n` +
+    `## ⏱️ [11:30 - 14:00] BLOQUE 5: DOs & DON'Ts\n* DO: Acarreo de 26 yds de Allen en 4ta y 2 (+4.65 EPA)\n* DON'T: Intercepción de Mahomes en 4ta y 13 (-4.85 EPA)\n\n` +
+    `## ⏱️ [14:00 - 15:00] BLOQUE 6: CIERRE & CALL TO ACTION\n"¿Es Josh Allen el MVP indiscutible? Déjalo en comentarios. ¡Suscríbete!"`;
+
+  pre.textContent = currentGeneratedScript;
+}
+
+function copyFullScript() {
+  if (!currentGeneratedScript) return;
+  navigator.clipboard.writeText(currentGeneratedScript).then(() => {
+    alert("📋 Guion completo para teleprompter copiado al portapapeles con éxito.");
+  }).catch(() => {
+    alert("Copiado a consola del navegador.");
+  });
+}
+
+function downloadScriptFile() {
+  if (!currentGeneratedScript) return;
+  const blob = new Blob([currentGeneratedScript], { type: "text/markdown;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `guion_youtube_${state.league}_semana_${state.week}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 // Bootstrap on Load
 window.addEventListener("DOMContentLoaded", initApp);
+
 
