@@ -2884,7 +2884,7 @@ function renderTacticalAnalysis(analysis, game) {
                   <tr>
                     <td>
                       <span class="badge-tactical ${isDo ? 'badge-do' : 'badge-dont'}">
-                        ${isDo ? '🟢 DO' : '🔴 DON'T'}
+                        ${isDo ? '🟢 DO' : "🔴 DON'T"}
                       </span>
                     </td>
                     <td><strong>${row.strategy}</strong></td>
