@@ -14,6 +14,8 @@ El documento completo de auditoría de arquitectura, modelo de amenazas (STRIDE)
 Gridiron Hub protege los guiones de YouTube, analíticas avanzadas (EPA, WP Swing) y endpoints administrativos mediante credenciales privadas:
 * **Hashing de Contraseñas con Sal:** PBKDF2 con HMAC-SHA256 y 100,000 iteraciones + sal aleatoria de 16 bytes.
 * **Tokens de Sesión Criptográficos:** HMAC-SHA256 con marcas de tiempo `iat`/`exp` (expiración a 7 días) y comparación en tiempo constante (`hmac.compare_digest`) para mitigar ataques de temporización (timing attacks).
+* **Cero Secretos Hardcodeados (Fail-Closed):** El código no contiene usuarios ni contraseñas estáticas de respaldo. Si no se configuran `TEAM_USERNAME` y `TEAM_PASSWORD_HASH` (o `TEAM_PASSWORD`), el sistema deniega el acceso inmediatamente.
+* **Claves de Firma Efímeras:** En entornos locales/desarrollo sin `TEAM_SHARED_SECRET`, se genera una clave criptográfica aleatoria en memoria por ejecución (`secrets.token_hex(32)`), impidiendo que tokens firmados puedan ser falsificados desde GitHub.
 * **Generación de Hash desde CLI:**
   ```bash
   python3 -c "from security.auth import hash_password; print(hash_password('tu_password_secreto'))"

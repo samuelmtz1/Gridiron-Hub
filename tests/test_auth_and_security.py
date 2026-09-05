@@ -3,6 +3,8 @@
 Covers:
 - Salted password hashing (PBKDF2-HMAC-SHA256) and constant-time verification.
 - HMAC-SHA256 cryptographic session tokens and tamper detection.
+- Fail-closed security behavior: zero hardcoded fallback passwords.
+- Production safety: refuses to run without configured secrets.
 - POST /api/auth/login and GET /api/auth/verify endpoints.
 - OWASP Security Headers (X-Frame-Options, CSP, nosniff, etc.).
 - Sliding-window rate limiter blocking brute force login attempts (HTTP 429).
@@ -16,16 +18,24 @@ from api.main import app
 from security.auth import (
     authenticate_team_user,
     create_session_token,
+    get_signing_secret,
     hash_password,
     verify_password,
     verify_session_token,
 )
 from security.middleware import login_rate_limiter
 
+TEST_USER = "test_analyst"
+TEST_PASS = "test_secure_password_987!"
+TEST_SECRET = "test_signing_key_32_bytes_long_secret_123"
+
 
 @pytest.fixture(autouse=True)
-def reset_limiter():
-    """Ensure clean rate limiter state before every test."""
+def setup_test_auth_env(monkeypatch):
+    """Configures isolated test credentials in environment for test execution."""
+    monkeypatch.setenv("TEAM_USERNAME", TEST_USER)
+    monkeypatch.setenv("TEAM_PASSWORD", TEST_PASS)
+    monkeypatch.setenv("TEAM_SHARED_SECRET", TEST_SECRET)
     login_rate_limiter.reset()
     yield
     login_rate_limiter.reset()
@@ -51,7 +61,7 @@ def test_password_hashing_and_verification():
 
 def test_session_token_tampering_and_expiration():
     """Verifies HMAC cryptographic signature integrity and expiration."""
-    username = "gridiron_analyst"
+    username = TEST_USER
     token = create_session_token(username, expires_in_seconds=3600)
 
     # Valid token decodes correctly
@@ -74,23 +84,46 @@ def test_session_token_tampering_and_expiration():
     assert verify_session_token(expired_token) is None
 
 
+def test_auth_fails_closed_when_no_credentials_configured(monkeypatch):
+    """Verifies that authentication fails closed if environment credentials are absent."""
+    monkeypatch.delenv("TEAM_USERNAME", raising=False)
+    monkeypatch.delenv("TEAM_PASSWORD", raising=False)
+    monkeypatch.delenv("TEAM_PASSWORD_HASH", raising=False)
+
+    with TestClient(app) as client:
+        resp = client.post(
+            "/api/auth/login",
+            json={"username": "any_user", "password": "any_password"}
+        )
+        assert resp.status_code == 401
+
+
+def test_production_fails_if_secret_missing(monkeypatch):
+    """Verifies that production mode prevents running without TEAM_SHARED_SECRET."""
+    monkeypatch.setenv("APP_ENV", "production")
+    monkeypatch.delenv("TEAM_SHARED_SECRET", raising=False)
+
+    with pytest.raises(RuntimeError, match="CRITICAL CONFIG ERROR"):
+        get_signing_secret()
+
+
 def test_api_auth_login_success():
     """Verifies POST /api/auth/login with valid credentials yields a session token."""
     with TestClient(app) as client:
         resp = client.post(
             "/api/auth/login",
-            json={"username": "gridiron_team", "password": "gridiron2024!"}
+            json={"username": TEST_USER, "password": TEST_PASS}
         )
         assert resp.status_code == 200
         data = resp.json()
         assert data["status"] == "authenticated"
         assert "token" in data
-        assert data["username"] == "gridiron_team"
+        assert data["username"] == TEST_USER
         assert data["token_type"] == "Bearer"
 
         # Verify issued token
         payload = verify_session_token(data["token"])
-        assert payload["sub"] == "gridiron_team"
+        assert payload["sub"] == TEST_USER
 
 
 def test_api_auth_login_failure():
@@ -98,7 +131,7 @@ def test_api_auth_login_failure():
     with TestClient(app) as client:
         resp = client.post(
             "/api/auth/login",
-            json={"username": "gridiron_team", "password": "IncorrectPassword"}
+            json={"username": TEST_USER, "password": "IncorrectPassword"}
         )
         assert resp.status_code == 401
         data = resp.json()
@@ -107,7 +140,7 @@ def test_api_auth_login_failure():
 
 def test_api_auth_verify_endpoint():
     """Verifies GET /api/auth/verify validates active sessions."""
-    token = create_session_token("samuel_producer")
+    token = create_session_token("analyst_user")
 
     with TestClient(app) as client:
         # Valid token
@@ -115,7 +148,7 @@ def test_api_auth_verify_endpoint():
         assert resp.status_code == 200
         data = resp.json()
         assert data["status"] == "valid"
-        assert data["user"] == "samuel_producer"
+        assert data["user"] == "analyst_user"
 
         # Missing token
         resp_anon = client.get("/api/auth/verify")
@@ -150,14 +183,14 @@ def test_rate_limiting_blocks_brute_force():
         for i in range(5):
             resp = client.post(
                 "/api/auth/login",
-                json={"username": "gridiron_team", "password": f"wrong_pass_{i}"}
+                json={"username": TEST_USER, "password": f"wrong_pass_{i}"}
             )
             assert resp.status_code == 401
 
         # 6th attempt must be blocked by rate limiter
         blocked_resp = client.post(
             "/api/auth/login",
-            json={"username": "gridiron_team", "password": "wrong_pass_6"}
+            json={"username": TEST_USER, "password": "wrong_pass_6"}
         )
         assert blocked_resp.status_code == 429
         data = blocked_resp.json()

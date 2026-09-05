@@ -71,13 +71,6 @@ function updateAuthUI() {
   }
 }
 
-function quickFillCredentials() {
-  const userInput = document.getElementById("login-username");
-  const passInput = document.getElementById("login-password");
-  if (userInput) userInput.value = "gridiron_team";
-  if (passInput) passInput.value = "gridiron2024!";
-}
-
 async function handleLoginSubmit(event) {
   event.preventDefault();
   const usernameInput = document.getElementById("login-username");

@@ -101,8 +101,8 @@ def get_current_user(
         token = authorization.split(" ", 1)[1].strip()
     elif x_team_token:
         # Backward compatibility for CI/cron workflows sending secret token
-        configured_secret = os.getenv("TEAM_SHARED_SECRET", "gridiron_hub_super_secret_signing_key_2024")
-        if x_team_token == configured_secret:
+        configured_secret = os.getenv("TEAM_SHARED_SECRET")
+        if configured_secret and configured_secret != "your_secure_team_token_here" and x_team_token == configured_secret:
             return {"sub": "ci_pipeline", "role": "admin"}
         token = x_team_token
 
@@ -146,9 +146,11 @@ def health_check() -> Dict[str, Any]:
             "total_teams": len(teams),
         }
     except Exception as exc:
+        import logging
+        logging.getLogger("api.main").error(f"Health check failure: {exc}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Database check failed: {exc}"
+            detail="Error interno del servicio."
         )
 
 
