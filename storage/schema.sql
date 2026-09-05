@@ -159,3 +159,18 @@ CREATE TABLE IF NOT EXISTS game_trivia (
 
 CREATE INDEX IF NOT EXISTS idx_trivia_game ON game_trivia(game_id);
 
+-- Análisis Táctico Profundo y Deep Research por partido (YouTube Studio Ready)
+CREATE TABLE IF NOT EXISTS game_tactical_analysis (
+    id TEXT PRIMARY KEY,               -- e.g. 'analysis_nfl_2024_w11_kc_buf'
+    game_id TEXT NOT NULL UNIQUE,      -- Referencia a games(id)
+    headline TEXT NOT NULL,            -- e.g. 'Defensive Mastery and Tactical Supremacy...'
+    narrative_summary TEXT NOT NULL,   -- Contexto narrativo y táctico del partido
+    historic_facts TEXT NOT NULL,      -- JSON serializado: [{ title, description }]
+    award_deep_dives TEXT NOT NULL,    -- JSON serializado: [{ role, player, team_code, badges, bullets: [{ label, detail }] }]
+    tactical_dos_donts TEXT NOT NULL,  -- JSON serializado: [{ type, strategy, logic }]
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_tactical_analysis_game ON game_tactical_analysis(game_id);
+

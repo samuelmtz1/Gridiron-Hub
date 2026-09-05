@@ -489,6 +489,381 @@ def get_mock_awards() -> List[Dict[str, Any]]:
     ]
 
 
+def get_mock_tactical_analyses() -> List[Dict[str, Any]]:
+    """Returns broadcast-ready tactical analyses matching the requested Super Bowl LX structure."""
+    return [
+        {
+            "id": "analysis_nfl_2024_w11_kc_buf",
+            "game_id": "nfl_2024_w11_kc_buf",
+            "headline": "Defensive Mastery and Tactical Supremacy: A Comprehensive Analysis of Chiefs @ Bills",
+            "narrative_summary": "The narrative of Week 11's marquee matchup at Highmark Stadium was defined by Sean McDermott's aggressive fourth-down architecture and Buffalo's disguised two-high safety shells. In a decisive 30-21 victory over the Kansas City Chiefs, the Bills dismantled Kansas City's 15-game winning streak. While Josh Allen's 26-yard touchdown rumble on 4th-and-2 served as the cinematic exclamation point, it was Buffalo's interior defense that methodically choked Patrick Mahomes' passing options, holding the Chiefs to just 259 total yards and forcing two costly interceptions.",
+            "historic_facts": [
+                {
+                    "title": "The Undefeated Fall",
+                    "description": "Kansas City arrived 9-0; the loss snapped their 15-game winning streak (including playoffs) dating back to Christmas Day 2023."
+                },
+                {
+                    "title": "Regular Season Supremacy",
+                    "description": "Josh Allen improved to 4-1 all-time against Patrick Mahomes in regular season matchups, standing as the only quarterback in NFL history with a winning record against him (minimum 3 games)."
+                },
+                {
+                    "title": "The Fourth-Down Crucible",
+                    "description": "Leading 23-21 with 2:17 remaining, McDermott bypassed a 44-yard field goal on 4th-and-2, choosing to attack Spagnuolo's blitz rather than handing Mahomes a two-minute drill."
+                },
+                {
+                    "title": "Turnover Inversion",
+                    "description": "Buffalo completed the game without committing a single turnover while picking off Mahomes twice, generating 10 critical points off takeaways."
+                },
+                {
+                    "title": "Explosive Play Neutralization",
+                    "description": "Kansas City was held without a single pass play over 25 yards, forced into 19 completions under 8 air yards."
+                }
+            ],
+            "award_deep_dives": [
+                {
+                    "role": "Defensive MVP",
+                    "player": "The Buffalo Front Four (Collective)",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "Statistical Impact", "detail": "Generated 18 pressures, 3.0 sacks, 5 tackles for loss, and 8 QB hits solely with a four-man rush."},
+                        {"label": "Interior Stunt Execution", "detail": "Buffalo hit the ball carrier behind the line on 42.8% of Kansas City's designed rushes."},
+                        {"label": "Pressure Rate", "detail": "Generated a 44.1% pressure rate against Mahomes without blitzing a single defensive back."}
+                    ]
+                },
+                {
+                    "role": "Linebacker & Interception of the Game",
+                    "player": "Terrel Bernard",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "The Game-Sealing Punctuation", "detail": "Understood Mahomes' cadence on 4th-and-13 with 1:07 left, sinking into the robber zone to snag the clinching interception mid-air."},
+                        {"label": "Coverage Density", "detail": "Allowed only 1 completion for 6 yards on 4 targets in his coverage zone."},
+                        {"label": "Tackle Leadership", "detail": "Led all linebackers on the field with 8 tackles (5 solo) and 1 tackle for loss."}
+                    ]
+                },
+                {
+                    "role": "Sack of the Week & Game on the Line Moment",
+                    "player": "Greg Rousseau & Von Miller",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "Third-Quarter Strip Pressure", "detail": "Rousseau's speed rush on 3rd-and-9 forced Mahomes into a hurried sack-fumble recovered by Buffalo's offense."},
+                        {"label": "Pass Rush Surge", "detail": "Miller and Rousseau recorded 9 total quarterback hurries across 26 passing downs."}
+                    ]
+                },
+                {
+                    "role": "Defensive Back of the Game",
+                    "player": "Christian Benford",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "Target Mitigation", "detail": "Targeted 6 times, allowing only 2 receptions for 18 yards with 2 pass breakups against DeAndre Hopkins."},
+                        {"label": "Touchdown Eraser", "detail": "Broke up a 3rd-and-goal fade in the second quarter, forcing Kansas City to settle for a field goal."}
+                    ]
+                },
+                {
+                    "role": "Defensive Lineman of the Game",
+                    "player": "Ed Oliver",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "Pocket Collapse", "detail": "Penetrated the A-gap on 40% of passing plays, forcing Mahomes to scramble backward into containment."},
+                        {"label": "Key TFL", "detail": "Stuffed Kareem Hunt on 2nd-and-1 in the fourth quarter, stalling Kansas City's penultimate drive."}
+                    ]
+                },
+                {
+                    "role": "Special Teams of the Week",
+                    "player": "Tyler Bass",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "Wind Mastery", "detail": "Converted 3 extra points and a 33-yard field goal amidst 14 mph crosswinds at Highmark Stadium."},
+                        {"label": "Field Position Control", "detail": "Delivered 5 touchbacks on 6 kickoffs, denying Xavier Worthy any return momentum."}
+                    ]
+                },
+                {
+                    "role": "The Engine (Official Game MVP)",
+                    "player": "Josh Allen",
+                    "team_code": "BUF",
+                    "bullets": [
+                        {"label": "Volume & Efficiency", "detail": "262 passing yards, 55 rushing yards, 2 total touchdowns, and +14.8 total EPA."},
+                        {"label": "The 26-Yard Dagger", "detail": "On 4th-and-2 with 2:17 left, broke tackles by Chamarri Conner and Bryan Cook to barrel into the end zone."},
+                        {"label": "Fourth-Quarter Conditioning", "detail": "Completed 6-of-7 passes for 74 yards and added 32 rushing yards in the final quarter alone."}
+                    ]
+                }
+            ],
+            "tactical_dos_donts": [
+                {
+                    "type": "DO",
+                    "strategy": "Deploy Two-High Shells with Robber Disguise",
+                    "logic": "Buffalo played Cover-4 and Cover-6 on 71% of snaps, eliminating vertical routes and forcing short checkdowns."
+                },
+                {
+                    "type": "DO",
+                    "strategy": "Maintain 4th-and-Short Aggressiveness vs Heavy Blitz",
+                    "logic": "Going for it on 4th-and-2 avoided giving Mahomes the football with two minutes and a single-possession deficit."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Empty the Second Level with Cover-0 Blitzes vs Allen",
+                    "logic": "Spagnuolo's all-out blitz cleared the middle of the field, giving Allen an open lane to scamper 26 yards for the touchdown."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Force Boundary Passes Under Interior Duress",
+                    "logic": "Mahomes' panic throw on 4th-and-13 into Bernard's robber coverage resulted in the game-ending interception."
+                }
+            ]
+        },
+        {
+            "id": "analysis_nfl_2024_w11_bal_pit",
+            "game_id": "nfl_2024_w11_bal_pit",
+            "headline": "Trench Attrition & Red Zone Denial: Pittsburgh Smothers the League's #1 Offense",
+            "narrative_summary": "In the NFL's premier defensive bloodbath, Mike Tomlin's Steelers delivered a tactical masterclass, toppling the Baltimore Ravens 18-16 at Acrisure Stadium. Despite scoring zero offensive touchdowns, Pittsburgh relied on Chris Boswell's leg and an impregnable front seven that contained Derrick Henry to just 65 yards and forced three crucial Baltimore turnovers.",
+            "historic_facts": [
+                {
+                    "title": "Tomlin's Lamar Hex",
+                    "description": "Mike Tomlin improved to 8-1 all-time against Lamar Jackson, holding the two-time MVP to his lowest passer rating of the 2024 season (66.1)."
+                },
+                {
+                    "title": "Touchdown-less Victory",
+                    "description": "Pittsburgh became only the second team in 2024 to win a game without scoring an offensive touchdown, fueled by 6 Chris Boswell field goals."
+                },
+                {
+                    "title": "Two-Point Conversion Stand",
+                    "description": "Holding a 18-16 lead with 1:06 left, Pittsburgh stuffed Lamar Jackson on a designed quarterback sprint-out to preserve the win."
+                }
+            ],
+            "award_deep_dives": [
+                {
+                    "role": "Defensive MVP",
+                    "player": "T.J. Watt & Nick Herbig (Edge Tandem)",
+                    "team_code": "PIT",
+                    "bullets": [
+                        {"label": "Game-Changing Disruption", "detail": "Herbig punched the ball free from Derrick Henry on Baltimore's opening drive, setting an immediate tone."},
+                        {"label": "Pressure Rate", "detail": "Watt generated 7 quarterback hurries, commanding double teams on 68% of dropbacks."}
+                    ]
+                },
+                {
+                    "role": "Linebacker & Forced Fumble of the Game",
+                    "player": "Patrick Queen (Revenge Game)",
+                    "team_code": "PIT",
+                    "bullets": [
+                        {"label": "Stripping Likely", "detail": "Stripped former teammate Isaiah Likely right before halftime and recovered the fumble to set up a Boswell field goal."},
+                        {"label": "Tackle Leadership", "detail": "Finished with 10 total tackles and 1 tackle for loss in his first game against Baltimore."}
+                    ]
+                },
+                {
+                    "role": "Defensive Back of the Game",
+                    "player": "Joey Porter Jr. & Minkah Fitzpatrick",
+                    "team_code": "PIT",
+                    "bullets": [
+                        {"label": "Zay Flowers Lock", "detail": "Porter held Flowers to 2 catches for 19 yards in man-to-man coverage."},
+                        {"label": "Late Interception", "detail": "Fitzpatrick disrupted a deep 3rd-down seam route in the fourth quarter."}
+                    ]
+                },
+                {
+                    "role": "Special Teams of the Week",
+                    "player": "Chris Boswell",
+                    "team_code": "PIT",
+                    "bullets": [
+                        {"label": "Six-Field Goal Siege", "detail": "Converted field goals of 32, 52, 32, 57, 27, and 50 yards in freezing conditions."},
+                        {"label": "Franchise Record", "detail": "Became the first kicker in Steelers franchise history with three 50+ yard field goals in a single game."}
+                    ]
+                },
+                {
+                    "role": "The Engine (Official Game MVP)",
+                    "player": "Chris Boswell (Special Teams) / Russell Wilson",
+                    "team_code": "PIT",
+                    "bullets": [
+                        {"label": "Field Position Control", "detail": "Scored all 18 of Pittsburgh's points, outscoring Baltimore's entire offense by himself."}
+                    ]
+                }
+            ],
+            "tactical_dos_donts": [
+                {
+                    "type": "DO",
+                    "strategy": "Set Hard Edge Boundaries Against Derrick Henry",
+                    "logic": "Pittsburgh kept both outside linebackers on the contain line, holding Henry under 70 yards for the first time in 9 weeks."
+                },
+                {
+                    "type": "DO",
+                    "strategy": "Blitz the A-Gap on Obvious Passing Downs",
+                    "logic": "Tomlin delayed interior linebackers through the A-gap, disrupting Lamar Jackson's throwing window and forcing inaccurate checkdowns."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Bite on Play-Action Fakes without Deep Safety Help",
+                    "logic": "Over-committing to run defense allowed Isaiah Likely a 42-yard seam reception in the second half."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Commit Pre-Snap Penalties in Enemy Territory",
+                    "logic": "Baltimore committed 12 penalties for 80 yards, repeatedly pushing them out of field goal range."
+                }
+            ]
+        },
+        {
+            "id": "analysis_nfl_2024_w11_gb_chi",
+            "game_id": "nfl_2024_w11_gb_chi",
+            "headline": "Special Teams Miracle & Trench Penetration: Karl Brooks' Block Stuns Soldier Field",
+            "narrative_summary": "In the 209th chapter of the NFL's oldest rivalry, the Green Bay Packers escaped Soldier Field with a 20-19 victory after defensive lineman Karl Brooks penetrated the Bears' field goal protection unit to block Cairo Santos' 46-yard attempt with zeros on the clock. While rookie Caleb Williams orchestrated an impressive 4th-quarter comeback drive, Chicago's premature decision to settle for a long kick on first down proved fatal.",
+            "historic_facts": [
+                {
+                    "title": "Historic Rivalry Streak",
+                    "description": "Green Bay extended their win streak over Chicago to 11 consecutive games, the longest streak in the history of the 103-year rivalry."
+                },
+                {
+                    "title": "The Final Second Block",
+                    "description": "It marked Green Bay's first blocked game-winning field goal attempt at 0:00 since 1999."
+                },
+                {
+                    "title": "Caleb Williams Growth",
+                    "description": "Williams converted two separate 3rd-and-longs on the final drive, passing for 231 yards with zero turnovers under new OC Thomas Brown."
+                }
+            ],
+            "award_deep_dives": [
+                {
+                    "role": "Defensive MVP & Game on the Line Moment",
+                    "player": "Karl Brooks & Field Goal Block Unit",
+                    "team_code": "GB",
+                    "bullets": [
+                        {"label": "Fingertip Miracle", "detail": "Brooks timed the snap perfectly, slicing between Bears interior linemen Scott and Jenkins to get a glove on the ball."},
+                        {"label": "Trench Penetration", "detail": "The Packers' block unit generated a 2-yard push into the Bears' backfield."}
+                    ]
+                },
+                {
+                    "role": "Linebacker of the Game",
+                    "player": "Quay Walker",
+                    "team_code": "GB",
+                    "bullets": [
+                        {"label": "Tackle Engine", "detail": "Recorded 9 tackles and 1 sack, tracking down Caleb Williams on two designed scrambles."}
+                    ]
+                },
+                {
+                    "role": "The Engine (Game MVP)",
+                    "player": "Christian Watson",
+                    "team_code": "GB",
+                    "bullets": [
+                        {"label": "Explosive Playmaker", "detail": "Caught 4 passes for 150 yards, including a 60-yard diving bomb that set up the Packers' go-ahead score."}
+                    ]
+                }
+            ],
+            "tactical_dos_donts": [
+                {
+                    "type": "DO",
+                    "strategy": "Overload the Interior A-Gap on Field Goal Protection",
+                    "logic": "Rich Bisaccia's special teams scheme exploited low trajectory angles from Santos' middle range."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Settle for a 46-Yard Field Goal on 1st Down with 30 Seconds Left",
+                    "logic": "Chicago had 30 seconds and a timeout, but elected to run down the clock instead of gaining an extra 5-10 yards for a safer kick."
+                }
+            ]
+        },
+        {
+            "id": "analysis_nfl_2024_w11_det_jax",
+            "game_id": "nfl_2024_w11_det_jax",
+            "headline": "Offensive Juggernaut & Defensive Suffocation: Detroit's Historic 46-Point Demolition",
+            "narrative_summary": "The Detroit Lions established themselves as the NFC's undisputed titan in a 52-6 rout of the Jacksonville Jaguars at Ford Field. Ben Johnson's offense scored touchdowns on their first seven consecutive possessions while Aaron Glenn's defense suffocated Mac Jones, allowing only 170 total yards and generating a +46 point differential, the largest in modern franchise history.",
+            "historic_facts": [
+                {
+                    "title": "Franchise Margin of Victory",
+                    "description": "Detroit's 46-point victory was the largest margin of victory in the 94-year history of the Lions franchise."
+                },
+                {
+                    "title": "Total Yardage Supremacy",
+                    "description": "Detroit outgained Jacksonville 645 to 170 (+475 yard differential), scoring touchdowns on 7 straight drives."
+                },
+                {
+                    "title": "Goff's Perfect Game",
+                    "description": "Jared Goff achieved a perfect 158.3 passer rating, completing 24 of 29 passes for 412 yards and 4 touchdowns."
+                }
+            ],
+            "award_deep_dives": [
+                {
+                    "role": "Defensive MVP",
+                    "player": "Aaron Glenn's Defensive Unit",
+                    "team_code": "DET",
+                    "bullets": [
+                        {"label": "Total Containment", "detail": "Held Jacksonville to 170 total yards and 1 of 10 on third down conversions."},
+                        {"label": "Pass Rush Surge", "detail": "Generated 4.0 sacks on Mac Jones, led by newly acquired Za'Darius Smith."}
+                    ]
+                },
+                {
+                    "role": "The Engine (Official Game MVP)",
+                    "player": "Jared Goff & Amon-Ra St. Brown",
+                    "team_code": "DET",
+                    "bullets": [
+                        {"label": "Historic Perfection", "detail": "Goff finished with 412 passing yards, 4 touchdowns, and a 158.3 maximum passer rating."},
+                        {"label": "St. Brown Dominance", "detail": "Amon-Ra recorded 11 receptions for 161 yards and 2 touchdowns."}
+                    ]
+                }
+            ],
+            "tactical_dos_donts": [
+                {
+                    "type": "DO",
+                    "strategy": "Utilize Heavy Play-Action Motion Against Soft Cover-3",
+                    "logic": "Detroit's play-action pulled Jacksonville linebackers toward Montgomery and Gibbs, opening 25-yard seams."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Abandon Gap Integrity Against Duo Blocking Schemes",
+                    "logic": "Jacksonville over-pursued on outside zone, allowing Detroit running backs cutback lanes for 196 rushing yards."
+                }
+            ]
+        },
+        {
+            "id": "analysis_ncaa_2024_w11_uga_ala",
+            "game_id": "ncaa_2024_w11_uga_ala",
+            "headline": "SEC Instant Classic: Ryan Williams' 75-Yard Miracle Outlasts Georgia's Epic Rally",
+            "narrative_summary": "In an unforgettable clash of college football titans at Bryant-Denny Stadium, Alabama held off Georgia 41-34. After surging to an astonishing 28-0 lead in the first half, Alabama surrendered the lead 34-33 late in the fourth quarter. But 17-year-old freshman phenom Ryan Williams executed a spellbinding catch, double-spin move, and 75-yard touchdown dash with 2:18 left, before safety Zabien Brown intercepted Carson Beck in the end zone to ice the victory.",
+            "historic_facts": [
+                {
+                    "title": "28-Point Overcome Almost Historic",
+                    "description": "Georgia nearly completed the largest comeback in SEC history, overcoming a 28-point deficit before Williams' late miracle."
+                },
+                {
+                    "title": "Carson Beck Turnovers",
+                    "description": "Alabama's defense forced 4 turnovers from Carson Beck (3 interceptions, 1 fumble), converting them into 21 points."
+                },
+                {
+                    "title": "Milroe's Dual-Threat Dominance",
+                    "description": "Jalen Milroe generated 491 total yards (374 passing, 117 rushing) and 4 total touchdowns."
+                }
+            ],
+            "award_deep_dives": [
+                {
+                    "role": "Defensive MVP & Game on the Line Moment",
+                    "player": "Zabien Brown & Malachi Moore",
+                    "team_code": "ALA",
+                    "bullets": [
+                        {"label": "Endzone Interception", "detail": "Brown intercepted Beck in the endzone with 43 seconds left on 1st-and-10 from the Alabama 20."},
+                        {"label": "Four Takeaways", "detail": "Kane Wommack's Swarm D recorded 3 interceptions and a forced fumble."}
+                    ]
+                },
+                {
+                    "role": "The Engine (Game MVP)",
+                    "player": "Ryan Williams & Jalen Milroe",
+                    "team_code": "ALA",
+                    "bullets": [
+                        {"label": "The 75-Yard Spin-Cycle", "detail": "Williams caught an over-the-shoulder ball, spun 360 degrees past Julian Humphrey, and raced into the end zone."},
+                        {"label": "Total Yardage", "detail": "Williams finished with 6 catches for 177 yards and the game-winning touchdown."}
+                    ]
+                }
+            ],
+            "tactical_dos_donts": [
+                {
+                    "type": "DO",
+                    "strategy": "Utilize Designed QB Draws to Punish Two-Deep Safeties",
+                    "logic": "Milroe gashed Kirby Smart's defense for 117 rushing yards whenever Georgia dropped both safeties deep."
+                },
+                {
+                    "type": "DONT",
+                    "strategy": "Force Contested Boundary Jump Balls on First Down",
+                    "logic": "Beck's game-ending interception occurred when trying to force a fade into double coverage with 43 seconds and 2 timeouts remaining."
+                }
+            ]
+        }
+    ]
+
+
 def seed_mock_environment(custom_db_path: Optional[str | Path] = None) -> None:
     """Populates the database with the complete mock dataset in a single call."""
     db.init_db(custom_path=custom_db_path)
@@ -506,3 +881,6 @@ def seed_mock_environment(custom_db_path: Optional[str | Path] = None) -> None:
     db.save_game_trivia(get_mock_trivia(), custom_path=custom_db_path)
     # 7. Awards
     db.save_awards_candidates(get_mock_awards(), custom_path=custom_db_path)
+    # 8. Tactical Deep Research Analyses
+    db.save_game_tactical_analysis(get_mock_tactical_analyses(), custom_path=custom_db_path)
+

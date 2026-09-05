@@ -133,7 +133,25 @@ def build_youtube_script(
                 f"(Impacto WP: **+{swing_pct}%** | EPA: **{p.get('epa')}**) → *[Buscar clip en YouTube]*"
             )
 
-    if marquee_details and marquee_details.get("trivia"):
+    tactical = marquee_details.get("tactical_analysis") if marquee_details else None
+    if tactical:
+        sections.append(f"\n**🛡️ Análisis Táctico Deep Research: {tactical.get('headline')}**")
+        sections.append(f"\"{tactical.get('narrative_summary')}\"\n")
+
+        if tactical.get("historic_facts"):
+            sections.append("**📈 Hitos y Cifras Históricas para Teleprompter:**")
+            for fact in tactical["historic_facts"]:
+                sections.append(f"* 💡 **{fact.get('title')}:** {fact.get('description')}")
+            sections.append("")
+
+        if tactical.get("award_deep_dives"):
+            sections.append("**🏅 Perfiles Tácticos de Jugadores Clave:**")
+            for award in tactical["award_deep_dives"]:
+                bullets_str = " | ".join(f"{b.get('label')}: {b.get('detail')}" for b in award.get("bullets", [])[:2])
+                sections.append(f"* **{award.get('role')} ({award.get('team_code')} - {award.get('player')}):** {bullets_str}")
+            sections.append("")
+
+    if marquee_details and marquee_details.get("trivia") and not tactical:
         sections.append("\n**📊 Datos Clave para Teleprompter:**")
         for triv in marquee_details["trivia"]:
             sections.append(f"* 💡 {triv.get('fact_text')}")
@@ -202,6 +220,14 @@ def build_youtube_script(
             "\"Por el contrario, aquí vemos cómo forzar un envío bajo presión sin plantar los pies en 4ta oportunidad "
             "regala el partido. Un error de lectura que costó más de 4 puntos esperados y le quitó toda opción de remontada a su equipo.\""
         )
+
+    if tactical and tactical.get("tactical_dos_donts"):
+        sections.append("\n**📋 Matriz de Decisiones Tácticas (DOs y DON'Ts de Teleprompter):**")
+        sections.append("| Categoría | Estrategia Táctica | Lógica / Resultado |")
+        sections.append("|---|---|---|")
+        for row in tactical["tactical_dos_donts"]:
+            badge = "🟢 DO" if row.get("type", "").upper() == "DO" else "🔴 DON'T"
+            sections.append(f"| {badge} | **{row.get('strategy')}** | {row.get('logic')} |")
     sections.append("")
 
     # BLOCK 5: OUTRO & CTA

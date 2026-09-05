@@ -216,7 +216,77 @@ const MOCK_DATA = {
       trivia: [
         { fact_text: "Los Bills rompen la racha de 15 victorias consecutivas de Patrick Mahomes (incluyendo playoffs)." },
         { fact_text: "Josh Allen registra su cuarta victoria de temporada regular ante Kansas City, mayor cifra en la era Mahomes." }
-      ]
+      ],
+      tactical_analysis: {
+        headline: "Defensive Mastery and Tactical Supremacy: A Comprehensive Analysis of Chiefs @ Bills",
+        narrative_summary: "The narrative of Week 11's marquee matchup at Highmark Stadium was defined by Sean McDermott's aggressive fourth-down architecture and Buffalo's disguised two-high safety shells. In a decisive 30-21 victory over the Kansas City Chiefs, the Bills dismantled Kansas City's 15-game winning streak. While Josh Allen's 26-yard touchdown rumble on 4th-and-2 served as the cinematic exclamation point, it was Buffalo's interior defense that methodically choked Patrick Mahomes' passing options, holding the Chiefs to just 259 total yards and forcing two costly interceptions.",
+        historic_facts: [
+          { title: "The Undefeated Fall", description: "Kansas City arrived 9-0; the loss snapped their 15-game winning streak dating back to Christmas Day 2023." },
+          { title: "Regular Season Supremacy", description: "Josh Allen improved to 4-1 all-time against Patrick Mahomes in regular season matchups, standing as the only quarterback in NFL history with a winning record against him (minimum 3 games)." },
+          { title: "The Fourth-Down Crucible", description: "Leading 23-21 with 2:17 remaining, McDermott bypassed a 44-yard field goal on 4th-and-2, choosing to attack Spagnuolo's blitz rather than handing Mahomes a two-minute drill." },
+          { title: "Turnover Inversion", description: "Buffalo completed the game without committing a single turnover while picking off Mahomes twice, generating 10 critical points off takeaways." },
+          { title: "Explosive Play Neutralization", description: "Kansas City was held without a single pass play over 25 yards, forced into 19 completions under 8 air yards." }
+        ],
+        award_deep_dives: [
+          {
+            role: "Defensive MVP",
+            player: "The Buffalo Front Four (Collective)",
+            team_code: "BUF",
+            bullets: [
+              { label: "Statistical Impact", detail: "Generated 18 pressures, 3.0 sacks, 5 tackles for loss, and 8 QB hits solely with a four-man rush." },
+              { label: "Pressure Rate", detail: "Generated a 44.1% pressure rate against Mahomes without blitzing a single defensive back." }
+            ]
+          },
+          {
+            role: "Linebacker & Interception of the Game",
+            player: "Terrel Bernard",
+            team_code: "BUF",
+            bullets: [
+              { label: "The Game-Sealing Punctuation", detail: "Understood Mahomes' cadence on 4th-and-13 with 1:07 left, sinking into the robber zone to snag the clinching interception." },
+              { label: "Coverage Density", detail: "Allowed only 1 completion for 6 yards on 4 targets in his coverage zone." }
+            ]
+          },
+          {
+            role: "Sack of the Week & Game on the Line Moment",
+            player: "Greg Rousseau & Von Miller",
+            team_code: "BUF",
+            bullets: [
+              { label: "Third-Quarter Strip Pressure", detail: "Rousseau's speed rush on 3rd-and-9 forced Mahomes into a hurried sack-fumble." }
+            ]
+          },
+          {
+            role: "Defensive Back of the Game",
+            player: "Christian Benford",
+            team_code: "BUF",
+            bullets: [
+              { label: "Target Mitigation", detail: "Targeted 6 times, allowing only 2 receptions for 18 yards with 2 pass breakups against DeAndre Hopkins." }
+            ]
+          },
+          {
+            role: "Special Teams of the Week",
+            player: "Tyler Bass",
+            team_code: "BUF",
+            bullets: [
+              { label: "Wind Mastery", detail: "Converted 3 extra points and a 33-yard field goal amidst 14 mph crosswinds at Highmark Stadium." }
+            ]
+          },
+          {
+            role: "The Engine (Official Game MVP)",
+            player: "Josh Allen",
+            team_code: "BUF",
+            bullets: [
+              { label: "Volume & Efficiency", detail: "262 passing yards, 55 rushing yards, 2 total touchdowns, and +14.8 total EPA." },
+              { label: "The 26-Yard Dagger", detail: "On 4th-and-2 with 2:17 left, broke multiple tackles to score the iconic 26-yard game-winning touchdown." }
+            ]
+          }
+        ],
+        tactical_dos_donts: [
+          { type: "DO", strategy: "Deploy Two-High Shells with Robber Disguise", logic: "Buffalo played Cover-4 and Cover-6 on 71% of snaps, eliminating vertical routes and forcing short checkdowns." },
+          { type: "DO", strategy: "Maintain 4th-and-Short Aggressiveness vs Heavy Blitz", logic: "Going for it on 4th-and-2 avoided giving Mahomes the football with two minutes and a single-possession deficit." },
+          { type: "DONT", strategy: "Empty the Second Level with Cover-0 Blitzes vs Allen", logic: "Spagnuolo's all-out blitz cleared the middle of the field, giving Allen an open lane to scamper 26 yards for the touchdown." },
+          { type: "DONT", strategy: "Force Boundary Passes Under Interior Duress", logic: "Mahomes' panic throw on 4th-and-13 into Bernard's robber coverage resulted in the game-ending interception." }
+        ]
+      }
     },
     {
       id: "nfl_2024_w11_bal_pit",
@@ -509,6 +579,204 @@ function renderGames() {
   });
 }
 
+// Drawer Tab Switcher
+function switchDrawerTab(tabName) {
+  const tabTactical = document.getElementById("tab-btn-tactical");
+  const tabBoxscore = document.getElementById("tab-btn-boxscore");
+  const contentTactical = document.getElementById("drawer-tab-content-tactical");
+  const contentBoxscore = document.getElementById("drawer-tab-content-boxscore");
+
+  if (tabName === "tactical") {
+    if (tabTactical) tabTactical.classList.add("active");
+    if (tabBoxscore) tabBoxscore.classList.remove("active");
+    if (contentTactical) contentTactical.style.display = "block";
+    if (contentBoxscore) contentBoxscore.style.display = "none";
+  } else {
+    if (tabTactical) tabTactical.classList.remove("active");
+    if (tabBoxscore) tabBoxscore.classList.add("active");
+    if (contentTactical) contentTactical.style.display = "none";
+    if (contentBoxscore) contentBoxscore.style.display = "flex";
+  }
+}
+
+// Render Tactical Analysis (Deep Research Studio)
+function renderTacticalAnalysis(analysis, game) {
+  const container = document.getElementById("drawer-tactical-body");
+  if (!container) return;
+
+  if (!analysis) {
+    container.innerHTML = `
+      <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius-md); border: 1px dashed var(--border-subtle); text-align: center; color: var(--text-muted);">
+        <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🛡️</div>
+        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.35rem; font-size: 0.95rem;">Análisis Táctico en Síntesis</div>
+        <div style="font-size: 0.8rem; line-height: 1.5;">Los scouts y el motor analítico de Gridiron Hub están procesando los datos de este encuentro. Consulta el Boxscore para ver las estadísticas EPA en vivo.</div>
+      </div>
+    `;
+    return;
+  }
+
+  let html = `
+    <div class="tactical-header-card">
+      <div class="tactical-headline">${analysis.headline || "Análisis Táctico & Deep Research"}</div>
+      <div class="tactical-narrative">${analysis.narrative_summary || ""}</div>
+    </div>
+  `;
+
+  // Historic Facts
+  const facts = analysis.historic_facts || [];
+  if (facts.length > 0) {
+    html += `
+      <div>
+        <div class="section-title">📈 Hitos & Cifras Históricas del Encuentro</div>
+        <div class="historic-facts-grid">
+          ${facts.map(f => `
+            <div class="historic-fact-item">
+              <span class="fact-badge">💡 HITO</span>
+              <div class="fact-text">
+                <strong>${f.title}:</strong> ${f.description}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  // Award Deep Dives
+  const deepDives = analysis.award_deep_dives || [];
+  if (deepDives.length > 0) {
+    html += `
+      <div>
+        <div class="section-title">🏅 Perfiles Tácticos de Premiados (Award Deep Dives)</div>
+        <div class="award-deep-dives-list">
+          ${deepDives.map(d => `
+            <div class="deep-dive-card">
+              <div class="deep-dive-header">
+                <span class="deep-dive-role">${d.role}</span>
+                <span class="team-pill-badge">${d.team_code || ""}</span>
+              </div>
+              <div class="deep-dive-player" style="margin-bottom: 0.6rem;">
+                ${d.player}
+              </div>
+              <ul class="deep-dive-bullets">
+                ${(d.bullets || []).map(b => `
+                  <li><strong>${b.label}:</strong> ${b.detail}</li>
+                `).join("")}
+              </ul>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  // Tactical DOs and DON'Ts
+  const dosDonts = analysis.tactical_dos_donts || [];
+  if (dosDonts.length > 0) {
+    html += `
+      <div>
+        <div class="section-title">📋 Matriz Táctica: DOs y DON'Ts</div>
+        <div class="tactical-table-wrapper">
+          <table class="tactical-table">
+            <thead>
+              <tr>
+                <th style="width: 100px;">Categoría</th>
+                <th style="width: 35%;">Estrategia Táctica</th>
+                <th>Lógica / Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${dosDonts.map(row => {
+                const isDo = (row.type || "").toUpperCase() === "DO";
+                return `
+                  <tr>
+                    <td>
+                      <span class="badge-tactical ${isDo ? 'badge-do' : 'badge-dont'}">
+                        ${isDo ? '🟢 DO' : '🔴 DON\'T'}
+                      </span>
+                    </td>
+                    <td><strong>${row.strategy}</strong></td>
+                    <td style="color: var(--text-secondary);">${row.logic}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+}
+
+// Copy Tactical Analysis as Clean Markdown
+function copyCurrentGameTacticalMarkdown() {
+  const game = state.activeDrawerGame;
+  if (!game || !game.tactical_analysis) {
+    alert("No hay análisis táctico disponible para este partido.");
+    return;
+  }
+  const t = game.tactical_analysis;
+
+  let md = `# ${t.headline || "Tactical Analysis"}\n\n`;
+  md += `${t.narrative_summary || ""}\n\n`;
+
+  if (t.historic_facts && t.historic_facts.length > 0) {
+    md += `### Historic Team Facts and Figures\n`;
+    t.historic_facts.forEach(f => {
+      md += `- **${f.title}**: ${f.description}\n`;
+    });
+    md += `\n`;
+  }
+
+  if (t.award_deep_dives && t.award_deep_dives.length > 0) {
+    md += `### Award Winner Deep Dives: Stats and Tactical Profiles\n`;
+    t.award_deep_dives.forEach(d => {
+      md += `#### ${d.role}: ${d.player} (${d.team_code || ""})\n`;
+      (d.bullets || []).forEach(b => {
+        md += `- **${b.label}**: ${b.detail}\n`;
+      });
+      md += `\n`;
+    });
+  }
+
+  if (t.tactical_dos_donts && t.tactical_dos_donts.length > 0) {
+    md += `### Defensive Dos and Don'ts\n`;
+    md += `| Category | Tactical Strategy | Logic/Outcome |\n`;
+    md += `|---|---|---|\n`;
+    t.tactical_dos_donts.forEach(row => {
+      md += `| ${row.type} | ${row.strategy} | ${row.logic} |\n`;
+    });
+    md += `\n`;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(md).then(() => {
+      showCopyToast("¡Análisis copiado al portapapeles en formato YouTube / Gemini!");
+    }).catch(() => {
+      window.prompt("Copia el texto del análisis táctico:", md);
+    });
+  } else {
+    window.prompt("Copia el texto del análisis táctico:", md);
+  }
+}
+
+function showCopyToast(msg) {
+  const existing = document.getElementById("copy-toast-notification");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.id = "copy-toast-notification";
+  toast.className = "copy-feedback-toast";
+  toast.innerHTML = `<span>📋</span> <span>${msg}</span>`;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    if (toast) toast.remove();
+  }, 3500);
+}
+
 // Open Game Detail Drawer
 async function openGameDrawer(gameId) {
   let game = state.games.find(g => g.id === gameId);
@@ -525,10 +793,16 @@ async function openGameDrawer(gameId) {
 
   if (!game) return;
 
+  state.activeDrawerGame = game;
+
   document.getElementById("drawer-venue").textContent = `${game.venue || "Estadio"} • ${game.weather_desc || ""}`;
   document.getElementById("drawer-title").textContent = `${game.away_name || game.away_code} (${game.away_score}) @ ${game.home_name || game.home_code} (${game.home_score})`;
   document.getElementById("th-away-team").textContent = game.away_code;
   document.getElementById("th-home-team").textContent = game.home_code;
+
+  // Render Tactical Analysis Tab
+  renderTacticalAnalysis(game.tactical_analysis, game);
+  switchDrawerTab('tactical');
 
   // Render Stats Table
   const statsBody = document.getElementById("drawer-stats-body");

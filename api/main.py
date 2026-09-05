@@ -35,12 +35,21 @@ from storage import db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initializes the SQLite schema on startup and seeds default team assets if empty."""
+    """Initializes the SQLite schema on startup and seeds default team assets and tactical analysis."""
     db.init_db()
     existing_teams = db.get_teams()
     if not existing_teams:
         all_teams = assets_source.load_all_teams()
         db.save_teams(all_teams)
+
+    # Ensure week 11 games and tactical research data are seeded
+    existing_games = db.get_games_by_week(league="nfl", season=2024, week=11)
+    if not existing_games:
+        from mock import dataset
+        dataset.seed_mock_environment()
+    else:
+        from mock import dataset
+        db.save_game_tactical_analysis(dataset.get_mock_tactical_analyses())
     yield
 
 
@@ -234,6 +243,21 @@ def get_game_detail(
             detail=f"Partido con ID '{game_id}' no encontrado."
         )
     return game_data
+
+
+@app.get("/api/games/{game_id}/tactical-analysis", tags=["Games"])
+def get_game_tactical_analysis(
+    game_id: str,
+    user: Dict[str, Any] = Depends(get_current_user),
+) -> Dict[str, Any]:
+    """Returns deep research tactical analysis: executive narrative, historic facts, award deep dives, and DOs/DON'Ts."""
+    analysis = db.get_game_tactical_analysis(game_id)
+    if not analysis:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Análisis táctico para el partido '{game_id}' no encontrado."
+        )
+    return analysis
 
 
 @app.get("/api/awards", tags=["Awards"])

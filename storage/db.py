@@ -7,6 +7,7 @@ Cost: $0 perpetual.
 
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 from pathlib import Path
@@ -289,7 +290,58 @@ def get_game_details(game_id: str, custom_path: Optional[str | Path] = None) -> 
         game_data["team_stats"] = [dict(r) for r in conn.execute(stats_query, (game_id,)).fetchall()]
         game_data["key_plays"] = [dict(r) for r in conn.execute(plays_query, (game_id,)).fetchall()]
         game_data["trivia"] = [dict(r) for r in conn.execute(trivia_query, (game_id,)).fetchall()]
+        game_data["tactical_analysis"] = get_game_tactical_analysis(game_id, custom_path=custom_path)
         return game_data
+
+
+def save_game_tactical_analysis(analyses: List[Dict[str, Any]], custom_path: Optional[str | Path] = None) -> None:
+    """Inserts or updates structured tactical research analysis for games."""
+    query = """
+    INSERT INTO game_tactical_analysis (
+        id, game_id, headline, narrative_summary,
+        historic_facts, award_deep_dives, tactical_dos_donts
+    ) VALUES (
+        :id, :game_id, :headline, :narrative_summary,
+        :historic_facts, :award_deep_dives, :tactical_dos_donts
+    ) ON CONFLICT(game_id) DO UPDATE SET
+        headline = excluded.headline,
+        narrative_summary = excluded.narrative_summary,
+        historic_facts = excluded.historic_facts,
+        award_deep_dives = excluded.award_deep_dives,
+        tactical_dos_donts = excluded.tactical_dos_donts;
+    """
+    formatted = []
+    for a in analyses:
+        item = dict(a)
+        if isinstance(item.get("historic_facts"), (list, dict)):
+            item["historic_facts"] = json.dumps(item["historic_facts"], ensure_ascii=False)
+        if isinstance(item.get("award_deep_dives"), (list, dict)):
+            item["award_deep_dives"] = json.dumps(item["award_deep_dives"], ensure_ascii=False)
+        if isinstance(item.get("tactical_dos_donts"), (list, dict)):
+            item["tactical_dos_donts"] = json.dumps(item["tactical_dos_donts"], ensure_ascii=False)
+        formatted.append(item)
+
+    with get_connection(custom_path) as conn:
+        conn.executemany(query, formatted)
+        conn.commit()
+
+
+def get_game_tactical_analysis(game_id: str, custom_path: Optional[str | Path] = None) -> Optional[Dict[str, Any]]:
+    """Retrieves structured tactical research analysis for a specific game."""
+    query = "SELECT * FROM game_tactical_analysis WHERE game_id = ?;"
+    with get_connection(custom_path) as conn:
+        row = conn.execute(query, (game_id,)).fetchone()
+        if not row:
+            return None
+        res = dict(row)
+        for key in ("historic_facts", "award_deep_dives", "tactical_dos_donts"):
+            val = res.get(key)
+            if isinstance(val, str):
+                try:
+                    res[key] = json.loads(val)
+                except Exception:
+                    res[key] = []
+        return res
 
 
 def get_awards(league: str, season: int, week: int, category: Optional[str] = None, custom_path: Optional[str | Path] = None) -> List[Dict[str, Any]]:

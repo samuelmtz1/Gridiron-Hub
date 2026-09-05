@@ -164,38 +164,62 @@
       </div>
 
       <div class="drawer-body">
-        <!-- Boxscore Analítico -->
-        <section>
-          <div class="section-title">📊 Boxscore Analítico & Eficiencia EPA</div>
-          <table class="stats-table">
-            <thead>
-              <tr>
-                <th style="text-align: left;">Métrica</th>
-                <th id="th-away-team">KC</th>
-                <th id="th-home-team">BUF</th>
-              </tr>
-            </thead>
-            <tbody id="drawer-stats-body">
+        <!-- Tab Switcher inside Drawer -->
+        <div class="drawer-tabs">
+          <button class="drawer-tab-btn active" id="tab-btn-tactical" onclick="switchDrawerTab('tactical')">
+            🛡️ Análisis Táctico & Deep Research
+          </button>
+          <button class="drawer-tab-btn" id="tab-btn-boxscore" onclick="switchDrawerTab('boxscore')">
+            📊 Boxscore & Jugadas Clave
+          </button>
+        </div>
+
+        <!-- TAB 1: Análisis Táctico & Deep Research (Estilo Super Bowl LX) -->
+        <div id="drawer-tab-content-tactical">
+          <button class="btn-copy-tactical" id="btn-copy-tactical" onclick="copyCurrentGameTacticalMarkdown()">
+            📋 Copiar Análisis Completo (Formato YouTube / Gemini)
+          </button>
+
+          <div id="drawer-tactical-body" class="tactical-container" style="margin-top: 1rem;">
+            <!-- Rendered via app.js -->
+          </div>
+        </div>
+
+        <!-- TAB 2: Boxscore Analítico & Jugadas Clave -->
+        <div id="drawer-tab-content-boxscore" style="display: none; flex-direction: column; gap: 1.75rem;">
+          <!-- Boxscore Analítico -->
+          <section>
+            <div class="section-title">📊 Boxscore Analítico & Eficiencia EPA</div>
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th style="text-align: left;">Métrica</th>
+                  <th id="th-away-team">KC</th>
+                  <th id="th-home-team">BUF</th>
+                </tr>
+              </thead>
+              <tbody id="drawer-stats-body">
+                <!-- Rendered via app.js -->
+              </tbody>
+            </table>
+          </section>
+
+          <!-- Top Jugadas Clave -->
+          <section>
+            <div class="section-title">⚡ Top Jugadas Clave (Por Win Probability Swing & EPA)</div>
+            <div id="drawer-plays-list">
               <!-- Rendered via app.js -->
-            </tbody>
-          </table>
-        </section>
+            </div>
+          </section>
 
-        <!-- Top Jugadas Clave -->
-        <section>
-          <div class="section-title">⚡ Top Jugadas Clave (Por Win Probability Swing & EPA)</div>
-          <div id="drawer-plays-list">
-            <!-- Rendered via app.js -->
-          </div>
-        </section>
-
-        <!-- Trivia y Contexto Narrativo para YouTube -->
-        <section>
-          <div class="section-title">🎙 Trivia & Puntos Narrativos para el Guion</div>
-          <div id="drawer-trivia-list">
-            <!-- Rendered via app.js -->
-          </div>
-        </section>
+          <!-- Trivia y Contexto Narrativo para YouTube -->
+          <section>
+            <div class="section-title">🎙 Trivia & Puntos Narrativos para el Guion</div>
+            <div id="drawer-trivia-list">
+              <!-- Rendered via app.js -->
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </div>
