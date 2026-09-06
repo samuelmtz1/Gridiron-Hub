@@ -55,17 +55,18 @@
     </div>
   </header>
 
-  <!-- Filter Pills -->
-  <nav class="filter-bar" id="division-filters">
-    <button class="pill-btn active" onclick="filterDivision('ALL')">Todos los Juegos</button>
-    <button class="pill-btn" onclick="filterDivision('AFC')">AFC</button>
-    <button class="pill-btn" onclick="filterDivision('NFC')">NFC</button>
-    <button class="pill-btn" onclick="filterDivision('AFC West')">AFC West</button>
-    <button class="pill-btn" onclick="filterDivision('AFC East')">AFC East</button>
-    <button class="pill-btn" onclick="filterDivision('AFC North')">AFC North</button>
-    <button class="pill-btn" onclick="filterDivision('NFC North')">NFC North</button>
-    <button class="pill-btn" onclick="filterDivision('SEC')">SEC (NCAA)</button>
-  </nav>
+  <!-- Filter Pills & Navigation Hierarchy (SOP A.3: Liga -> Conferencia/División -> Equipo) -->
+  <div class="filter-nav-container">
+    <nav class="filter-bar" id="division-filters">
+      <!-- Populated dynamically via app.js -->
+    </nav>
+    <div class="team-filter-bar">
+      <label for="select-team" class="filter-label">🏈 Equipo:</label>
+      <select class="select-input" id="select-team" onchange="filterTeam(this.value)" title="Filtrar por Equipo">
+        <option value="ALL">Todos los Equipos</option>
+      </select>
+    </div>
+  </div>
 
   <!-- KPI Banner -->
   <section class="kpi-banner" id="kpi-banner">
@@ -146,7 +147,12 @@
           <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;" id="drawer-venue">Highmark Stadium</div>
           <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);" id="drawer-title">Bills vs Chiefs</h2>
         </div>
-        <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <a id="drawer-highlight-link" href="#" target="_blank" rel="noopener" class="pill-btn active" style="font-size: 0.75rem; text-decoration: none; padding: 0.35rem 0.75rem; display: none;">
+            🎬 Highlights en YouTube
+          </a>
+          <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+        </div>
       </div>
 
       <div class="drawer-body">
@@ -202,6 +208,14 @@
           <section>
             <div class="section-title">🎙 Trivia & Puntos Narrativos para el Guion</div>
             <div id="drawer-trivia-list">
+              <!-- Rendered via app.js -->
+            </div>
+          </section>
+
+          <!-- Candidatos a Premios de este Encuentro (SOP A.3) -->
+          <section id="drawer-awards-section">
+            <div class="section-title">🏆 Candidatos a Premios en este Partido</div>
+            <div id="drawer-game-awards-list">
               <!-- Rendered via app.js -->
             </div>
           </section>

@@ -294,6 +294,18 @@ def get_game_details(game_id: str, custom_path: Optional[str | Path] = None) -> 
         game_data["team_stats"] = [dict(r) for r in conn.execute(stats_query, (game_id,)).fetchall()]
         game_data["key_plays"] = [dict(r) for r in conn.execute(plays_query, (game_id,)).fetchall()]
         game_data["trivia"] = [dict(r) for r in conn.execute(trivia_query, (game_id,)).fetchall()]
+        
+        # SOP A.3: Candidatos a premios de ese juego
+        awards_query = """
+        SELECT * FROM awards_candidates 
+        WHERE league = ? AND season = ? AND week = ? AND (team_id = ? OR team_id = ?)
+        ORDER BY category, rank ASC;
+        """
+        game_data["game_awards"] = [dict(r) for r in conn.execute(awards_query, (
+            game_data["league"], game_data["season"], game_data["week"],
+            game_data["home_team_id"], game_data["away_team_id"]
+        )).fetchall()]
+
         game_data["tactical_analysis"] = get_game_tactical_analysis(game_id, custom_path=custom_path)
         return game_data
 

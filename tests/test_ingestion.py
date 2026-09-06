@@ -112,3 +112,45 @@ def test_cfb_source_graceful_missing_key():
     """Verifies that CFBD gracefully handles absent API keys without exceptions."""
     games = cfb_source.fetch_cfb_games(year=2024, week=1)
     assert isinstance(games, list)
+
+
+def test_normalize_team_code():
+    """Verifies NFL team code normalization for legacy/variant abbreviations."""
+    assert nfl_source.normalize_team_code("LA") == "LAR"
+    assert nfl_source.normalize_team_code("STL") == "LAR"
+    assert nfl_source.normalize_team_code("SD") == "LAC"
+    assert nfl_source.normalize_team_code("OAK") == "LV"
+    assert nfl_source.normalize_team_code("WSH") == "WAS"
+    assert nfl_source.normalize_team_code("KC") == "KC"
+
+
+def test_live_trigger_extract_teams_ncaa():
+    """Verifies team and conference extraction from ESPN scoreboard payload."""
+    mock_payload = {
+        "events": [
+            {
+                "competitions": [
+                    {
+                        "competitors": [
+                            {
+                                "team": {
+                                    "id": "150",
+                                    "abbreviation": "DUKE",
+                                    "displayName": "Duke Blue Devils",
+                                    "shortDisplayName": "Duke",
+                                    "color": "00539b",
+                                    "alternateColor": "ffffff",
+                                    "conferenceId": "1",
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+    teams = live_trigger.extract_teams_from_scoreboard(mock_payload, league="ncaa")
+    assert len(teams) == 1
+    assert teams[0]["code"] == "DUKE"
+    assert teams[0]["conference"] == "ACC"
+    assert teams[0]["primary_color"] == "#00539b"

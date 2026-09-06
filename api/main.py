@@ -35,13 +35,38 @@ from storage import db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initializes the SQLite schema on startup and seeds default team assets, multi-week games, and tactical analyses."""
+    """Initializes the SQLite schema on startup and seeds default official team assets."""
     db.init_db()
     from ingestion import assets_source
-    from mock import dataset
     all_teams = assets_source.load_all_teams()
     db.save_teams(all_teams)
-    dataset.seed_mock_environment()
+
+    # If games table is empty (e.g. freshly deployed container on Render), seed from authentic snapshot
+    existing_games = db.get_games_by_week("nfl", 2024, 11)
+    if not existing_games:
+        import json
+        from pathlib import Path
+        snapshot_file = Path(__file__).resolve().parent.parent / "storage" / "authentic_snapshot.json"
+        if snapshot_file.exists():
+            try:
+                with open(snapshot_file, "r", encoding="utf-8") as f:
+                    snap = json.load(f)
+                    if snap.get("teams"):
+                        db.save_teams(snap["teams"])
+                    if snap.get("games"):
+                        db.save_games(snap["games"])
+                    for g in snap.get("games", []):
+                        if g.get("team_stats"):
+                            db.save_game_team_stats(g["team_stats"])
+                        if g.get("key_plays"):
+                            db.save_key_plays(g["key_plays"])
+                        if g.get("trivia"):
+                            db.save_game_trivia(g["trivia"])
+                    if snap.get("awards"):
+                        db.save_awards_candidates(snap["awards"])
+            except Exception as e:
+                import logging
+                logging.getLogger("api.main").warning(f"Error al sembrar snapshot auténtico: {e}")
     yield
 
 

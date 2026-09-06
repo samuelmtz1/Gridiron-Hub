@@ -106,7 +106,40 @@ body {
   outline: none;
 }
 
-/* Secondary Filter Bar */
+/* Secondary Filter Bar & Navigation Hierarchy (SOP A.3) */
+.filter-nav-container {
+  max-width: 1400px;
+  margin: 1rem auto 0;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-nav-container .filter-bar {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 280px;
+}
+
+.team-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
 .filter-bar {
   max-width: 1400px;
   margin: 1rem auto 0;

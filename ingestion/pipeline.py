@@ -43,40 +43,71 @@ def run_pipeline(
     db.init_db(custom_path=custom_db_path)
     existing_teams = db.get_teams(league=league, custom_path=custom_db_path)
     if not existing_teams:
-        logger.info("Sincronizando directorio oficial de equipos con logos y paletas hex...")
+        logger.info(f"Sincronizando directorio oficial de equipos ({league.upper()}) con logos y paletas hex...")
         teams = assets_source.load_all_teams()
-        db.save_teams(teams, custom_path=custom_db_path)
+        db.save_teams([t for t in teams if t["league"] == league], custom_path=custom_db_path)
 
-    # 2. Check games status via Scoreboard trigger
-    logger.info("Consultando estado de partidos en ESPN Scoreboard...")
-    scoreboard_data = live_trigger.fetch_espn_scoreboard(league)
-    live_games = live_trigger.parse_scoreboard_events(scoreboard_data, league=league)
-
-    # Filter for the target week or use live games
-    target_games = [g for g in live_games if g.get("week") == week]
-    if not target_games and live_games:
-        target_games = live_games
-
-    # If no live games returned from network, check if games already exist or use fallback
-    if target_games:
-        logger.info(f"Detectados {len(target_games)} partidos en el Scoreboard.")
-        db.save_games(target_games, custom_path=custom_db_path)
-    else:
-        logger.info("No se recibieron juegos en vivo del scoreboard; verificando base de datos local.")
-        target_games = db.get_games_by_week(league, season, week, custom_path=custom_db_path)
-
-    # 3. Process Player Stats
-    logger.info(f"Extrayendo estadísticas de jugadores para {league.upper()}...")
+    target_games: List[Dict[str, Any]] = []
     player_stats: List[Dict[str, Any]] = []
+
     if league == "nfl":
+        # Check nflreadpy schedules first
+        logger.info(f"Consultando calendario oficial NFL en nflreadpy ({season} Semana {week})...")
+        nfl_games = nfl_source.fetch_nfl_games(season=season, week=week)
+        if nfl_games:
+            logger.info(f"Cargados {len(nfl_games)} partidos oficiales NFL de nflreadpy.")
+            db.save_games(nfl_games, custom_path=custom_db_path)
+            target_games = nfl_games
+
+            # Ingest team stats & key plays from real PBP
+            logger.info(f"Extrayendo estadísticas avanzadas de equipo y jugadas clave (EPA/WPA) para {season} Semana {week}...")
+            pbp_data = nfl_source.fetch_nfl_team_stats_and_plays(season=season, week=week)
+            if pbp_data.get("team_stats"):
+                db.save_game_team_stats(pbp_data["team_stats"], custom_path=custom_db_path)
+            if pbp_data.get("key_plays"):
+                db.save_key_plays(pbp_data["key_plays"], custom_path=custom_db_path)
+        else:
+            # Fallback to ESPN scoreboard
+            logger.info("Partidos no disponibles en nflreadpy; consultando ESPN Scoreboard...")
+            sb_data = live_trigger.fetch_espn_scoreboard("nfl", season=season, week=week)
+            target_games = live_trigger.parse_scoreboard_events(sb_data, league="nfl")
+            if target_games:
+                db.save_games(target_games, custom_path=custom_db_path)
+
+        # Ingest player stats
+        logger.info(f"Extrayendo estadísticas de jugadores para NFL {season} Semana {week}...")
         player_stats = nfl_source.fetch_nfl_player_stats(season=season, week=week)
-    
-    if player_stats:
-        db.save_player_weekly_stats(player_stats, custom_path=custom_db_path)
+        if player_stats:
+            db.save_player_weekly_stats(player_stats, custom_path=custom_db_path)
+
+    elif league == "ncaa":
+        # Ingest from ESPN College Football Scoreboard
+        logger.info(f"Consultando ESPN Scoreboard para NCAA ({season} Semana {week})...")
+        sb_data = live_trigger.fetch_espn_scoreboard("ncaa", season=season, week=week)
+        ncaa_teams = live_trigger.extract_teams_from_scoreboard(sb_data, league="ncaa")
+        if ncaa_teams:
+            logger.info(f"Registrando {len(ncaa_teams)} equipos de NCAA con logos y conferencias...")
+            db.save_teams(ncaa_teams, custom_path=custom_db_path)
+
+        target_games = live_trigger.parse_scoreboard_events(sb_data, league="ncaa")
+        if target_games:
+            logger.info(f"Cargados {len(target_games)} partidos de NCAA desde ESPN.")
+            db.save_games(target_games, custom_path=custom_db_path)
+
+            # Ingest boxscores & scoring plays for final or active games
+            for g in target_games[:25]:  # Process top 25 featured games to remain fast
+                eid = g.get("event_id")
+                if eid:
+                    summary = live_trigger.fetch_espn_game_summary(eid, league="ncaa", app_game_id=g["id"])
+                    if summary.get("teams"):
+                        db.save_teams(summary["teams"], custom_path=custom_db_path)
+                    if summary.get("team_stats"):
+                        db.save_game_team_stats(summary["team_stats"], custom_path=custom_db_path)
+                    if summary.get("key_plays"):
+                        db.save_key_plays(summary["key_plays"], custom_path=custom_db_path)
 
     # 4. Generate Awards Nominees (OPOW, DPOW, MVP, DOs & DON'Ts)
     logger.info("Ejecutando motor de premios y selección de jugadas clave...")
-    # Retrieve key plays for the week from DB if available
     all_key_plays: List[Dict[str, Any]] = []
     for g in target_games:
         details = db.get_game_details(g["id"], custom_path=custom_db_path)
