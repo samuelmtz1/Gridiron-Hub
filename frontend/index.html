@@ -28,9 +28,8 @@
 
         <!-- Season Selector -->
         <select class="select-input" id="select-season" onchange="changeSeason(this.value)" title="Seleccionar Temporada">
-          <option value="2026" selected>Temporada 2026-2027 (Actual)</option>
-          <option value="2025">Temporada 2025-2026</option>
-          <option value="2024">Temporada 2024-2025</option>
+          <option value="2026" selected>Temporada 2026-2027 (Actual / Prioridad)</option>
+          <option value="2025">Temporada 2025-2026 (Super Bowl LX)</option>
         </select>
 
         <!-- Week Selector (Dinámico según Temporada) -->
@@ -247,6 +246,10 @@
 
         <button class="login-submit-btn" type="submit" id="btn-submit-login">
           Iniciar Sesión Segura
+        </button>
+
+        <button type="button" class="login-quick-fill" onclick="fillTeamCredentials()" style="width: 100%; margin-top: 0.6rem; text-align: center; border: 1px dashed var(--metric-cyan); color: var(--metric-cyan);">
+          🔑 Rellenar credenciales de equipo (gridiron_team)
         </button>
 
         <div style="margin-top: 0.5rem; text-align: right;">

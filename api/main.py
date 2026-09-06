@@ -42,8 +42,9 @@ async def lifespan(app: FastAPI):
     db.save_teams(all_teams)
 
     # If games table is empty (e.g. freshly deployed container on Render), seed from authentic snapshot
-    existing_games = db.get_games_by_week("nfl", 2024, 11)
-    if not existing_games:
+    with db.get_connection() as conn:
+        games_count = conn.execute("SELECT count(*) FROM games").fetchone()[0]
+    if games_count == 0:
         import json
         from pathlib import Path
         snapshot_file = Path(__file__).resolve().parent.parent / "storage" / "authentic_snapshot.json"

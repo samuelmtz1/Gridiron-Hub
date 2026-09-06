@@ -556,6 +556,19 @@ body {
   pointer-events: auto;
 }
 
+body.auth-locked {
+  overflow: hidden;
+}
+
+body.auth-locked .app-header,
+body.auth-locked .filter-nav-container,
+body.auth-locked .kpi-banner,
+body.auth-locked .main-content {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
 .login-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);

@@ -30,11 +30,11 @@ NCAA_CONFERENCES = {
     "5": "Big Ten",
     "8": "SEC",
     "9": "Pac-12",
-    "12": "MAC",
+    "12": "Conference USA",
+    "15": "MAC",
     "17": "Mountain West",
     "18": "FBS Independents",
     "37": "Sun Belt",
-    "99": "Conference USA",
     "151": "American",
 }
 
@@ -166,6 +166,11 @@ def parse_scoreboard_events(scoreboard_data: Dict[str, Any], league: str = "nfl"
             home_score = int(home_raw_score) if home_raw_score not in [None, ""] else 0
             away_score = int(away_raw_score) if away_raw_score not in [None, ""] else 0
 
+            home_conf_id = str(home_team.get("conferenceId") or "")
+            away_conf_id = str(away_team.get("conferenceId") or "")
+            home_conf = NCAA_CONFERENCES.get(home_conf_id, "NCAA") if league == "ncaa" else ("AFC" if "AFC" in home_code else "NFC")
+            away_conf = NCAA_CONFERENCES.get(away_conf_id, "NCAA") if league == "ncaa" else ("AFC" if "AFC" in away_code else "NFC")
+
             parsed_games.append({
                 "id": game_id,
                 "event_id": event_id,
@@ -183,6 +188,8 @@ def parse_scoreboard_events(scoreboard_data: Dict[str, Any], league: str = "nfl"
                 "weather_temp": weather_temp,
                 "weather_desc": weather_desc,
                 "highlight_url": f"https://www.youtube.com/results?search_query={away_code}+vs+{home_code}+highlights+{season_year}",
+                "home_conference": home_conf,
+                "away_conference": away_conf,
             })
         except Exception as e:
             logger.debug(f"Error parsing event: {e}")
@@ -230,7 +237,7 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
                     "name": t_info.get("displayName") or t_info.get("name") or t_code,
                     "short_name": t_info.get("shortDisplayName") or t_code,
                     "city": t_info.get("location") or "",
-                    "conference": "NCAA" if league == "ncaa" else ("AFC" if "AFC" in t_code else "NFC"),
+                    "conference": NCAA_CONFERENCES.get(str(t_info.get("conferenceId") or ""), None) if league == "ncaa" else ("AFC" if "AFC" in t_code else "NFC"),
                     "division": None,
                     "primary_color": f"#{color.lstrip('#')}",
                     "secondary_color": f"#{alt_color.lstrip('#')}",

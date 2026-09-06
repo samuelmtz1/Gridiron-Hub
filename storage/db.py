@@ -65,8 +65,11 @@ def save_teams(teams: List[Dict[str, Any]], custom_path: Optional[str | Path] = 
         :id, :league, :code, :name, :short_name, :city, :conference, :division,
         :primary_color, :secondary_color, :logo_url
     ) ON CONFLICT(id) DO UPDATE SET
-        conference = excluded.conference,
-        division = excluded.division,
+        conference = CASE 
+            WHEN excluded.conference IS NOT NULL AND excluded.conference != 'NCAA' THEN excluded.conference
+            ELSE teams.conference
+        END,
+        division = COALESCE(excluded.division, teams.division),
         primary_color = excluded.primary_color,
         secondary_color = excluded.secondary_color,
         logo_url = excluded.logo_url;
@@ -256,8 +259,8 @@ def get_games_by_week(league: str, season: int, week: int, custom_path: Optional
         at.primary_color AS away_primary, at.secondary_color AS away_secondary, at.logo_url AS away_logo,
         at.conference AS away_conference, at.division AS away_division
     FROM games g
-    JOIN teams ht ON g.home_team_id = ht.id
-    JOIN teams at ON g.away_team_id = at.id
+    LEFT JOIN teams ht ON g.home_team_id = ht.id
+    LEFT JOIN teams at ON g.away_team_id = at.id
     WHERE g.league = ? AND g.season = ? AND g.week = ?
     ORDER BY g.game_date ASC;
     """
@@ -378,4 +381,50 @@ def get_awards(league: str, season: int, week: int, category: Optional[str] = No
     with get_connection(custom_path) as conn:
         cursor = conn.execute(query, params)
         return [dict(row) for row in cursor.fetchall()]
+
+
+def purge_legacy_and_unverified_data(custom_path: Optional[str | Path] = None) -> Dict[str, int]:
+    """Purges pre-2025 historical data and any unverified/synthetic 2026 games.
+    Ensures strict season isolation and zero hallucination.
+    """
+    deleted_counts: Dict[str, int] = {}
+    with get_connection(custom_path) as conn:
+        # 1. Delete games
+        cur = conn.execute(
+            """DELETE FROM games 
+               WHERE season < 2025 
+                  OR (league = 'nfl' AND season = 2026 AND status = 'final')
+                  OR id LIKE '%bal_kc%'
+                  OR id LIKE '%gb_phi%'
+                  OR id LIKE '%lar_det%';"""
+        )
+        deleted_counts["games"] = cur.rowcount
+
+        # 2. Delete orphaned stats and plays
+        cur = conn.execute("DELETE FROM game_team_stats WHERE game_id NOT IN (SELECT id FROM games);")
+        deleted_counts["game_team_stats"] = cur.rowcount
+
+        cur = conn.execute("DELETE FROM key_plays WHERE game_id NOT IN (SELECT id FROM games);")
+        deleted_counts["key_plays"] = cur.rowcount
+
+        cur = conn.execute("DELETE FROM game_trivia WHERE game_id NOT IN (SELECT id FROM games);")
+        deleted_counts["game_trivia"] = cur.rowcount
+
+        cur = conn.execute("DELETE FROM game_tactical_analysis WHERE game_id NOT IN (SELECT id FROM games);")
+        deleted_counts["game_tactical_analysis"] = cur.rowcount
+
+        # 3. Delete awards & player stats for deleted seasons/games
+        cur = conn.execute("DELETE FROM player_weekly_stats WHERE season < 2025;")
+        deleted_counts["player_weekly_stats"] = cur.rowcount
+
+        cur = conn.execute(
+            """DELETE FROM awards_candidates 
+               WHERE season < 2025 
+                  OR (league = 'nfl' AND season = 2026);"""
+        )
+        deleted_counts["awards_candidates"] = cur.rowcount
+
+        conn.commit()
+
+    return deleted_counts
 
