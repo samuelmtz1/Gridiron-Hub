@@ -55,3 +55,12 @@ def test_team_default_authentication():
     payload = verify_session_token(token)
     assert payload is not None
     assert payload.get("sub") == "gridiron_team"
+
+
+def test_no_fake_ncaa_mock_games():
+    """Verify that fake mock NCAA games (Clemson vs Georgia, ND vs TAMU, Texas vs Michigan) are eliminated."""
+    con = db.get_connection()
+    mock_games = con.execute(
+        "SELECT count(*) FROM games WHERE id IN ('ncaa_2026_w1_clem_uga', 'ncaa_2026_w1_nd_tamu', 'ncaa_2026_w1_tex_mich')"
+    ).fetchone()[0]
+    assert mock_games == 0, f"Found {mock_games} fake mock NCAA games in database"

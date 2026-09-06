@@ -287,21 +287,53 @@ async function loadCurrentData() {
   }
 }
 
-// Week Selector Options (Multi-Season Navigation: 2026-2027 & 2025-2026)
+// Multi-Season & Multi-League Dynamic Navigation
+function updateSeasonSelector() {
+  const seasonSelect = document.getElementById("select-season");
+  if (!seasonSelect) return;
+  if (state.league === "ncaa") {
+    seasonSelect.innerHTML = `
+      <option value="2026" ${state.season === 2026 ? 'selected' : ''}>Temporada 2026-2027 (Jornada Actual / Hoy)</option>
+      <option value="2025" ${state.season === 2025 ? 'selected' : ''}>Temporada 2025-2026 (CFP / Postemporada)</option>
+    `;
+  } else {
+    seasonSelect.innerHTML = `
+      <option value="2026" ${state.season === 2026 ? 'selected' : ''}>Temporada 2026-2027 (Kickoff Septiembre 2026)</option>
+      <option value="2025" ${state.season === 2025 ? 'selected' : ''}>Temporada 2025-2026 (Super Bowl LX)</option>
+    `;
+  }
+  seasonSelect.value = state.season.toString();
+}
+
 function populateWeekSelector(season) {
   const weekSelect = document.getElementById("select-week");
   if (!weekSelect) return;
   const s = parseInt(season, 10);
-  if (s === 2026) {
-    weekSelect.innerHTML = `
-      <option value="1" selected>Semana 1 (Septiembre 2026 - Actual / Prioridad)</option>
-    `;
-    state.week = 1;
+  if (state.league === "ncaa") {
+    if (s === 2026) {
+      weekSelect.innerHTML = `
+        <option value="1" selected>Semana 1 (Jornada Inaugural Hoy 5 Sept 2026)</option>
+      `;
+      state.week = 1;
+    } else {
+      weekSelect.innerHTML = `
+        <option value="1" selected>Semana 1 (Temporada Colegial 2025)</option>
+      `;
+      state.week = 1;
+    }
   } else {
-    weekSelect.innerHTML = `
-      <option value="22" selected>Super Bowl LX (Febrero 2026)</option>
-    `;
-    state.week = 22;
+    // NFL
+    if (s === 2026) {
+      weekSelect.innerHTML = `
+        <option value="1" selected>Semana 1 (Kickoff Septiembre 2026 - Próximamente)</option>
+      `;
+      state.week = 1;
+    } else {
+      weekSelect.innerHTML = `
+        <option value="22" selected>Super Bowl LX (8 Febrero 2026)</option>
+      `;
+      state.week = 22;
+    }
   }
 }
 
@@ -334,6 +366,12 @@ async function switchLeague(league) {
 
   state.divisionFilter = "ALL";
   state.teamFilter = "ALL";
+
+  if (league === "ncaa") {
+    state.season = 2026;
+  }
+
+  updateSeasonSelector();
   populateWeekSelector(state.season);
   renderFilterPills();
   await loadCurrentData();
@@ -481,7 +519,7 @@ function renderGames() {
     return true;
   });
 
-  document.getElementById("kpi-games-count").textContent = filtered.length;
+  updateKPIBanner(filtered);
 
   if (filtered.length === 0) {
     container.innerHTML = `
@@ -540,10 +578,156 @@ function renderGames() {
   });
 }
 
-function updateKPIBanner() {
-  const gamesCount = state.games.filter(g => g.league === state.league).length;
+function updateKPIBanner(customFiltered = null) {
+  const filtered = customFiltered || state.games.filter(g => {
+    if (g.league !== state.league) return false;
+    if (g.season !== state.season) return false;
+    if (!matchesDivision(g, state.divisionFilter)) return false;
+    if (state.teamFilter !== "ALL") {
+      return g.home_code === state.teamFilter || g.away_code === state.teamFilter;
+    }
+    return true;
+  });
+
+  // Card 1: Games Count & Source Subtitle
   const countEl = document.getElementById("kpi-games-count");
-  if (countEl) countEl.textContent = gamesCount;
+  const subEl = document.getElementById("kpi-games-sub");
+  if (countEl) countEl.textContent = filtered.length;
+  if (subEl) {
+    if (state.league === "ncaa") {
+      subEl.textContent = "Datos oficiales en vivo ESPN Scoreboard";
+    } else if (state.season === 2026) {
+      subEl.textContent = "Calendario oficial nflreadpy";
+    } else {
+      subEl.textContent = "Super Bowl LX oficial nflverse";
+    }
+  }
+
+  // Card 2: Win Probability Swing / Impact Play / Differential
+  const wpLabel = document.getElementById("kpi-wp-label");
+  const wpVal = document.getElementById("kpi-wp-val");
+  const wpSub = document.getElementById("kpi-wp-sub");
+
+  let allPlays = [];
+  filtered.forEach(g => {
+    if (Array.isArray(g.key_plays) && g.key_plays.length > 0) {
+      g.key_plays.forEach(p => allPlays.push({ ...p, game: g }));
+    }
+  });
+
+  if (allPlays.length > 0) {
+    allPlays.sort((a, b) => (b.wp_swing || 0) - (a.wp_swing || 0));
+    const topPlay = allPlays[0];
+    const swingPct = ((topPlay.wp_swing || 0) * 100).toFixed(1);
+    if (wpLabel) wpLabel.textContent = "Mayor Impacto WP Swing";
+    if (wpVal) wpVal.textContent = `+${swingPct}%`;
+    if (wpSub) {
+      const g = topPlay.game;
+      const matchup = g ? ` (${g.away_code || ''} vs ${g.home_code || ''})` : '';
+      wpSub.textContent = (topPlay.description ? topPlay.description.slice(0, 48) + '...' : 'Jugada de alto apalancamiento') + matchup;
+    }
+  } else {
+    const finalGames = filtered.filter(g => g.status === "final");
+    if (finalGames.length > 0) {
+      let maxDiff = -1;
+      let topDiffGame = finalGames[0];
+      finalGames.forEach(g => {
+        const diff = Math.abs((g.home_score || 0) - (g.away_score || 0));
+        if (diff > maxDiff) {
+          maxDiff = diff;
+          topDiffGame = g;
+        }
+      });
+      if (wpLabel) wpLabel.textContent = "Mayor Diferencial";
+      if (wpVal) wpVal.textContent = `+${maxDiff} pts`;
+      if (wpSub) wpSub.textContent = `${topDiffGame.away_short || topDiffGame.away_code} (${topDiffGame.away_score}) vs ${topDiffGame.home_short || topDiffGame.home_code} (${topDiffGame.home_score})`;
+    } else if (state.season === 2026 && state.league === "nfl") {
+      if (wpLabel) wpLabel.textContent = "Kickoff NFL 2026";
+      if (wpVal) wpVal.textContent = "Sept 9-14";
+      if (wpSub) wpSub.textContent = "16 partidos programados en Semana 1";
+    } else {
+      if (wpLabel) wpLabel.textContent = "Mayor Impacto WP";
+      if (wpVal) wpVal.textContent = "--";
+      if (wpSub) wpSub.textContent = "Partidos en desarrollo";
+    }
+  }
+
+  // Card 3: Offensive Leader (Award or Top Scoring Team)
+  const offLabel = document.getElementById("kpi-off-label");
+  const offVal = document.getElementById("kpi-off-val");
+  const offSub = document.getElementById("kpi-off-sub");
+
+  const opow = (state.awards || []).find(a =>
+    a.league === state.league && a.season === state.season &&
+    (a.category === "OPOW" || a.category === "MVP")
+  );
+
+  if (opow) {
+    if (offLabel) offLabel.textContent = `Líder Ofensivo (${opow.category})`;
+    if (offVal) offVal.textContent = opow.player_name || opow.title || "--";
+    if (offSub) offSub.textContent = `${opow.team_short || opow.team_name || ''} • ${opow.stat_line || opow.award_role || ''}`;
+  } else {
+    const scoredGames = filtered.filter(g => g.home_score !== null || g.away_score !== null);
+    if (scoredGames.length > 0) {
+      let maxScore = -1;
+      let topTeam = "";
+      scoredGames.forEach(g => {
+        if ((g.home_score || 0) > maxScore) {
+          maxScore = g.home_score;
+          topTeam = `${g.home_short || g.home_code} (${maxScore} pts)`;
+        }
+        if ((g.away_score || 0) > maxScore) {
+          maxScore = g.away_score;
+          topTeam = `${g.away_short || g.away_code} (${maxScore} pts)`;
+        }
+      });
+      if (offLabel) offLabel.textContent = "Líder Anotador";
+      if (offVal) offVal.textContent = topTeam || "--";
+      if (offSub) offSub.textContent = "Máxima puntuación en la jornada";
+    } else {
+      if (offLabel) offLabel.textContent = "Líder Ofensivo";
+      if (offVal) offVal.textContent = "Por disputarse";
+      if (offSub) offSub.textContent = "Semana 1 programada";
+    }
+  }
+
+  // Card 4: Defensive Leader (Award or Top Defense)
+  const defLabel = document.getElementById("kpi-def-label");
+  const defVal = document.getElementById("kpi-def-val");
+  const defSub = document.getElementById("kpi-def-sub");
+
+  const dpow = (state.awards || []).find(a =>
+    a.league === state.league && a.season === state.season && a.category === "DPOW"
+  );
+
+  if (dpow) {
+    if (defLabel) defLabel.textContent = "Líder Defensivo (DPOW)";
+    if (defVal) defVal.textContent = dpow.player_name || dpow.title || "--";
+    if (defSub) defSub.textContent = `${dpow.team_short || dpow.team_name || ''} • ${dpow.stat_line || dpow.award_role || ''}`;
+  } else {
+    const finalGames = filtered.filter(g => g.status === "final");
+    if (finalGames.length > 0) {
+      let minAllowed = 999;
+      let bestDefTeam = "";
+      finalGames.forEach(g => {
+        if (g.away_score < minAllowed) {
+          minAllowed = g.away_score;
+          bestDefTeam = `${g.home_short || g.home_code} (${minAllowed} pts)`;
+        }
+        if (g.home_score < minAllowed) {
+          minAllowed = g.home_score;
+          bestDefTeam = `${g.away_short || g.away_code} (${minAllowed} pts)`;
+        }
+      });
+      if (defLabel) defLabel.textContent = "Mejor Defensiva";
+      if (defVal) defVal.textContent = bestDefTeam || "--";
+      if (defSub) defSub.textContent = minAllowed === 0 ? "Blanqueada (0 pts concedidos)" : "Mínimos puntos permitidos";
+    } else {
+      if (defLabel) defLabel.textContent = "Líder Defensivo";
+      if (defVal) defVal.textContent = "Por disputarse";
+      if (defSub) defSub.textContent = "Semana 1 programada";
+    }
+  }
 }
 
 // Drawer Tabs
@@ -1039,9 +1223,7 @@ function downloadScriptFile() {
 
 // Initialization on DOM load
 async function initApp() {
-  const seasonSelect = document.getElementById("select-season");
-  if (seasonSelect) seasonSelect.value = state.season.toString();
-
+  updateSeasonSelector();
   populateWeekSelector(state.season);
   renderFilterPills();
   await checkAuthSession();

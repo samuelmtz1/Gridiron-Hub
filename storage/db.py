@@ -396,7 +396,10 @@ def purge_legacy_and_unverified_data(custom_path: Optional[str | Path] = None) -
                   OR (league = 'nfl' AND season = 2026 AND status = 'final')
                   OR id LIKE '%bal_kc%'
                   OR id LIKE '%gb_phi%'
-                  OR id LIKE '%lar_det%';"""
+                  OR id LIKE '%lar_det%'
+                  OR id LIKE '%clem_uga%'
+                  OR id LIKE '%nd_tamu%'
+                  OR id LIKE '%tex_mich%';"""
         )
         deleted_counts["games"] = cur.rowcount
 
