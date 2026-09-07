@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS games (
     weather_temp INTEGER,              -- Temperatura en Fahrenheit / Celsius
     weather_desc TEXT,                 -- 'Despejado', 'Lluvia leve', 'Domo'
     highlight_url TEXT,                -- Enlace a YouTube / ESPN highlights
+    event_id TEXT,                     -- ID original del evento en ESPN (Scoreboard/Summary)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (home_team_id) REFERENCES teams(id),
     FOREIGN KEY (away_team_id) REFERENCES teams(id)
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS games (
 
 CREATE INDEX IF NOT EXISTS idx_games_league_season_week ON games(league, season, week);
 CREATE INDEX IF NOT EXISTS idx_games_status ON games(status);
+CREATE INDEX IF NOT EXISTS idx_games_event_id ON games(event_id);
 
 -- Estadísticas avanzadas por partido (por equipo)
 CREATE TABLE IF NOT EXISTS game_team_stats (

@@ -100,17 +100,44 @@ def run_pipeline(
             logger.info(f"Cargados {len(target_games)} partidos de NCAA desde ESPN.")
             db.save_games(target_games, custom_path=custom_db_path)
 
-            # Ingest boxscores & scoring plays for final or active games
-            for g in target_games[:25]:  # Process top 25 featured games to remain fast
+            # Ingest boxscores & scoring plays for ALL games concurrently
+            from concurrent.futures import ThreadPoolExecutor
+
+            logger.info(f"Procesando estadísticas oficiales y jugadas clave para {len(target_games)} partidos de NCAA...")
+            all_teams_to_save: List[Dict[str, Any]] = []
+            all_team_stats_to_save: List[Dict[str, Any]] = []
+            all_key_plays_to_save: List[Dict[str, Any]] = []
+
+            def _fetch_single_game_summary(g: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 eid = g.get("event_id")
-                if eid:
-                    summary = live_trigger.fetch_espn_game_summary(eid, league="ncaa", app_game_id=g["id"])
-                    if summary.get("teams"):
-                        db.save_teams(summary["teams"], custom_path=custom_db_path)
-                    if summary.get("team_stats"):
-                        db.save_game_team_stats(summary["team_stats"], custom_path=custom_db_path)
-                    if summary.get("key_plays"):
-                        db.save_key_plays(summary["key_plays"], custom_path=custom_db_path)
+                if not eid:
+                    return None
+                try:
+                    return live_trigger.fetch_espn_game_summary(eid, league="ncaa", app_game_id=g["id"])
+                except Exception as ex:
+                    logger.warning(f"Error procesando resumen para partido {g.get('id')}: {ex}")
+                    return None
+
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                summaries = list(executor.map(_fetch_single_game_summary, target_games))
+
+            for summary in summaries:
+                if not summary:
+                    continue
+                if summary.get("teams"):
+                    all_teams_to_save.extend(summary["teams"])
+                if summary.get("team_stats"):
+                    all_team_stats_to_save.extend(summary["team_stats"])
+                if summary.get("key_plays"):
+                    all_key_plays_to_save.extend(summary["key_plays"])
+
+            if all_teams_to_save:
+                db.save_teams(all_teams_to_save, custom_path=custom_db_path)
+            if all_team_stats_to_save:
+                db.save_game_team_stats(all_team_stats_to_save, custom_path=custom_db_path)
+            if all_key_plays_to_save:
+                db.save_key_plays(all_key_plays_to_save, custom_path=custom_db_path)
+            logger.info(f"Registradas estadísticas para {len(all_team_stats_to_save)} equipos y {len(all_key_plays_to_save)} jugadas clave.")
 
         if not target_games:
             cached_games = db.get_games_by_week(league=league, season=season, week=week, custom_path=custom_db_path)

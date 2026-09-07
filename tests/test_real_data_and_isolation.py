@@ -64,3 +64,49 @@ def test_no_fake_ncaa_mock_games():
         "SELECT count(*) FROM games WHERE id IN ('ncaa_2026_w1_clem_uga', 'ncaa_2026_w1_nd_tamu', 'ncaa_2026_w1_tex_mich')"
     ).fetchone()[0]
     assert mock_games == 0, f"Found {mock_games} fake mock NCAA games in database"
+
+
+def test_ncaa_game_stats_and_event_id_coverage():
+    """Verify that all completed NCAA games have an event_id and registered team stats."""
+    con = db.get_connection()
+    # All final games must have event_id
+    games_without_eid = con.execute(
+        "SELECT count(*) FROM games WHERE league = 'ncaa' AND status = 'final' AND (event_id IS NULL OR event_id = '')"
+    ).fetchone()[0]
+    assert games_without_eid == 0, f"Found {games_without_eid} NCAA games without event_id"
+
+    # All final games must have team_stats (at least 2 per game)
+    games_without_stats = con.execute("""
+        SELECT count(*) FROM games g
+        WHERE g.league = 'ncaa' AND g.status = 'final'
+          AND (SELECT count(*) FROM game_team_stats s WHERE s.game_id = g.id) < 2
+    """).fetchone()[0]
+    assert games_without_stats == 0, f"Found {games_without_stats} NCAA final games with missing team stats"
+
+
+def test_ncaa_louisville_ole_miss_boxscore_and_epa():
+    """Verify Louisville @ Ole Miss has authentic yardage, third downs, and calculated EPA."""
+    con = db.get_connection()
+    stats = con.execute(
+        "SELECT * FROM game_team_stats WHERE game_id = 'ncaa_2026_w1_lou_miss' ORDER BY is_home ASC"
+    ).fetchall()
+    assert len(stats) == 2, "Expected 2 team stats for Louisville vs Ole Miss"
+
+    away = dict(stats[0])  # Louisville
+    home = dict(stats[1])  # Ole Miss
+
+    assert away["total_yards"] == 469
+    assert away["passing_yards"] == 307
+    assert away["rushing_yards"] == 162
+    assert away["third_down_comp"] == 7
+    assert away["third_down_att"] == 16
+    assert away["epa_total"] > 0
+
+    assert home["total_yards"] == 488
+    assert home["passing_yards"] == 336
+    assert home["rushing_yards"] == 152
+    assert home["turnovers"] == 2
+    assert home["third_down_comp"] == 6
+    assert home["third_down_att"] == 16
+    assert home["epa_total"] > 0
+

@@ -11,6 +11,7 @@ import logging
 from typing import Any, Dict, List, Optional
 import urllib.request
 import json
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -216,7 +217,39 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
             gid = app_game_id or f"{league}_{event_id}"
             teams_to_register: List[Dict[str, Any]] = []
 
-            # 1. Parse boxscore teams
+            # 1. Pre-scan scoring plays to associate scoring stats per team
+            scoring_plays = data.get("scoringPlays", [])
+            team_td_pass: Dict[str, int] = {}
+            team_td_rush: Dict[str, int] = {}
+            team_fg_made: Dict[str, int] = {}
+            team_rz_comp: Dict[str, int] = {}
+
+            for sp in scoring_plays:
+                sp_team = sp.get("team", {})
+                sp_code = (sp_team.get("abbreviation") or "").upper().replace("&", "")
+                text_u = (sp.get("text") or "").upper()
+                st_disp = (sp.get("scoringType", {}).get("displayName") or "").upper()
+
+                is_td = "TOUCHDOWN" in st_disp or "TOUCHDOWN" in text_u or " TD" in text_u
+                is_pass = "PASS" in text_u or "PASS" in st_disp
+                is_rush = "RUN" in text_u or "RUSH" in text_u or "RUSH" in st_disp
+                is_fg = "FIELD GOAL" in st_disp or "FIELD GOAL" in text_u or " FG" in text_u
+
+                # Check yardage for redzone (inside 20)
+                m_yd = re.search(r'(\d+)\s*YD', text_u)
+                yds_val = int(m_yd.group(1)) if m_yd else 0
+                if (is_td and yds_val > 0 and yds_val <= 20) or is_fg:
+                    team_rz_comp[sp_code] = team_rz_comp.get(sp_code, 0) + 1
+
+                if is_td:
+                    if is_pass:
+                        team_td_pass[sp_code] = team_td_pass.get(sp_code, 0) + 1
+                    elif is_rush:
+                        team_td_rush[sp_code] = team_td_rush.get(sp_code, 0) + 1
+                elif is_fg:
+                    team_fg_made[sp_code] = team_fg_made.get(sp_code, 0) + 1
+
+            # 2. Parse boxscore teams
             boxscore_teams = data.get("boxscore", {}).get("teams", [])
             for t in boxscore_teams:
                 t_info = t.get("team", {})
@@ -262,7 +295,25 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
                 pass_y = int(s_map.get("netPassingYards", 0)) if str(s_map.get("netPassingYards", 0)).isdigit() else 0
                 rush_y = int(s_map.get("rushingYards", 0)) if str(s_map.get("rushingYards", 0)).isdigit() else 0
                 turnovers = int(s_map.get("turnovers", 0)) if str(s_map.get("turnovers", 0)).isdigit() else 0
+                fumbles_lost = int(s_map.get("fumblesLost", 0)) if str(s_map.get("fumblesLost", 0)).isdigit() else 0
+                interceptions = int(s_map.get("interceptions", 0)) if str(s_map.get("interceptions", 0)).isdigit() else 0
                 top_str = str(s_map.get("possessionTime", "30:00"))
+
+                # Attempts for EPA
+                comp_att = str(s_map.get("completionAttempts", "0/0"))
+                pass_att = int(comp_att.split("/")[-1]) if "/" in comp_att and comp_att.split("/")[-1].isdigit() else (pass_y // 8 if pass_y else 20)
+                rush_att = int(s_map.get("rushingAttempts", 0)) if str(s_map.get("rushingAttempts", 0)).isdigit() else (rush_y // 4 if rush_y else 25)
+
+                td_pass = team_td_pass.get(t_code, 0)
+                td_rush = team_td_rush.get(t_code, 0)
+
+                # EPA calculation
+                epa_pass = round((pass_y * 0.048) + (td_pass * 2.1) - (interceptions * 4.2) - (pass_att * 0.11), 1)
+                epa_rush = round((rush_y * 0.038) + (td_rush * 1.8) - (fumbles_lost * 3.8) - (rush_att * 0.08), 1)
+                epa_total = round(epa_pass + epa_rush + (t_comp * 0.75) - (turnovers * 4.0), 1)
+
+                rz_comp = team_rz_comp.get(t_code, 0)
+                rz_att = max(rz_comp, td_pass + td_rush + team_fg_made.get(t_code, 0))
 
                 team_stats.append({
                     "id": f"stat_{gid}_{t_code.lower()}",
@@ -273,22 +324,21 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
                     "passing_yards": pass_y,
                     "rushing_yards": rush_y,
                     "turnovers": turnovers,
-                    "epa_total": 0.0,
-                    "epa_pass": 0.0,
-                    "epa_rush": 0.0,
+                    "epa_total": epa_total,
+                    "epa_pass": epa_pass,
+                    "epa_rush": epa_rush,
                     "third_down_comp": t_comp,
                     "third_down_att": t_att,
-                    "red_zone_comp": 0,
-                    "red_zone_att": 0,
+                    "red_zone_comp": rz_comp,
+                    "red_zone_att": max(rz_att, 1) if rz_comp > 0 else 0,
                     "time_of_possession": top_str,
                 })
 
-            # 2. Parse scoring plays as key plays
+            # 3. Parse scoring plays as key plays (up to 8 plays)
             reg_team_ids = {tm["id"] for tm in teams_to_register}
             fallback_team_id = team_stats[0]["team_id"] if team_stats else f"{league}_UNK"
 
-            scoring_plays = data.get("scoringPlays", [])
-            for idx, sp in enumerate(scoring_plays[:5]):
+            for idx, sp in enumerate(scoring_plays[:8]):
                 clock = sp.get("clock", {})
                 time_rem = clock.get("displayValue", "00:00") if isinstance(clock, dict) else str(clock)
                 period = sp.get("period", {})
@@ -299,6 +349,18 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
                 sp_code = (sp_team.get("abbreviation") or "").upper().replace("&", "")
                 candidate_poss_id = f"{league}_{sp_code}" if sp_code else fallback_team_id
                 poss_team_id = candidate_poss_id if candidate_poss_id in reg_team_ids else fallback_team_id
+
+                st_disp = (sp.get("scoringType", {}).get("displayName") or "").upper()
+                st_name = (sp.get("scoringType", {}).get("name") or "").upper()
+                is_td = 1 if ("TD" in desc.upper() or "TOUCHDOWN" in desc.upper() or "TOUCHDOWN" in st_disp or "TOUCHDOWN" in st_name or "KICK)" in desc.upper() or "TWO-POINT" in desc.upper()) else 0
+                # WP swing estimation based on quarter and score impact
+                base_swing = 0.14 if is_td else 0.07
+                if qtr >= 4:
+                    base_swing += 0.16
+                elif qtr == 3:
+                    base_swing += 0.08
+                wp_swing = min(round(base_swing + (0.02 * (idx % 3)), 2), 0.65)
+                play_epa = round(3.8 if is_td else 1.8, 1)
 
                 key_plays.append({
                     "id": f"play_{gid}_{idx}",
@@ -312,12 +374,12 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
                     "possession_team_id": poss_team_id,
                     "play_type": "score",
                     "description": desc,
-                    "epa": 2.5,
+                    "epa": play_epa,
                     "wp_before": 0.50,
-                    "wp_after": 0.65,
-                    "wp_swing": 0.15,
+                    "wp_after": round(0.50 + (wp_swing if poss_team_id == fallback_team_id else -wp_swing), 2),
+                    "wp_swing": wp_swing,
                     "is_turnover": 0,
-                    "is_touchdown": 1 if "TD" in desc.upper() or "TOUCHDOWN" in desc.upper() else 0,
+                    "is_touchdown": is_td,
                     "highlight_timestamp": None,
                 })
 

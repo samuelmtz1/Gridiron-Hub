@@ -46,6 +46,15 @@ def init_db(custom_path: Optional[str | Path] = None, schema_file: Optional[Path
         schema_sql = f.read()
 
     with get_connection(custom_path) as conn:
+        # Check if games table already exists and migrate event_id before indexes
+        table_check = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='games';").fetchone()
+        if table_check:
+            cursor = conn.execute("PRAGMA table_info(games);")
+            columns = [row["name"] for row in cursor.fetchall()]
+            if "event_id" not in columns:
+                conn.execute("ALTER TABLE games ADD COLUMN event_id TEXT;")
+                conn.commit()
+
         conn.executescript(schema_sql)
         conn.commit()
 
@@ -81,15 +90,21 @@ def save_teams(teams: List[Dict[str, Any]], custom_path: Optional[str | Path] = 
 
 def save_games(games: List[Dict[str, Any]], custom_path: Optional[str | Path] = None) -> None:
     """Inserts or updates game records."""
+    clean_games = []
+    for g in games:
+        cg = dict(g)
+        cg.setdefault("event_id", None)
+        clean_games.append(cg)
+
     query = """
     INSERT INTO games (
         id, league, season, season_type, week, game_date,
         home_team_id, away_team_id, home_score, away_score, status,
-        venue, weather_temp, weather_desc, highlight_url
+        venue, weather_temp, weather_desc, highlight_url, event_id
     ) VALUES (
         :id, :league, :season, :season_type, :week, :game_date,
         :home_team_id, :away_team_id, :home_score, :away_score, :status,
-        :venue, :weather_temp, :weather_desc, :highlight_url
+        :venue, :weather_temp, :weather_desc, :highlight_url, :event_id
     ) ON CONFLICT(id) DO UPDATE SET
         season = excluded.season,
         week = excluded.week,
@@ -99,10 +114,11 @@ def save_games(games: List[Dict[str, Any]], custom_path: Optional[str | Path] = 
         venue = excluded.venue,
         weather_temp = excluded.weather_temp,
         weather_desc = excluded.weather_desc,
-        highlight_url = excluded.highlight_url;
+        highlight_url = excluded.highlight_url,
+        event_id = COALESCE(excluded.event_id, games.event_id);
     """
     with get_connection(custom_path) as conn:
-        conn.executemany(query, games)
+        conn.executemany(query, clean_games)
         conn.commit()
 
 
