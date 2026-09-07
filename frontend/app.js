@@ -446,18 +446,90 @@ async function checkAuthSession() {
   }
 }
 
+// Helper to index all teams by id and code for instant lookups
+function getTeamsMap(allTeams) {
+  const map = new Map();
+  (allTeams || []).forEach(t => {
+    if (t.id) map.set(t.id, t);
+    if (t.code) {
+      map.set(t.code, t);
+      map.set(t.code.toUpperCase(), t);
+      map.set(t.code.toLowerCase(), t);
+    }
+  });
+  return map;
+}
+
+// Resilient game enrichment to ensure zero undefined names, codes, or logos
+function enrichGame(g, teamsMap) {
+  if (!g) return g;
+  const map = teamsMap || state.teamsMap || new Map();
+  const ht = map.get(g.home_team_id) || map.get(g.home_code) || {};
+  const at = map.get(g.away_team_id) || map.get(g.away_code) || {};
+
+  const cleanHomeCode = (g.home_code || ht.code || (g.home_team_id ? g.home_team_id.replace(/^(nfl_|ncaa_)/, '') : 'HOME')).toUpperCase();
+  const cleanAwayCode = (g.away_code || at.code || (g.away_team_id ? g.away_team_id.replace(/^(nfl_|ncaa_)/, '') : 'AWAY')).toUpperCase();
+
+  const homeName = g.home_name || ht.name || cleanHomeCode;
+  const awayName = g.away_name || at.name || cleanAwayCode;
+  const league = g.league || (g.id && g.id.startsWith("ncaa") ? "ncaa" : "nfl");
+
+  const homeLogo = g.home_logo || ht.logo_url || `https://a.espncdn.com/i/teamlogos/${league}/500/${cleanHomeCode.toLowerCase()}.png`;
+  const awayLogo = g.away_logo || at.logo_url || `https://a.espncdn.com/i/teamlogos/${league}/500/${cleanAwayCode.toLowerCase()}.png`;
+
+  return {
+    ...g,
+    home_code: cleanHomeCode,
+    home_name: homeName,
+    home_short: g.home_short || ht.short_name || homeName,
+    home_logo: homeLogo,
+    home_conference: g.home_conference || ht.conference || '',
+    home_division: g.home_division || ht.division || '',
+    home_primary: g.home_primary || ht.primary_color || '#002244',
+    home_secondary: g.home_secondary || ht.secondary_color || '#B0B7BC',
+
+    away_code: cleanAwayCode,
+    away_name: awayName,
+    away_short: g.away_short || at.short_name || awayName,
+    away_logo: awayLogo,
+    away_conference: g.away_conference || at.conference || '',
+    away_division: g.away_division || at.division || '',
+    away_primary: g.away_primary || at.primary_color || '#69BE28',
+    away_secondary: g.away_secondary || at.secondary_color || '#A5ACAF',
+  };
+}
+
+// Resilient award enrichment
+function enrichAward(a, teamsMap) {
+  if (!a) return a;
+  const map = teamsMap || state.teamsMap || new Map();
+  const t = map.get(a.team_id) || map.get(a.team_code) || {};
+  return {
+    ...a,
+    candidate_name: a.candidate_name || a.player_name || a.title || 'Candidato Destacado',
+    stat_summary: a.stat_summary || a.stat_line || a.award_role || '',
+    team_name: a.team_name || t.name || '',
+    team_short: a.team_short || t.short_name || t.code || '',
+    team_logo: a.team_logo || t.logo_url || (t.code ? `https://a.espncdn.com/i/teamlogos/${a.league || 'ncaa'}/500/${t.code.toLowerCase()}.png` : '')
+  };
+}
+
 // Core Data Loading (Fast-First Stale-While-Revalidate Architecture)
 async function loadCurrentData() {
   const staticFallback = await getStaticData();
 
+  // Build full teams lookup map across all leagues
+  state.allTeams = staticFallback.teams || [];
+  state.teamsMap = getTeamsMap(state.allTeams);
+
   // 1. Instant Hydration from Verified Cache (<50ms)
-  let initialTeams = staticFallback.teams.filter(t => t.league === state.league);
-  let initialGames = staticFallback.games.filter(g =>
+  let initialTeams = (staticFallback.teams || []).filter(t => t.league === state.league);
+  let initialGames = (staticFallback.games || []).filter(g =>
     g.league === state.league && g.season === state.season && g.week === state.week
-  );
-  let initialAwards = staticFallback.awards.filter(a =>
+  ).map(g => enrichGame(g, state.teamsMap));
+  let initialAwards = (staticFallback.awards || []).filter(a =>
     a.league === state.league && a.season === state.season && a.week === state.week
-  );
+  ).map(a => enrichAward(a, state.teamsMap));
 
   state.teams = initialTeams || [];
   state.games = initialGames || [];
@@ -486,20 +558,28 @@ async function loadCurrentData() {
       const data = await teamsRes.value.json().catch(() => null);
       if (Array.isArray(data) && data.length > 0) {
         state.teams = data;
+        data.forEach(t => {
+          if (t.id) state.teamsMap.set(t.id, t);
+          if (t.code) {
+            state.teamsMap.set(t.code, t);
+            state.teamsMap.set(t.code.toUpperCase(), t);
+            state.teamsMap.set(t.code.toLowerCase(), t);
+          }
+        });
         updated = true;
       }
     }
     if (gamesRes.status === "fulfilled" && gamesRes.value.ok) {
       const data = await gamesRes.value.json().catch(() => null);
       if (Array.isArray(data) && data.length > 0) {
-        state.games = data;
+        state.games = data.map(g => enrichGame(g, state.teamsMap));
         updated = true;
       }
     }
     if (awardsRes.status === "fulfilled" && awardsRes.value.ok) {
       const data = await awardsRes.value.json().catch(() => null);
       if (Array.isArray(data) && data.length > 0) {
-        state.awards = data;
+        state.awards = data.map(a => enrichAward(a, state.teamsMap));
         updated = true;
       }
     }
@@ -674,26 +754,46 @@ function filterTeam(teamCode) {
 }
 
 function matchesDivision(game, divFilter) {
-  if (divFilter === "ALL") return true;
-  if (divFilter === "AFC") return game.home_conference === "AFC" || game.away_conference === "AFC" || game.conference === "AFC";
-  if (divFilter === "NFC") return game.home_conference === "NFC" || game.away_conference === "NFC" || game.conference === "NFC";
-  if (divFilter === "SEC") return game.home_conference === "SEC" || game.away_conference === "SEC" || game.conference === "SEC";
-  if (divFilter === "Big Ten") return game.home_conference === "Big Ten" || game.away_conference === "Big Ten" || game.conference === "Big Ten";
-  if (divFilter === "Big 12") return game.home_conference === "Big 12" || game.away_conference === "Big 12" || game.conference === "Big 12";
-  if (divFilter === "ACC") return game.home_conference === "ACC" || game.away_conference === "ACC" || game.conference === "ACC";
-  if (divFilter === "American") return game.home_conference === "American" || game.away_conference === "American" || game.conference === "American";
-  if (divFilter === "Mountain West") return game.home_conference === "Mountain West" || game.away_conference === "Mountain West" || game.conference === "Mountain West";
-  if (divFilter === "MAC") return game.home_conference === "MAC" || game.away_conference === "MAC" || game.conference === "MAC";
-  if (divFilter === "Sun Belt") return game.home_conference === "Sun Belt" || game.away_conference === "Sun Belt" || game.conference === "Sun Belt";
-  if (divFilter === "Pac-12") return game.home_conference === "Pac-12" || game.away_conference === "Pac-12" || game.conference === "Pac-12";
-  if (divFilter === "Conference USA" || divFilter === "C-USA") {
-    return game.home_conference === "Conference USA" || game.away_conference === "Conference USA" ||
-           game.home_conference === "CUSA" || game.away_conference === "CUSA" ||
-           game.conference === "Conference USA";
+  if (!game) return false;
+  if (!divFilter || divFilter === "ALL") return true;
+
+  const homeConf = (game.home_conference || "").toUpperCase();
+  const awayConf = (game.away_conference || "").toUpperCase();
+  const homeDiv = (game.home_division || "").toUpperCase();
+  const awayDiv = (game.away_division || "").toUpperCase();
+  const targetFilter = divFilter.toUpperCase();
+
+  // NFL Conferences
+  if (targetFilter === "AFC") return homeConf === "AFC" || awayConf === "AFC";
+  if (targetFilter === "NFC") return homeConf === "NFC" || awayConf === "NFC";
+
+  // NFL Divisions (e.g. "AFC WEST", "NFC NORTH")
+  if (targetFilter.startsWith("AFC ")) {
+    const div = targetFilter.replace("AFC ", "");
+    return (homeConf === "AFC" && homeDiv === div) || (awayConf === "AFC" && awayDiv === div);
+  }
+  if (targetFilter.startsWith("NFC ")) {
+    const div = targetFilter.replace("NFC ", "");
+    return (homeConf === "NFC" && homeDiv === div) || (awayConf === "NFC" && awayDiv === div);
   }
 
-  const div = divFilter.replace("AFC ", "").replace("NFC ", "");
-  return game.home_division === div || game.away_division === div;
+  // NCAA Conferences
+  if (targetFilter === "SEC") return homeConf === "SEC" || awayConf === "SEC";
+  if (targetFilter === "BIG TEN") return homeConf === "BIG TEN" || awayConf === "BIG TEN";
+  if (targetFilter === "BIG 12") return homeConf === "BIG 12" || awayConf === "BIG 12";
+  if (targetFilter === "ACC") return homeConf === "ACC" || awayConf === "ACC";
+  if (targetFilter === "AMERICAN") return homeConf === "AMERICAN" || awayConf === "AMERICAN";
+  if (targetFilter === "MOUNTAIN WEST") return homeConf === "MOUNTAIN WEST" || awayConf === "MOUNTAIN WEST";
+  if (targetFilter === "MAC") return homeConf === "MAC" || awayConf === "MAC";
+  if (targetFilter === "SUN BELT") return homeConf === "SUN BELT" || awayConf === "SUN BELT";
+  if (targetFilter === "PAC-12") return homeConf === "PAC-12" || awayConf === "PAC-12";
+  if (targetFilter === "CONFERENCE USA" || targetFilter === "C-USA") {
+    return homeConf === "CONFERENCE USA" || awayConf === "CONFERENCE USA" ||
+           homeConf === "CUSA" || awayConf === "CUSA";
+  }
+
+  return homeDiv === targetFilter || awayDiv === targetFilter ||
+         homeConf === targetFilter || awayConf === targetFilter;
 }
 
 // View Switcher (Partidos vs Premios vs Guion)
@@ -744,10 +844,13 @@ function renderGames() {
     card.className = "game-card";
     card.onclick = () => openGameDrawer(game.id);
 
-    const awayCode = (game.away_code || "NFL").toLowerCase();
-    const homeCode = (game.home_code || "NFL").toLowerCase();
-    const awayLogo = game.away_logo || `https://a.espncdn.com/i/teamlogos/${game.league}/500/${awayCode}.png`;
-    const homeLogo = game.home_logo || `https://a.espncdn.com/i/teamlogos/${game.league}/500/${homeCode}.png`;
+    const awayCode = (game.away_code || "VISITA").toUpperCase();
+    const homeCode = (game.home_code || "LOCAL").toUpperCase();
+    const awayName = game.away_name || game.away_code || "Equipo Visita";
+    const homeName = game.home_name || game.home_code || "Equipo Local";
+
+    const awayLogo = game.away_logo || `https://a.espncdn.com/i/teamlogos/${game.league}/500/${awayCode.toLowerCase()}.png`;
+    const homeLogo = game.home_logo || `https://a.espncdn.com/i/teamlogos/${game.league}/500/${homeCode.toLowerCase()}.png`;
 
     const statusBadgeText = game.status === "final" ? "FINAL" : (game.status === "in_progress" ? "🔴 EN VIVO" : "PROGRAMADO");
     const statusClass = game.status === "final" ? "" : "style='background: rgba(239, 68, 68, 0.2); color: #f87171;'";
@@ -760,18 +863,18 @@ function renderGames() {
 
       <div class="scoreboard-row">
         <div class="team-info">
-          <img src="${awayLogo}" class="team-logo" alt="${game.away_code}" onerror="this.onerror=null; this.src='https://a.espncdn.com/i/teamlogos/${game.league}/500/default.png'">
-          <span class="team-name">${game.away_name || game.away_code}</span>
+          <img src="${awayLogo}" class="team-logo" alt="${awayCode}" onerror="this.onerror=null; this.src='https://a.espncdn.com/i/teamlogos/${game.league}/500/default.png'">
+          <span class="team-name">${awayName}</span>
         </div>
-        <span class="team-score">${game.status === 'scheduled' ? '-' : game.away_score}</span>
+        <span class="team-score">${game.status === 'scheduled' ? '-' : (game.away_score ?? '-')}</span>
       </div>
 
       <div class="scoreboard-row">
         <div class="team-info">
-          <img src="${homeLogo}" class="team-logo" alt="${game.home_code}" onerror="this.onerror=null; this.src='https://a.espncdn.com/i/teamlogos/${game.league}/500/default.png'">
-          <span class="team-name">${game.home_name || game.home_code}</span>
+          <img src="${homeLogo}" class="team-logo" alt="${homeCode}" onerror="this.onerror=null; this.src='https://a.espncdn.com/i/teamlogos/${game.league}/500/default.png'">
+          <span class="team-name">${homeName}</span>
         </div>
-        <span class="team-score">${game.status === 'scheduled' ? '-' : game.home_score}</span>
+        <span class="team-score">${game.status === 'scheduled' ? '-' : (game.home_score ?? '-')}</span>
       </div>
 
       <div class="game-card-footer">
@@ -802,9 +905,13 @@ function updateKPIBanner(customFiltered = null) {
   if (countEl) countEl.textContent = filtered.length;
   if (subEl) {
     if (state.league === "ncaa") {
-      subEl.textContent = "Datos oficiales en vivo ESPN Scoreboard";
+      subEl.textContent = state.divisionFilter === "ALL" 
+        ? "Datos oficiales en vivo ESPN Scoreboard" 
+        : `Conferencia ${state.divisionFilter} • ESPN Scoreboard`;
     } else if (state.season === 2026) {
-      subEl.textContent = "Calendario oficial nflreadpy";
+      subEl.textContent = state.divisionFilter === "ALL"
+        ? "Calendario oficial nflreadpy"
+        : `${state.divisionFilter} • Calendario oficial nflreadpy`;
     } else {
       subEl.textContent = "Super Bowl LX oficial nflverse";
     }
@@ -851,7 +958,7 @@ function updateKPIBanner(customFiltered = null) {
     } else if (state.season === 2026 && state.league === "nfl") {
       if (wpLabel) wpLabel.textContent = "Kickoff NFL 2026";
       if (wpVal) wpVal.textContent = "Sept 9-14";
-      if (wpSub) wpSub.textContent = "16 partidos programados en Semana 1";
+      if (wpSub) wpSub.textContent = `${filtered.length} partidos programados`;
     } else {
       if (wpLabel) wpLabel.textContent = "Mayor Impacto WP";
       if (wpVal) wpVal.textContent = "--";
@@ -864,15 +971,30 @@ function updateKPIBanner(customFiltered = null) {
   const offVal = document.getElementById("kpi-off-val");
   const offSub = document.getElementById("kpi-off-sub");
 
-  const opow = (state.awards || []).find(a =>
-    a.league === state.league && a.season === state.season &&
-    (a.category === "OPOW" || a.category === "MVP")
+  const filteredTeamCodes = new Set();
+  filtered.forEach(g => {
+    if (g.home_code) filteredTeamCodes.add(g.home_code);
+    if (g.away_code) filteredTeamCodes.add(g.away_code);
+    if (g.home_team_id) filteredTeamCodes.add(g.home_team_id);
+    if (g.away_team_id) filteredTeamCodes.add(g.away_team_id);
+  });
+
+  const availableAwards = (state.awards || []).filter(a =>
+    a.league === state.league && a.season === state.season
   );
 
-  if (opow) {
-    if (offLabel) offLabel.textContent = `Líder Ofensivo (${opow.category})`;
-    if (offVal) offVal.textContent = opow.player_name || opow.title || "--";
-    if (offSub) offSub.textContent = `${opow.team_short || opow.team_name || ''} • ${opow.stat_line || opow.award_role || ''}`;
+  const matchingOpow = availableAwards.find(a =>
+    (a.category === "OPOW" || a.category === "MVP") &&
+    (state.divisionFilter === "ALL" || filteredTeamCodes.has(a.team_id) || filteredTeamCodes.has(a.team_code))
+  ) || availableAwards.find(a => a.category === "OPOW" || a.category === "MVP");
+
+  if (matchingOpow) {
+    const candidateName = matchingOpow.candidate_name || matchingOpow.player_name || matchingOpow.title || "--";
+    const teamName = matchingOpow.team_name || matchingOpow.team_short || "";
+    const statSummary = matchingOpow.stat_summary || matchingOpow.stat_line || matchingOpow.award_role || "";
+    if (offLabel) offLabel.textContent = `Líder Ofensivo (${matchingOpow.category})`;
+    if (offVal) offVal.textContent = candidateName;
+    if (offSub) offSub.textContent = teamName ? `${teamName} • ${statSummary}` : statSummary;
   } else {
     const scoredGames = filtered.filter(g => g.home_score !== null || g.away_score !== null);
     if (scoredGames.length > 0) {
@@ -903,14 +1025,18 @@ function updateKPIBanner(customFiltered = null) {
   const defVal = document.getElementById("kpi-def-val");
   const defSub = document.getElementById("kpi-def-sub");
 
-  const dpow = (state.awards || []).find(a =>
-    a.league === state.league && a.season === state.season && a.category === "DPOW"
-  );
+  const matchingDpow = availableAwards.find(a =>
+    a.category === "DPOW" &&
+    (state.divisionFilter === "ALL" || filteredTeamCodes.has(a.team_id) || filteredTeamCodes.has(a.team_code))
+  ) || availableAwards.find(a => a.category === "DPOW");
 
-  if (dpow) {
+  if (matchingDpow) {
+    const candidateName = matchingDpow.candidate_name || matchingDpow.player_name || matchingDpow.title || "--";
+    const teamName = matchingDpow.team_name || matchingDpow.team_short || "";
+    const statSummary = matchingDpow.stat_summary || matchingDpow.stat_line || matchingDpow.award_role || "";
     if (defLabel) defLabel.textContent = "Líder Defensivo (DPOW)";
-    if (defVal) defVal.textContent = dpow.player_name || dpow.title || "--";
-    if (defSub) defSub.textContent = `${dpow.team_short || dpow.team_name || ''} • ${dpow.stat_line || dpow.award_role || ''}`;
+    if (defVal) defVal.textContent = candidateName;
+    if (defSub) defSub.textContent = teamName ? `${teamName} • ${statSummary}` : statSummary;
   } else {
     const finalGames = filtered.filter(g => g.status === "final");
     if (finalGames.length > 0) {
@@ -960,24 +1086,30 @@ function switchDrawerTab(tabName) {
 // Open Game Detail Drawer (SOP A.3: Ficha, Game stats, Jugadas clave, Trivia, Highlights, Premios)
 async function openGameDrawer(gameId) {
   const staticFallback = await getStaticData();
-  let game = state.games.find(g => g.id === gameId) || staticFallback.games.find(g => g.id === gameId);
+  let rawGame = state.games.find(g => g.id === gameId) || (staticFallback.games || []).find(g => g.id === gameId);
 
   try {
     const res = await apiFetch(`/api/games/${gameId}`);
     if (res.ok) {
       const apiGame = await res.json();
-      game = { ...game, ...apiGame };
+      rawGame = { ...rawGame, ...apiGame };
     }
   } catch (e) {}
 
-  if (!game) return;
+  if (!rawGame) return;
+  const game = enrichGame(rawGame, state.teamsMap);
   state.activeDrawerGame = game;
+
+  const awayTitle = game.away_name || game.away_code || "Equipo Visita";
+  const homeTitle = game.home_name || game.home_code || "Equipo Local";
+  const awayScoreStr = game.status === 'scheduled' ? '-' : (game.away_score ?? '-');
+  const homeScoreStr = game.status === 'scheduled' ? '-' : (game.home_score ?? '-');
 
   // 1. Ficha del partido
   document.getElementById("drawer-venue").textContent = `${game.venue || "Estadio"} • ${game.weather_desc || (game.weather_temp ? game.weather_temp + '°F' : 'Techado / N/D')}`;
-  document.getElementById("drawer-title").textContent = `${game.away_name || game.away_code} (${game.status === 'scheduled' ? '-' : game.away_score}) @ ${game.home_name || game.home_code} (${game.status === 'scheduled' ? '-' : game.home_score})`;
-  document.getElementById("th-away-team").textContent = game.away_code;
-  document.getElementById("th-home-team").textContent = game.home_code;
+  document.getElementById("drawer-title").textContent = `${awayTitle} (${awayScoreStr}) @ ${homeTitle} (${homeScoreStr})`;
+  document.getElementById("th-away-team").textContent = game.away_code || "VISITA";
+  document.getElementById("th-home-team").textContent = game.home_code || "LOCAL";
 
   // Highlights link
   const highlightLink = document.getElementById("drawer-highlight-link");
@@ -1312,6 +1444,7 @@ function renderAwards() {
     { key: "OPOW", title: "⚡ Jugador Ofensivo de la Semana (OPOW)" },
     { key: "DPOW", title: "🛡 Jugador Defensivo de la Semana (DPOW)" },
     { key: "SPECIAL_TEAMS", title: "👟 Equipos Especiales de la Semana" },
+    { key: "TD_OF_WEEK", title: "🏈 Touchdown de la Semana" },
     { key: "DO", title: "🎯 DO: Jugada Maestra de la Jornada (Top EPA)" },
     { key: "DONT", title: "⚠️ DON'T: Error Garrafal de la Jornada" }
   ];
@@ -1334,7 +1467,11 @@ function renderAwards() {
           <div class="award-candidate">
             <span class="candidate-rank">#${n.rank}</span>
             <div class="candidate-info">
-              <div class="candidate-name">${n.candidate_name}</div>
+              <div class="candidate-name" style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
+                ${n.team_logo ? `<img src="${n.team_logo}" style="width: 18px; height: 18px; object-fit: contain;" alt="${n.team_short || ''}" onerror="this.style.display='none'">` : ''}
+                <span style="font-weight: 700;">${n.candidate_name}</span>
+                ${n.team_name ? `<span style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">• ${n.team_name}</span>` : ''}
+              </div>
               <div class="candidate-summary">${n.stat_summary}</div>
               <a href="${n.clip_url || '#'}" target="_blank" rel="noopener" class="play-btn" style="margin-top: 0.35rem;">
                 ▶ Ver clip
@@ -1607,21 +1744,24 @@ function downloadScriptFile() {
 // Full Game Tactical Report Reader (Magazine-Style Dossier Modal)
 // ==============================================================================
 function openFullDossierReader(gameId) {
-  const game = gameId ? state.games.find(g => g.id === gameId) : state.activeDrawerGame;
-  if (!game) return;
+  let rawGame = gameId ? state.games.find(g => g.id === gameId) : state.activeDrawerGame;
+  if (!rawGame) return;
+  const game = enrichGame(rawGame, state.teamsMap);
 
   const modal = document.getElementById("dossier-modal");
   const modalBody = document.getElementById("dossier-modal-body");
   const venueEl = document.getElementById("dossier-venue");
   const titleEl = document.getElementById("dossier-title");
 
-  const homeCode = game.home_team_id ? game.home_team_id.replace(/^(nfl_|ncaa_)/, '') : (game.home_code || 'HOME');
-  const awayCode = game.away_team_id ? game.away_team_id.replace(/^(nfl_|ncaa_)/, '') : (game.away_code || 'AWAY');
+  const homeCode = game.home_code || 'HOME';
+  const awayCode = game.away_code || 'AWAY';
   const homeName = game.home_name || homeCode;
   const awayName = game.away_name || awayCode;
+  const awayScoreStr = game.status === 'scheduled' ? '-' : (game.away_score ?? '-');
+  const homeScoreStr = game.status === 'scheduled' ? '-' : (game.home_score ?? '-');
 
   if (venueEl) venueEl.textContent = `${game.venue || 'Estadio Principal'} • ${game.game_date ? game.game_date.split('T')[0] : 'Septiembre 2026'}`;
-  if (titleEl) titleEl.textContent = `${awayName} ${game.away_score} @ ${homeName} ${game.home_score}`;
+  if (titleEl) titleEl.textContent = `${awayName} (${awayScoreStr}) @ ${homeName} (${homeScoreStr})`;
 
   const t = game.tactical_analysis || {};
   const headline = t.headline || `Análisis Táctico de Alta Retención: ${awayName} vs ${homeName}`;

@@ -432,3 +432,78 @@ def purge_legacy_and_unverified_data(custom_path: Optional[str | Path] = None) -
 
     return deleted_counts
 
+
+def export_snapshot(custom_path: Optional[str | Path] = None) -> Dict[str, Any]:
+    """Exports complete authentic dataset (season >= 2026) with joined team metadata,
+    advanced stats, key plays, trivia, and awards candidates.
+    """
+    with get_connection(custom_path) as conn:
+        # 1. Teams
+        teams_cur = conn.execute("SELECT * FROM teams ORDER BY league, conference, division, name ASC")
+        teams = [dict(r) for r in teams_cur.fetchall()]
+
+        # 2. Games with team details joined
+        games_query = """
+        SELECT 
+            g.*,
+            ht.code AS home_code, ht.name AS home_name, ht.short_name AS home_short,
+            ht.primary_color AS home_primary, ht.secondary_color AS home_secondary, ht.logo_url AS home_logo,
+            ht.conference AS home_conference, ht.division AS home_division,
+            at.code AS away_code, at.name AS away_name, at.short_name AS away_short,
+            at.primary_color AS away_primary, at.secondary_color AS away_secondary, at.logo_url AS away_logo,
+            at.conference AS away_conference, at.division AS away_division
+        FROM games g
+        LEFT JOIN teams ht ON g.home_team_id = ht.id
+        LEFT JOIN teams at ON g.away_team_id = at.id
+        WHERE g.season >= 2026
+        ORDER BY g.league, g.season, g.week, g.game_date ASC;
+        """
+        games = [dict(r) for r in conn.execute(games_query).fetchall()]
+
+        for g in games:
+            gid = g["id"]
+            stats_rows = conn.execute("SELECT * FROM game_team_stats WHERE game_id = ?", (gid,)).fetchall()
+            g["team_stats"] = [dict(r) for r in stats_rows]
+
+            plays_rows = conn.execute("SELECT * FROM key_plays WHERE game_id = ? ORDER BY wp_swing DESC LIMIT 5", (gid,)).fetchall()
+            g["key_plays"] = [dict(r) for r in plays_rows]
+
+            trivia_rows = conn.execute("SELECT * FROM game_trivia WHERE game_id = ?", (gid,)).fetchall()
+            g["trivia"] = [dict(r) for r in trivia_rows]
+
+            t_row = conn.execute("SELECT * FROM game_tactical_analysis WHERE game_id = ?", (gid,)).fetchone()
+            if t_row:
+                td = dict(t_row)
+                for key in ("historic_facts", "award_deep_dives", "tactical_dos_donts"):
+                    if isinstance(td.get(key), str):
+                        try:
+                            td[key] = json.loads(td[key])
+                        except Exception:
+                            td[key] = []
+                g["tactical_analysis"] = td
+            else:
+                g["tactical_analysis"] = None
+
+        # 3. Awards candidates with team details joined
+        awards_query = """
+        SELECT a.*, t.name AS team_name, t.short_name AS team_short, t.logo_url AS team_logo,
+               t.primary_color AS team_primary
+        FROM awards_candidates a
+        LEFT JOIN teams t ON a.team_id = t.id
+        WHERE a.season >= 2026
+        ORDER BY a.league, a.season, a.week, a.category, a.rank ASC;
+        """
+        awards = [dict(r) for r in conn.execute(awards_query).fetchall()]
+
+        return {
+            "metadata": {
+                "version": "1.0.2",
+                "season_min": 2026,
+                "description": "Authentic Gridiron Hub Dataset (NFL & NCAA 2026+) with full team join"
+            },
+            "teams": teams,
+            "games": games,
+            "awards": awards
+        }
+
+

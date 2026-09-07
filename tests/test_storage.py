@@ -248,3 +248,73 @@ def test_save_and_get_awards(temp_db):
     assert fetched[0]["rank"] == 1
     assert fetched[0]["team_name"] == "Baltimore Ravens"
 
+
+def test_export_snapshot_integrity(temp_db):
+    """Verifies that export_snapshot joins team names, codes, logos, and conferences properly."""
+    db.save_teams(
+        [
+            {
+                "id": "ncaa_TEX",
+                "league": "ncaa",
+                "code": "TEX",
+                "name": "Texas Longhorns",
+                "short_name": "Texas",
+                "city": "Austin",
+                "conference": "SEC",
+                "division": None,
+                "primary_color": "#BF5700",
+                "secondary_color": "#FFFFFF",
+                "logo_url": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png",
+            },
+            {
+                "id": "ncaa_UGA",
+                "league": "ncaa",
+                "code": "UGA",
+                "name": "Georgia Bulldogs",
+                "short_name": "Georgia",
+                "city": "Athens",
+                "conference": "SEC",
+                "division": None,
+                "primary_color": "#BA0C2F",
+                "secondary_color": "#000000",
+                "logo_url": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
+            },
+        ],
+        custom_path=temp_db,
+    )
+
+    db.save_games(
+        [
+            {
+                "id": "ncaa_2026_w1_uga_tex",
+                "league": "ncaa",
+                "season": 2026,
+                "season_type": "regular",
+                "week": 1,
+                "game_date": "2026-09-05T19:30:00Z",
+                "home_team_id": "ncaa_TEX",
+                "away_team_id": "ncaa_UGA",
+                "home_score": 28,
+                "away_score": 24,
+                "status": "final",
+                "venue": "DKR Stadium",
+                "weather_temp": 82,
+                "weather_desc": "Despejado",
+                "highlight_url": "https://youtube.com/watch?v=sample",
+            }
+        ],
+        custom_path=temp_db,
+    )
+
+    snap = db.export_snapshot(custom_path=temp_db)
+    assert len(snap["teams"]) == 2
+    assert len(snap["games"]) == 1
+    g = snap["games"][0]
+    assert g["home_name"] == "Texas Longhorns"
+    assert g["home_code"] == "TEX"
+    assert g["home_conference"] == "SEC"
+    assert g["away_name"] == "Georgia Bulldogs"
+    assert g["away_code"] == "UGA"
+    assert g["away_conference"] == "SEC"
+
+
