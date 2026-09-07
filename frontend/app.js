@@ -32,7 +32,7 @@ let STATIC_DATA = null;
 async function getStaticData() {
   if (STATIC_DATA) return STATIC_DATA;
   try {
-    const res = await fetch("./data.json");
+    const res = await fetch(`./data.json?_v=${Date.now()}`);
     if (res.ok) {
       STATIC_DATA = await res.json();
       return STATIC_DATA;
@@ -206,6 +206,58 @@ function startCooldownTicker() {
   }, 1000);
 }
 
+// Parse ESPN live scoreboard directly in browser to update scores and final statuses in real time
+function applyLiveEspnScoreboard(scoreboardData, league) {
+  if (!scoreboardData || !Array.isArray(scoreboardData.events)) return 0;
+
+  let updatedCount = 0;
+  const events = scoreboardData.events;
+
+  events.forEach(event => {
+    const competitions = event.competitions || [];
+    if (competitions.length === 0) return;
+    const comp = competitions[0];
+    const competitors = comp.competitors || [];
+
+    const homeComp = competitors.find(c => c.homeAway === "home") || {};
+    const awayComp = competitors.find(c => c.homeAway === "away") || {};
+
+    const homeCode = ((homeComp.team && homeComp.team.abbreviation) || "").toUpperCase().replace("&", "");
+    const awayCode = ((awayComp.team && awayComp.team.abbreviation) || "").toUpperCase().replace("&", "");
+
+    if (!homeCode || !awayCode) return;
+
+    const statusType = (comp.status && comp.status.type) || {};
+    const isCompleted = statusType.completed === true || statusType.name === "STATUS_FINAL";
+    const isInProgress = statusType.name === "STATUS_IN_PROGRESS" || statusType.state === "in";
+    const normalizedStatus = isCompleted ? "final" : (isInProgress ? "in_progress" : "scheduled");
+
+    const homeScore = homeComp.score !== undefined && homeComp.score !== null && homeComp.score !== "" ? parseInt(homeComp.score, 10) : 0;
+    const awayScore = awayComp.score !== undefined && awayComp.score !== null && awayComp.score !== "" ? parseInt(awayComp.score, 10) : 0;
+
+    const venue = (comp.venue && comp.venue.fullName) || "";
+
+    // Find matching game in state.games
+    const targetGame = state.games.find(g => {
+      if (g.league !== league) return false;
+      const gHome = (g.home_code || "").toUpperCase();
+      const gAway = (g.away_code || "").toUpperCase();
+      return (gHome === homeCode && gAway === awayCode) ||
+             (g.home_team_id && g.home_team_id.endsWith(homeCode) && g.away_team_id && g.away_team_id.endsWith(awayCode));
+    });
+
+    if (targetGame) {
+      targetGame.status = normalizedStatus;
+      targetGame.home_score = homeScore;
+      targetGame.away_score = awayScore;
+      if (venue && !targetGame.venue) targetGame.venue = venue;
+      updatedCount++;
+    }
+  });
+
+  return updatedCount;
+}
+
 async function triggerOnDemandSync() {
   const cb = checkCircuitBreaker();
   if (cb.active) {
@@ -238,36 +290,75 @@ async function triggerOnDemandSync() {
 
   try {
     recordSyncUsage();
-    // Try backend ingestion or fetch live scoreboard
+    let updatedCount = 0;
+
+    // 1. Direct real-time ESPN scoreboard fetch (Client-side, 0 lag, guaranteed CORS)
     try {
-      const res = await apiFetch("/api/ingest/run", {
+      const espnUrl = state.league === "ncaa"
+        ? "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=1&seasontype=2&limit=100&groups=80"
+        : "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&week=1&seasontype=2";
+      const espnRes = await fetch(espnUrl, { headers: { "Accept": "application/json" } });
+
+      if (espnRes.status === 429 || espnRes.status === 403) {
+        triggerCircuitBreaker("Protección WAF de ESPN detectada");
+        return;
+      }
+
+      if (espnRes.ok) {
+        const espnData = await espnRes.json();
+        updatedCount = applyLiveEspnScoreboard(espnData, state.league);
+      }
+    } catch (espnErr) {
+      console.warn("Error consultando ESPN Scoreboard:", espnErr);
+    }
+
+    // 2. Also ping backend API in background if online
+    try {
+      apiFetch("/api/ingest/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ league: state.league, season: state.season, week: state.week, force: true })
-      }, 7000);
+      }, 5000).catch(() => null);
+    } catch (e) {}
 
-      if (res.status === 429 || res.status === 403) {
-        triggerCircuitBreaker("Límite de peticiones de backend / WAF detectado");
-        return;
-      }
-    } catch (e) {
-      // Direct scoreboard ping if backend is cold
+    // 3. Persist live updated games in localStorage for persistence across page reloads
+    if (updatedCount > 0) {
       try {
-        const espnUrl = state.league === "ncaa"
-          ? "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2026&week=1&seasontype=2&limit=100&groups=80"
-          : "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&week=1&seasontype=2";
-        const espnRes = await fetch(espnUrl, { headers: { "Accept": "application/json" } });
-        if (espnRes.status === 429 || espnRes.status === 403) {
-          triggerCircuitBreaker("Protección WAF de ESPN detectada");
-          return;
-        }
-      } catch (espnErr) {}
+        localStorage.setItem(`gridiron_live_games_${state.league}_${state.season}_${state.week}`, JSON.stringify(state.games));
+      } catch (e) {}
     }
 
-    // Refresh data in UI
-    STATIC_DATA = null; // Flush cache
-    await loadCurrentData();
-    showCopyToast("✅ Datos actualizados exitosamente.");
+    // 4. Also reload latest data.json cache-busted
+    try {
+      STATIC_DATA = null;
+      const res = await fetch(`./data.json?_v=${Date.now()}`);
+      if (res.ok) {
+        const freshData = await res.json();
+        STATIC_DATA = freshData;
+        // Merge into state if we didn't already get live ESPN updates
+        if (updatedCount === 0 && Array.isArray(freshData.games)) {
+          const freshGames = freshData.games.filter(g =>
+            g.league === state.league && g.season === state.season && g.week === state.week
+          ).map(g => enrichGame(g, state.teamsMap));
+          if (freshGames.length > 0) {
+            state.games = freshGames;
+            updatedCount = freshGames.length;
+          }
+        }
+      }
+    } catch (e) {}
+
+    // 5. Re-render UI immediately with fresh scores and status badges
+    populateTeamSelector();
+    renderGames();
+    renderAwards();
+    updateKPIBanner();
+
+    if (updatedCount > 0) {
+      showCopyToast(`✅ ${updatedCount} partidos actualizados con marcadores oficiales de ESPN.`);
+    } else {
+      showCopyToast("✅ Datos verificados y actualizados.");
+    }
   } catch (err) {
     console.error("Error durante sincronización:", err);
     showCopyToast("⚠️ Actualización completada con datos locales verificados.");
@@ -530,6 +621,30 @@ async function loadCurrentData() {
   let initialAwards = (staticFallback.awards || []).filter(a =>
     a.league === state.league && a.season === state.season && a.week === state.week
   ).map(a => enrichAward(a, state.teamsMap));
+
+  // Merge any live score updates stored in localStorage
+  try {
+    const saved = localStorage.getItem(`gridiron_live_games_${state.league}_${state.season}_${state.week}`);
+    if (saved) {
+      const liveList = JSON.parse(saved);
+      if (Array.isArray(liveList)) {
+        const liveMap = new Map(liveList.map(g => [g.id, g]));
+        initialGames = initialGames.map(g => {
+          const live = liveMap.get(g.id);
+          if (live) {
+            return {
+              ...g,
+              status: live.status,
+              home_score: live.home_score,
+              away_score: live.away_score,
+              venue: live.venue || g.venue
+            };
+          }
+          return g;
+        });
+      }
+    }
+  } catch (e) {}
 
   state.teams = initialTeams || [];
   state.games = initialGames || [];

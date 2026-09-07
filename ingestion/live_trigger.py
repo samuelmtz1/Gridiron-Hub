@@ -237,7 +237,7 @@ def fetch_espn_game_summary(event_id: str, league: str = "nfl", app_game_id: str
                     "name": t_info.get("displayName") or t_info.get("name") or t_code,
                     "short_name": t_info.get("shortDisplayName") or t_code,
                     "city": t_info.get("location") or "",
-                    "conference": NCAA_CONFERENCES.get(str(t_info.get("conferenceId") or ""), None) if league == "ncaa" else ("AFC" if "AFC" in t_code else "NFC"),
+                    "conference": NCAA_CONFERENCES.get(str(t_info.get("conferenceId") or ""), "NCAA") if league == "ncaa" else ("AFC" if "AFC" in t_code else "NFC"),
                     "division": None,
                     "primary_color": f"#{color.lstrip('#')}",
                     "secondary_color": f"#{alt_color.lstrip('#')}",
