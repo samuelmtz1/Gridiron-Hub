@@ -384,15 +384,15 @@ def get_awards(league: str, season: int, week: int, category: Optional[str] = No
 
 
 def purge_legacy_and_unverified_data(custom_path: Optional[str | Path] = None) -> Dict[str, int]:
-    """Purges pre-2025 historical data and any unverified/synthetic 2026 games.
-    Ensures strict season isolation and zero hallucination.
+    """Purges pre-2026 historical data, unverified/synthetic 2026 games, and legacy mock awards.
+    Ensures strict season isolation (2026+) and zero hallucination per user instructions.
     """
     deleted_counts: Dict[str, int] = {}
     with get_connection(custom_path) as conn:
         # 1. Delete games
         cur = conn.execute(
             """DELETE FROM games 
-               WHERE season < 2025 
+               WHERE season < 2026 
                   OR (league = 'nfl' AND season = 2026 AND status = 'final')
                   OR id LIKE '%bal_kc%'
                   OR id LIKE '%gb_phi%'
@@ -417,13 +417,14 @@ def purge_legacy_and_unverified_data(custom_path: Optional[str | Path] = None) -
         deleted_counts["game_tactical_analysis"] = cur.rowcount
 
         # 3. Delete awards & player stats for deleted seasons/games
-        cur = conn.execute("DELETE FROM player_weekly_stats WHERE season < 2025;")
+        cur = conn.execute("DELETE FROM player_weekly_stats WHERE season < 2026;")
         deleted_counts["player_weekly_stats"] = cur.rowcount
 
         cur = conn.execute(
             """DELETE FROM awards_candidates 
-               WHERE season < 2025 
-                  OR (league = 'nfl' AND season = 2026);"""
+               WHERE season < 2026 
+                  OR (league = 'nfl' AND season = 2026)
+                  OR id LIKE 'awd_2026_w1_ncaa_%';"""
         )
         deleted_counts["awards_candidates"] = cur.rowcount
 

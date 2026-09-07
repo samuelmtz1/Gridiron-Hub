@@ -7,11 +7,11 @@ from security.auth import authenticate_team_user, create_session_token, verify_s
 from ingestion.live_trigger import NCAA_CONFERENCES
 
 
-def test_no_pre_2025_data_in_db():
-    """Verify that all historical data prior to 2025 has been eradicated."""
+def test_no_pre_2026_data_in_db():
+    """Verify that all historical data prior to 2026 has been eradicated per user instructions."""
     con = db.get_connection()
-    pre_2025_count = con.execute("SELECT count(*) FROM games WHERE season < 2025").fetchone()[0]
-    assert pre_2025_count == 0, f"Found {pre_2025_count} pre-2025 games in database"
+    pre_2026_count = con.execute("SELECT count(*) FROM games WHERE season < 2026").fetchone()[0]
+    assert pre_2026_count == 0, f"Found {pre_2026_count} pre-2026 games in database"
 
 
 def test_nfl_2026_zero_fake_final_games():
@@ -24,12 +24,12 @@ def test_nfl_2026_zero_fake_final_games():
 
 
 def test_season_exclusivity():
-    """Verify strict season isolation: 2026 has only 2026 games, 2025 has only 2025 games."""
+    """Verify strict season isolation: only 2026+ games exist in active database."""
     con = db.get_connection()
     games_2026 = con.execute("SELECT count(*) FROM games WHERE season = 2026").fetchone()[0]
-    games_2025 = con.execute("SELECT count(*) FROM games WHERE season = 2025").fetchone()[0]
+    games_pre_2026 = con.execute("SELECT count(*) FROM games WHERE season < 2026").fetchone()[0]
     assert games_2026 > 0
-    assert games_2025 > 0
+    assert games_pre_2026 == 0
 
 
 def test_ncaa_conference_mappings():

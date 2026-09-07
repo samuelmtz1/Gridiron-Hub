@@ -26,16 +26,27 @@
           <button class="btn-toggle" id="btn-league-ncaa" onclick="switchLeague('ncaa')">NCAA</button>
         </div>
 
-        <!-- Season Selector -->
+        <!-- Season Selector (Exclusivo 2026 en adelante) -->
         <select class="select-input" id="select-season" onchange="changeSeason(this.value)" title="Seleccionar Temporada">
-          <option value="2026" selected>Temporada 2026-2027 (Actual / Prioridad)</option>
-          <option value="2025">Temporada 2025-2026 (Super Bowl LX)</option>
+          <option value="2026" selected>Temporada 2026-2027 (Actual)</option>
         </select>
 
         <!-- Week Selector (Dinámico según Temporada) -->
         <select class="select-input" id="select-week" onchange="changeWeek(this.value)" title="Seleccionar Semana">
           <option value="1" selected>Semana 1 (Kickoff Septiembre 2026)</option>
         </select>
+
+        <!-- On-Demand Sync Button & Rate Guard Quota Badge -->
+        <div class="sync-controls-wrapper" style="display: flex; align-items: center; gap: 0.4rem;">
+          <button class="pill-btn sync-btn" id="btn-sync-data" onclick="triggerOnDemandSync()" title="Sincronizar datos bajo demanda respetando límites gratuitos de API">
+            <span id="sync-spinner" style="display: none;">⏳</span>
+            <span id="sync-btn-icon">🔄</span>
+            <span id="sync-btn-text">Actualizar Datos</span>
+          </button>
+          <span class="badge-quota" id="sync-quota-badge" title="Cuota de seguridad diaria (30 req/día) para prevenir baneos de IP por Akamai WAF">
+            🛡️ 30/30 hoy
+          </span>
+        </div>
 
         <!-- View Switcher -->
         <div class="btn-group">
@@ -53,6 +64,11 @@
       </div>
     </div>
   </header>
+
+  <!-- Safety Net WAF Protection Banner (Protege contra baneos de IP) -->
+  <div id="safety-net-banner" class="safety-net-banner" style="display: none;">
+    <span id="safety-banner-text">🛡️ Modo de seguridad activo: límite de consultas protegido para evitar baneos de IP.</span>
+  </div>
 
   <!-- Filter Pills & Navigation Hierarchy (SOP A.3: Liga -> Conferencia/División -> Equipo) -->
   <div class="filter-nav-container">
@@ -119,19 +135,47 @@
               <span class="badge-metric" style="background: rgba(250, 204, 21, 0.15); color: var(--metric-gold);">Estructura 6 Bloques</span>
             </div>
           </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button class="pill-btn active" onclick="copyFullScript()">📋 Copiar Guion Completo</button>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <div class="btn-group">
+              <button class="btn-toggle active" id="btn-prompter-mode-view" onclick="switchScriptViewMode('prompter')">📖 Modo Teleprompter</button>
+              <button class="btn-toggle" id="btn-prompter-mode-raw" onclick="switchScriptViewMode('raw')">📝 Markdown Raw</button>
+            </div>
+            <button class="pill-btn active" onclick="copyFullScript()">📋 Copiar Guion</button>
             <button class="pill-btn" onclick="downloadScriptFile()">📥 Descargar .md</button>
           </div>
         </div>
 
-        <div style="margin-bottom: 1.5rem;">
+        <div style="margin-bottom: 1.25rem;">
           <h4 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">📌 Títulos Sugeridos para YouTube (Alto CTR):</h4>
           <div id="script-titles-list" style="display: flex; flex-direction: column; gap: 0.4rem;"></div>
         </div>
 
-        <div>
-          <h4 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">📖 Texto del Teleprompter:</h4>
+        <!-- Teleprompter Reader Controls Toolbar -->
+        <div class="script-toolbar" id="script-prompter-toolbar">
+          <div class="script-nav-pills">
+            <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-right: 0.25rem; align-self: center;">Saltar a:</span>
+            <button class="prompter-nav-btn" onclick="scrollPrompterTo('block-hook')">⏱️ Hook</button>
+            <button class="prompter-nav-btn" onclick="scrollPrompterTo('block-marquee')">🏈 Partido Clave</button>
+            <button class="prompter-nav-btn" onclick="scrollPrompterTo('block-conference')">🏟️ Jornada</button>
+            <button class="prompter-nav-btn" onclick="scrollPrompterTo('block-awards')">🏆 Premios</button>
+            <button class="prompter-nav-btn" onclick="scrollPrompterTo('block-dosdonts')">🎯 DOs & DON'Ts</button>
+            <button class="prompter-nav-btn" onclick="scrollPrompterTo('block-outro')">🎬 Cierre</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Tamaño texto:</span>
+            <button class="prompter-nav-btn" onclick="adjustPrompterFontSize(-1)" title="Disminuir tamaño de texto">A-</button>
+            <button class="prompter-nav-btn" onclick="adjustPrompterFontSize(1)" title="Aumentar tamaño de texto">A+</button>
+          </div>
+        </div>
+
+        <!-- Structured Teleprompter View (Default) -->
+        <div id="script-teleprompter-view" class="prompter-reader-body">
+          <!-- Rendered dynamically via app.js -->
+        </div>
+
+        <!-- Raw Markdown View (Hidden by default) -->
+        <div id="script-raw-view" style="display: none;">
           <pre id="script-content-pre" style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; color: var(--text-primary); font-family: var(--font-sans); white-space: pre-wrap; line-height: 1.7; font-size: 0.92rem; max-height: 650px; overflow-y: auto;"></pre>
         </div>
       </div>
@@ -167,11 +211,16 @@
 
         <!-- TAB 1: Análisis Táctico & Deep Research (Estilo Super Bowl LX) -->
         <div id="drawer-tab-content-tactical">
-          <button class="btn-copy-tactical" id="btn-copy-tactical" onclick="copyCurrentGameTacticalMarkdown()">
-            📋 Copiar Análisis Completo (Formato YouTube / Gemini)
-          </button>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <button class="btn-copy-tactical" id="btn-read-dossier" onclick="openFullDossierReader()" style="background: linear-gradient(135deg, #0284c7, #0369a1); font-weight: 700; flex: 1 1 200px; margin-top: 0;">
+              📖 Leer Informe Completo (Dossier Táctico On-Screen)
+            </button>
+            <button class="btn-copy-tactical" id="btn-copy-tactical" onclick="copyCurrentGameTacticalMarkdown()" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-subtle); flex: 0 1 auto; margin-top: 0;">
+              📋 Copiar Formato Markdown
+            </button>
+          </div>
 
-          <div id="drawer-tactical-body" class="tactical-container" style="margin-top: 1rem;">
+          <div id="drawer-tactical-body" class="tactical-container" style="margin-top: 0.5rem;">
             <!-- Rendered via app.js -->
           </div>
         </div>
@@ -219,6 +268,25 @@
             </div>
           </section>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Full Dossier Reader Modal (Magazine-style full game report) -->
+  <div class="dossier-overlay" id="dossier-modal" onclick="closeDossierReader(event)">
+    <div class="dossier-panel" onclick="event.stopPropagation()">
+      <div class="dossier-header-bar">
+        <div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;" id="dossier-venue">Estadio</div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary);" id="dossier-title">Informe Táctico Editorial</h3>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button class="pill-btn" onclick="copyCurrentGameTacticalMarkdown()" style="font-size: 0.75rem;">📋 Copiar</button>
+          <button class="drawer-close" onclick="closeDossierReader()">&times;</button>
+        </div>
+      </div>
+      <div class="dossier-scroll-body" id="dossier-modal-body">
+        <!-- Rendered dynamically via app.js -->
       </div>
     </div>
   </div>

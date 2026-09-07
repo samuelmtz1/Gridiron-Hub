@@ -74,6 +74,12 @@ def run_pipeline(
             if target_games:
                 db.save_games(target_games, custom_path=custom_db_path)
 
+        if not target_games:
+            cached_games = db.get_games_by_week(league=league, season=season, week=week, custom_path=custom_db_path)
+            if cached_games:
+                logger.info(f"Usando {len(cached_games)} partidos locales existentes en DB.")
+                target_games = cached_games
+
         # Ingest player stats
         logger.info(f"Extrayendo estadísticas de jugadores para NFL {season} Semana {week}...")
         player_stats = nfl_source.fetch_nfl_player_stats(season=season, week=week)
@@ -106,6 +112,12 @@ def run_pipeline(
                     if summary.get("key_plays"):
                         db.save_key_plays(summary["key_plays"], custom_path=custom_db_path)
 
+        if not target_games:
+            cached_games = db.get_games_by_week(league=league, season=season, week=week, custom_path=custom_db_path)
+            if cached_games:
+                logger.info(f"Usando {len(cached_games)} partidos locales existentes en DB.")
+                target_games = cached_games
+
     # 4. Generate Awards Nominees (OPOW, DPOW, MVP, DOs & DON'Ts)
     logger.info("Ejecutando motor de premios y selección de jugadas clave...")
     all_key_plays: List[Dict[str, Any]] = []
@@ -119,7 +131,8 @@ def run_pipeline(
         season=season,
         week=week,
         player_stats=player_stats,
-        key_plays=all_key_plays
+        key_plays=all_key_plays,
+        games=target_games
     )
 
     if awards_candidates:

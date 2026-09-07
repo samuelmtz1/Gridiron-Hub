@@ -1,4 +1,6 @@
 {
+  "season": 2026,
+  "description": "Verified snapshot with authentic 2026 NCAA and NFL games, genuine weekly awards, and tactical deep research.",
   "teams": [
     {
       "id": "ncaa_BC",
@@ -237,6 +239,230 @@
       "secondary_color": "#2c2a29",
       "logo_url": "https://a.espncdn.com/i/teamlogos/ncaa/500/154.png",
       "created_at": "2026-09-05 23:57:03"
+    },
+    {
+      "id": "nfl_BUF",
+      "league": "nfl",
+      "code": "BUF",
+      "name": "Buffalo Bills",
+      "short_name": "Bills",
+      "city": "Buffalo",
+      "conference": "AFC",
+      "division": "East",
+      "primary_color": "#00338D",
+      "secondary_color": "#C60C30",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_MIA",
+      "league": "nfl",
+      "code": "MIA",
+      "name": "Miami Dolphins",
+      "short_name": "Dolphins",
+      "city": "Miami",
+      "conference": "AFC",
+      "division": "East",
+      "primary_color": "#008E97",
+      "secondary_color": "#FC4C02",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_NE",
+      "league": "nfl",
+      "code": "NE",
+      "name": "New England Patriots",
+      "short_name": "Patriots",
+      "city": "Foxborough",
+      "conference": "AFC",
+      "division": "East",
+      "primary_color": "#002244",
+      "secondary_color": "#C60C30",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_NYJ",
+      "league": "nfl",
+      "code": "NYJ",
+      "name": "New York Jets",
+      "short_name": "Jets",
+      "city": "East Rutherford",
+      "conference": "AFC",
+      "division": "East",
+      "primary_color": "#125740",
+      "secondary_color": "#FFFFFF",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_BAL",
+      "league": "nfl",
+      "code": "BAL",
+      "name": "Baltimore Ravens",
+      "short_name": "Ravens",
+      "city": "Baltimore",
+      "conference": "AFC",
+      "division": "North",
+      "primary_color": "#241773",
+      "secondary_color": "#9E7C0C",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_CIN",
+      "league": "nfl",
+      "code": "CIN",
+      "name": "Cincinnati Bengals",
+      "short_name": "Bengals",
+      "city": "Cincinnati",
+      "conference": "AFC",
+      "division": "North",
+      "primary_color": "#FB4F14",
+      "secondary_color": "#000000",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_CLE",
+      "league": "nfl",
+      "code": "CLE",
+      "name": "Cleveland Browns",
+      "short_name": "Browns",
+      "city": "Cleveland",
+      "conference": "AFC",
+      "division": "North",
+      "primary_color": "#311D00",
+      "secondary_color": "#FF3C00",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_PIT",
+      "league": "nfl",
+      "code": "PIT",
+      "name": "Pittsburgh Steelers",
+      "short_name": "Steelers",
+      "city": "Pittsburgh",
+      "conference": "AFC",
+      "division": "North",
+      "primary_color": "#FFB612",
+      "secondary_color": "#101820",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_HOU",
+      "league": "nfl",
+      "code": "HOU",
+      "name": "Houston Texans",
+      "short_name": "Texans",
+      "city": "Houston",
+      "conference": "AFC",
+      "division": "South",
+      "primary_color": "#03202F",
+      "secondary_color": "#A71930",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_IND",
+      "league": "nfl",
+      "code": "IND",
+      "name": "Indianapolis Colts",
+      "short_name": "Colts",
+      "city": "Indianapolis",
+      "conference": "AFC",
+      "division": "South",
+      "primary_color": "#002C5F",
+      "secondary_color": "#A2AAAD",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_JAX",
+      "league": "nfl",
+      "code": "JAX",
+      "name": "Jacksonville Jaguars",
+      "short_name": "Jaguars",
+      "city": "Jacksonville",
+      "conference": "AFC",
+      "division": "South",
+      "primary_color": "#006778",
+      "secondary_color": "#D7A22A",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_TEN",
+      "league": "nfl",
+      "code": "TEN",
+      "name": "Tennessee Titans",
+      "short_name": "Titans",
+      "city": "Nashville",
+      "conference": "AFC",
+      "division": "South",
+      "primary_color": "#0C2340",
+      "secondary_color": "#4B92DB",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_DEN",
+      "league": "nfl",
+      "code": "DEN",
+      "name": "Denver Broncos",
+      "short_name": "Broncos",
+      "city": "Denver",
+      "conference": "AFC",
+      "division": "West",
+      "primary_color": "#FB4F14",
+      "secondary_color": "#002244",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_KC",
+      "league": "nfl",
+      "code": "KC",
+      "name": "Kansas City Chiefs",
+      "short_name": "Chiefs",
+      "city": "Kansas City",
+      "conference": "AFC",
+      "division": "West",
+      "primary_color": "#E31837",
+      "secondary_color": "#FFB81C",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_LV",
+      "league": "nfl",
+      "code": "LV",
+      "name": "Las Vegas Raiders",
+      "short_name": "Raiders",
+      "city": "Las Vegas",
+      "conference": "AFC",
+      "division": "West",
+      "primary_color": "#000000",
+      "secondary_color": "#A5ACAF",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_LAC",
+      "league": "nfl",
+      "code": "LAC",
+      "name": "Los Angeles Chargers",
+      "short_name": "Chargers",
+      "city": "Los Angeles",
+      "conference": "AFC",
+      "division": "West",
+      "primary_color": "#0080C6",
+      "secondary_color": "#FFC20E",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "created_at": "2026-09-05 20:45:08"
     },
     {
       "id": "ncaa_ARMY",
@@ -2087,6 +2313,230 @@
       "created_at": "2026-09-05 23:57:19"
     },
     {
+      "id": "nfl_DAL",
+      "league": "nfl",
+      "code": "DAL",
+      "name": "Dallas Cowboys",
+      "short_name": "Cowboys",
+      "city": "Arlington",
+      "conference": "NFC",
+      "division": "East",
+      "primary_color": "#003594",
+      "secondary_color": "#041E42",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_NYG",
+      "league": "nfl",
+      "code": "NYG",
+      "name": "New York Giants",
+      "short_name": "Giants",
+      "city": "East Rutherford",
+      "conference": "NFC",
+      "division": "East",
+      "primary_color": "#0B2265",
+      "secondary_color": "#A71930",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_PHI",
+      "league": "nfl",
+      "code": "PHI",
+      "name": "Philadelphia Eagles",
+      "short_name": "Eagles",
+      "city": "Philadelphia",
+      "conference": "NFC",
+      "division": "East",
+      "primary_color": "#004C54",
+      "secondary_color": "#A5ACAF",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_WAS",
+      "league": "nfl",
+      "code": "WAS",
+      "name": "Washington Commanders",
+      "short_name": "Commanders",
+      "city": "Landover",
+      "conference": "NFC",
+      "division": "East",
+      "primary_color": "#5A1414",
+      "secondary_color": "#FFB612",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_CHI",
+      "league": "nfl",
+      "code": "CHI",
+      "name": "Chicago Bears",
+      "short_name": "Bears",
+      "city": "Chicago",
+      "conference": "NFC",
+      "division": "North",
+      "primary_color": "#0B162A",
+      "secondary_color": "#C83803",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_DET",
+      "league": "nfl",
+      "code": "DET",
+      "name": "Detroit Lions",
+      "short_name": "Lions",
+      "city": "Detroit",
+      "conference": "NFC",
+      "division": "North",
+      "primary_color": "#0076B6",
+      "secondary_color": "#B0B7BC",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_GB",
+      "league": "nfl",
+      "code": "GB",
+      "name": "Green Bay Packers",
+      "short_name": "Packers",
+      "city": "Green Bay",
+      "conference": "NFC",
+      "division": "North",
+      "primary_color": "#203731",
+      "secondary_color": "#FFB612",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_MIN",
+      "league": "nfl",
+      "code": "MIN",
+      "name": "Minnesota Vikings",
+      "short_name": "Vikings",
+      "city": "Minneapolis",
+      "conference": "NFC",
+      "division": "North",
+      "primary_color": "#4F2683",
+      "secondary_color": "#FFC62F",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_ATL",
+      "league": "nfl",
+      "code": "ATL",
+      "name": "Atlanta Falcons",
+      "short_name": "Falcons",
+      "city": "Atlanta",
+      "conference": "NFC",
+      "division": "South",
+      "primary_color": "#A71930",
+      "secondary_color": "#000000",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_CAR",
+      "league": "nfl",
+      "code": "CAR",
+      "name": "Carolina Panthers",
+      "short_name": "Panthers",
+      "city": "Charlotte",
+      "conference": "NFC",
+      "division": "South",
+      "primary_color": "#0085CA",
+      "secondary_color": "#101820",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/car.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_NO",
+      "league": "nfl",
+      "code": "NO",
+      "name": "New Orleans Saints",
+      "short_name": "Saints",
+      "city": "New Orleans",
+      "conference": "NFC",
+      "division": "South",
+      "primary_color": "#D3BC8D",
+      "secondary_color": "#101820",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_TB",
+      "league": "nfl",
+      "code": "TB",
+      "name": "Tampa Bay Buccaneers",
+      "short_name": "Buccaneers",
+      "city": "Tampa",
+      "conference": "NFC",
+      "division": "South",
+      "primary_color": "#D50A0A",
+      "secondary_color": "#0A0A08",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_ARI",
+      "league": "nfl",
+      "code": "ARI",
+      "name": "Arizona Cardinals",
+      "short_name": "Cardinals",
+      "city": "Glendale",
+      "conference": "NFC",
+      "division": "West",
+      "primary_color": "#97233F",
+      "secondary_color": "#000000",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_LAR",
+      "league": "nfl",
+      "code": "LAR",
+      "name": "Los Angeles Rams",
+      "short_name": "Rams",
+      "city": "Los Angeles",
+      "conference": "NFC",
+      "division": "West",
+      "primary_color": "#003594",
+      "secondary_color": "#FFA300",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_SF",
+      "league": "nfl",
+      "code": "SF",
+      "name": "San Francisco 49ers",
+      "short_name": "49ers",
+      "city": "Santa Clara",
+      "conference": "NFC",
+      "division": "West",
+      "primary_color": "#AA0000",
+      "secondary_color": "#B3995D",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
+      "id": "nfl_SEA",
+      "league": "nfl",
+      "code": "SEA",
+      "name": "Seattle Seahawks",
+      "short_name": "Seahawks",
+      "city": "Seattle",
+      "conference": "NFC",
+      "division": "West",
+      "primary_color": "#002244",
+      "secondary_color": "#69BE28",
+      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "created_at": "2026-09-05 20:45:08"
+    },
+    {
       "id": "ncaa_BOIS",
       "league": "ncaa",
       "code": "BOIS",
@@ -2631,454 +3081,6 @@
       "secondary_color": "#fdb913",
       "logo_url": "https://a.espncdn.com/i/teamlogos/ncaa/500/2433.png",
       "created_at": "2026-09-05 23:57:03"
-    },
-    {
-      "id": "nfl_BAL",
-      "league": "nfl",
-      "code": "BAL",
-      "name": "Baltimore Ravens",
-      "short_name": "Ravens",
-      "city": "Baltimore",
-      "conference": "AFC",
-      "division": "North",
-      "primary_color": "#241773",
-      "secondary_color": "#9E7C0C",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_BUF",
-      "league": "nfl",
-      "code": "BUF",
-      "name": "Buffalo Bills",
-      "short_name": "Bills",
-      "city": "Buffalo",
-      "conference": "AFC",
-      "division": "East",
-      "primary_color": "#00338D",
-      "secondary_color": "#C60C30",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_CIN",
-      "league": "nfl",
-      "code": "CIN",
-      "name": "Cincinnati Bengals",
-      "short_name": "Bengals",
-      "city": "Cincinnati",
-      "conference": "AFC",
-      "division": "North",
-      "primary_color": "#FB4F14",
-      "secondary_color": "#000000",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_CLE",
-      "league": "nfl",
-      "code": "CLE",
-      "name": "Cleveland Browns",
-      "short_name": "Browns",
-      "city": "Cleveland",
-      "conference": "AFC",
-      "division": "North",
-      "primary_color": "#311D00",
-      "secondary_color": "#FF3C00",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_DEN",
-      "league": "nfl",
-      "code": "DEN",
-      "name": "Denver Broncos",
-      "short_name": "Broncos",
-      "city": "Denver",
-      "conference": "AFC",
-      "division": "West",
-      "primary_color": "#FB4F14",
-      "secondary_color": "#002244",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_HOU",
-      "league": "nfl",
-      "code": "HOU",
-      "name": "Houston Texans",
-      "short_name": "Texans",
-      "city": "Houston",
-      "conference": "AFC",
-      "division": "South",
-      "primary_color": "#03202F",
-      "secondary_color": "#A71930",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_IND",
-      "league": "nfl",
-      "code": "IND",
-      "name": "Indianapolis Colts",
-      "short_name": "Colts",
-      "city": "Indianapolis",
-      "conference": "AFC",
-      "division": "South",
-      "primary_color": "#002C5F",
-      "secondary_color": "#A2AAAD",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_JAX",
-      "league": "nfl",
-      "code": "JAX",
-      "name": "Jacksonville Jaguars",
-      "short_name": "Jaguars",
-      "city": "Jacksonville",
-      "conference": "AFC",
-      "division": "South",
-      "primary_color": "#006778",
-      "secondary_color": "#D7A22A",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_KC",
-      "league": "nfl",
-      "code": "KC",
-      "name": "Kansas City Chiefs",
-      "short_name": "Chiefs",
-      "city": "Kansas City",
-      "conference": "AFC",
-      "division": "West",
-      "primary_color": "#E31837",
-      "secondary_color": "#FFB81C",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_LV",
-      "league": "nfl",
-      "code": "LV",
-      "name": "Las Vegas Raiders",
-      "short_name": "Raiders",
-      "city": "Las Vegas",
-      "conference": "AFC",
-      "division": "West",
-      "primary_color": "#000000",
-      "secondary_color": "#A5ACAF",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_LAC",
-      "league": "nfl",
-      "code": "LAC",
-      "name": "Los Angeles Chargers",
-      "short_name": "Chargers",
-      "city": "Los Angeles",
-      "conference": "AFC",
-      "division": "West",
-      "primary_color": "#0080C6",
-      "secondary_color": "#FFC20E",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_MIA",
-      "league": "nfl",
-      "code": "MIA",
-      "name": "Miami Dolphins",
-      "short_name": "Dolphins",
-      "city": "Miami",
-      "conference": "AFC",
-      "division": "East",
-      "primary_color": "#008E97",
-      "secondary_color": "#FC4C02",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_NE",
-      "league": "nfl",
-      "code": "NE",
-      "name": "New England Patriots",
-      "short_name": "Patriots",
-      "city": "Foxborough",
-      "conference": "AFC",
-      "division": "East",
-      "primary_color": "#002244",
-      "secondary_color": "#C60C30",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_NYJ",
-      "league": "nfl",
-      "code": "NYJ",
-      "name": "New York Jets",
-      "short_name": "Jets",
-      "city": "East Rutherford",
-      "conference": "AFC",
-      "division": "East",
-      "primary_color": "#125740",
-      "secondary_color": "#FFFFFF",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_PIT",
-      "league": "nfl",
-      "code": "PIT",
-      "name": "Pittsburgh Steelers",
-      "short_name": "Steelers",
-      "city": "Pittsburgh",
-      "conference": "AFC",
-      "division": "North",
-      "primary_color": "#FFB612",
-      "secondary_color": "#101820",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_TEN",
-      "league": "nfl",
-      "code": "TEN",
-      "name": "Tennessee Titans",
-      "short_name": "Titans",
-      "city": "Nashville",
-      "conference": "AFC",
-      "division": "South",
-      "primary_color": "#0C2340",
-      "secondary_color": "#4B92DB",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_ARI",
-      "league": "nfl",
-      "code": "ARI",
-      "name": "Arizona Cardinals",
-      "short_name": "Cardinals",
-      "city": "Glendale",
-      "conference": "NFC",
-      "division": "West",
-      "primary_color": "#97233F",
-      "secondary_color": "#000000",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_ATL",
-      "league": "nfl",
-      "code": "ATL",
-      "name": "Atlanta Falcons",
-      "short_name": "Falcons",
-      "city": "Atlanta",
-      "conference": "NFC",
-      "division": "South",
-      "primary_color": "#A71930",
-      "secondary_color": "#000000",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_CAR",
-      "league": "nfl",
-      "code": "CAR",
-      "name": "Carolina Panthers",
-      "short_name": "Panthers",
-      "city": "Charlotte",
-      "conference": "NFC",
-      "division": "South",
-      "primary_color": "#0085CA",
-      "secondary_color": "#101820",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/car.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_CHI",
-      "league": "nfl",
-      "code": "CHI",
-      "name": "Chicago Bears",
-      "short_name": "Bears",
-      "city": "Chicago",
-      "conference": "NFC",
-      "division": "North",
-      "primary_color": "#0B162A",
-      "secondary_color": "#C83803",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_DAL",
-      "league": "nfl",
-      "code": "DAL",
-      "name": "Dallas Cowboys",
-      "short_name": "Cowboys",
-      "city": "Arlington",
-      "conference": "NFC",
-      "division": "East",
-      "primary_color": "#003594",
-      "secondary_color": "#041E42",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_DET",
-      "league": "nfl",
-      "code": "DET",
-      "name": "Detroit Lions",
-      "short_name": "Lions",
-      "city": "Detroit",
-      "conference": "NFC",
-      "division": "North",
-      "primary_color": "#0076B6",
-      "secondary_color": "#B0B7BC",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_GB",
-      "league": "nfl",
-      "code": "GB",
-      "name": "Green Bay Packers",
-      "short_name": "Packers",
-      "city": "Green Bay",
-      "conference": "NFC",
-      "division": "North",
-      "primary_color": "#203731",
-      "secondary_color": "#FFB612",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_LAR",
-      "league": "nfl",
-      "code": "LAR",
-      "name": "Los Angeles Rams",
-      "short_name": "Rams",
-      "city": "Los Angeles",
-      "conference": "NFC",
-      "division": "West",
-      "primary_color": "#003594",
-      "secondary_color": "#FFA300",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_MIN",
-      "league": "nfl",
-      "code": "MIN",
-      "name": "Minnesota Vikings",
-      "short_name": "Vikings",
-      "city": "Minneapolis",
-      "conference": "NFC",
-      "division": "North",
-      "primary_color": "#4F2683",
-      "secondary_color": "#FFC62F",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_NO",
-      "league": "nfl",
-      "code": "NO",
-      "name": "New Orleans Saints",
-      "short_name": "Saints",
-      "city": "New Orleans",
-      "conference": "NFC",
-      "division": "South",
-      "primary_color": "#D3BC8D",
-      "secondary_color": "#101820",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_NYG",
-      "league": "nfl",
-      "code": "NYG",
-      "name": "New York Giants",
-      "short_name": "Giants",
-      "city": "East Rutherford",
-      "conference": "NFC",
-      "division": "East",
-      "primary_color": "#0B2265",
-      "secondary_color": "#A71930",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_PHI",
-      "league": "nfl",
-      "code": "PHI",
-      "name": "Philadelphia Eagles",
-      "short_name": "Eagles",
-      "city": "Philadelphia",
-      "conference": "NFC",
-      "division": "East",
-      "primary_color": "#004C54",
-      "secondary_color": "#A5ACAF",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_SF",
-      "league": "nfl",
-      "code": "SF",
-      "name": "San Francisco 49ers",
-      "short_name": "49ers",
-      "city": "Santa Clara",
-      "conference": "NFC",
-      "division": "West",
-      "primary_color": "#AA0000",
-      "secondary_color": "#B3995D",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_SEA",
-      "league": "nfl",
-      "code": "SEA",
-      "name": "Seattle Seahawks",
-      "short_name": "Seahawks",
-      "city": "Seattle",
-      "conference": "NFC",
-      "division": "West",
-      "primary_color": "#002244",
-      "secondary_color": "#69BE28",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_TB",
-      "league": "nfl",
-      "code": "TB",
-      "name": "Tampa Bay Buccaneers",
-      "short_name": "Buccaneers",
-      "city": "Tampa",
-      "conference": "NFC",
-      "division": "South",
-      "primary_color": "#D50A0A",
-      "secondary_color": "#0A0A08",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "created_at": "2026-09-05 20:45:08"
-    },
-    {
-      "id": "nfl_WAS",
-      "league": "nfl",
-      "code": "WAS",
-      "name": "Washington Commanders",
-      "short_name": "Commanders",
-      "city": "Landover",
-      "conference": "NFC",
-      "division": "East",
-      "primary_color": "#5A1414",
-      "secondary_color": "#FFB612",
-      "logo_url": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-      "created_at": "2026-09-05 20:45:08"
     }
   ],
   "games": [
@@ -3099,25 +3101,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UNC+vs+TCU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TCU",
-      "home_name": "TCU Horned Frogs",
-      "home_short": "TCU",
-      "home_primary": "#4d1979",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "UNC",
-      "away_name": "North Carolina Tar Heels",
-      "away_short": "North Carolina",
-      "away_primary": "#7bafd4",
-      "away_secondary": "#13294b",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/153.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_sjsu_usc",
@@ -3136,22 +3123,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SJSU+vs+USC+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "USC",
-      "home_name": "USC Trojans",
-      "home_short": "USC",
-      "home_primary": "#9d2235",
-      "home_secondary": "#ffc72c",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "SJSU",
-      "away_name": "San José State Spartans",
-      "away_short": "San José St",
-      "away_primary": "#0038a8",
-      "away_secondary": "#ffb81a",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3162,7 +3133,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 68 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ncsu_uva",
@@ -3181,22 +3153,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NCSU+vs+UVA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UVA",
-      "home_name": "Virginia Cavaliers",
-      "home_short": "Virginia",
-      "home_primary": "#232d4b",
-      "home_secondary": "#f84c1e",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "NCSU",
-      "away_name": "NC State Wolfpack",
-      "away_short": "NC State",
-      "away_primary": "#cc0000",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/152.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3207,7 +3163,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 26 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_jvst_ndsu",
@@ -3226,22 +3183,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=JVST+vs+NDSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NDSU",
-      "home_name": "North Dakota State Bison",
-      "home_short": "N Dakota St",
-      "home_primary": "#01402A",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2449.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "JVST",
-      "away_name": "Jacksonville State Gamecocks",
-      "away_short": "Jax State",
-      "away_primary": "#cc0000",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/55.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3252,7 +3193,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 26 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_sac_emu",
@@ -3271,25 +3213,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SAC+vs+EMU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "EMU",
-      "home_name": "Eastern Michigan Eagles",
-      "home_short": "E Michigan",
-      "home_primary": "#006938",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
-      "home_conference": "MAC",
-      "home_division": null,
-      "away_code": "SAC",
-      "away_name": "Sacramento State Hornets",
-      "away_short": "Sacramento St",
-      "away_primary": "#00573C",
-      "away_secondary": "#cdb97d",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/16.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_haw_stan",
@@ -3308,25 +3235,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=HAW+vs+STAN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "STAN",
-      "home_name": "Stanford Cardinal",
-      "home_short": "Stanford",
-      "home_primary": "#8c1515",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "HAW",
-      "away_name": "Hawai'i Rainbow Warriors",
-      "away_short": "Hawai'i",
-      "away_primary": "#005737",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_nmsu_fsu",
@@ -3345,25 +3257,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NMSU+vs+FSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "FSU",
-      "home_name": "Florida State Seminoles",
-      "home_short": "Florida St",
-      "home_primary": "#782f40",
-      "home_secondary": "#ceb888",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "NMSU",
-      "away_name": "New Mexico State Aggies",
-      "away_short": "New Mexico St",
-      "away_primary": "#7e141b",
-      "away_secondary": "#231f20",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/166.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mem_unlv",
@@ -3382,25 +3279,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MEM+vs+UNLV+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UNLV",
-      "home_name": "UNLV Rebels",
-      "home_short": "UNLV",
-      "home_primary": "#cf0a2c",
-      "home_secondary": "#cac8c8",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2439.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "MEM",
-      "away_name": "Memphis Tigers",
-      "away_short": "Memphis",
-      "away_primary": "#004991",
-      "away_secondary": "#8e908f",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
-      "away_conference": "American",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mass_rutg",
@@ -3419,25 +3301,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MASS+vs+RUTG+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "RUTG",
-      "home_name": "Rutgers Scarlet Knights",
-      "home_short": "Rutgers",
-      "home_primary": "#ce0e2d",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/164.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "MASS",
-      "away_name": "Massachusetts Minutemen",
-      "away_short": "UMass",
-      "away_primary": "#881c1c",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/113.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_bcu_ucf",
@@ -3456,22 +3323,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=BCU+vs+UCF+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UCF",
-      "home_name": "UCF Knights",
-      "home_short": "UCF",
-      "home_primary": "#000000",
-      "home_secondary": "#b4a169",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2116.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "BCU",
-      "away_name": "Bethune-Cookman Wildcats",
-      "away_short": "Bethune",
-      "away_primary": "#7b1831",
-      "away_secondary": "#e9aa12",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2065.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3489,7 +3340,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 79 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_akr_wake",
@@ -3508,25 +3360,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=AKR+vs+WAKE+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "WAKE",
-      "home_name": "Wake Forest Demon Deacons",
-      "home_short": "Wake Forest",
-      "home_primary": "#ceb888",
-      "home_secondary": "#2c2a29",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/154.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "AKR",
-      "away_name": "Akron Zips",
-      "away_short": "Akron",
-      "away_primary": "#041e42",
-      "away_secondary": "#c5b783",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2006.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mrmk_del",
@@ -3545,22 +3382,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MRMK+vs+DEL+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "DEL",
-      "home_name": "Delaware Blue Hens",
-      "home_short": "Delaware",
-      "home_primary": "#00539f",
-      "home_secondary": "#ffd200",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/48.png",
-      "home_conference": "Conference USA",
-      "home_division": null,
-      "away_code": "MRMK",
-      "away_name": "Merrimack Warriors",
-      "away_short": "Merrimack",
-      "away_primary": "#000000",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2771.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3571,7 +3392,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 35 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_wes_kenn",
@@ -3590,22 +3412,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=WES+vs+KENN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "KENN",
-      "home_name": "Kennesaw State Owls",
-      "home_short": "Kennesaw St",
-      "home_primary": "#fdbb30",
-      "home_secondary": "#0b1315",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/338.png",
-      "home_conference": "Conference USA",
-      "home_division": null,
-      "away_code": "WES",
-      "away_name": "West Georgia Wolves",
-      "away_short": "West Georgia",
-      "away_primary": "#0033a1",
-      "away_secondary": "#db1a21",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2698.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3616,7 +3422,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 47 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_alb_buff",
@@ -3635,25 +3442,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ALB+vs+BUFF+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "BUFF",
-      "home_name": "Buffalo Bulls",
-      "home_short": "Buffalo",
-      "home_primary": "#005bbb",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2084.png",
-      "home_conference": "MAC",
-      "home_division": null,
-      "away_code": "ALB",
-      "away_name": "UAlbany Great Danes",
-      "away_short": "UAlbany",
-      "away_primary": "#3D2777",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/399.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_uapb_miz",
@@ -3672,22 +3464,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UAPB+vs+MIZ+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MIZ",
-      "home_name": "Missouri Tigers",
-      "home_short": "Missouri",
-      "home_primary": "#f1b82d",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "UAPB",
-      "away_name": "Arkansas-Pine Bluff Golden Lions",
-      "away_short": "AR-Pine Bluff",
-      "away_primary": "#e0aa0f",
-      "away_secondary": "#eaaa00",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2029.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3705,7 +3481,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 68 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_colo_gt",
@@ -3724,22 +3501,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=COLO+vs+GT+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "GT",
-      "home_name": "Georgia Tech Yellow Jackets",
-      "home_short": "Georgia Tech",
-      "home_primary": "#b3a369",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/59.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "COLO",
-      "away_name": "Colorado Buffaloes",
-      "away_short": "Colorado",
-      "away_primary": "#cfb87c",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/38.png",
-      "away_conference": "Big 12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3750,7 +3511,8 @@
           "fact_text": "Final de una sola posesión: Visitante se impone a Local por apenas 1 punto(s).",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_eiu_minn",
@@ -3769,22 +3531,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=EIU+vs+MINN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MINN",
-      "home_name": "Minnesota Golden Gophers",
-      "home_short": "Minnesota",
-      "home_primary": "#5e0a2f",
-      "home_secondary": "#fab41c",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "EIU",
-      "away_name": "Eastern Illinois Panthers",
-      "away_short": "E Illinois",
-      "away_primary": "#000000",
-      "away_secondary": "#bebab9",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2197.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3802,7 +3548,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 66 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_idho_utah",
@@ -3821,22 +3568,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=IDHO+vs+UTAH+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UTAH",
-      "home_name": "Utah Utes",
-      "home_short": "Utah",
-      "home_primary": "#be0000",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/254.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "IDHO",
-      "away_name": "Idaho Vandals",
-      "away_short": "Idaho",
-      "away_primary": "#000000",
-      "away_secondary": "#8c6e4a",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/70.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3854,7 +3585,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 80 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_uab_ill",
@@ -3873,22 +3605,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UAB+vs+ILL+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ILL",
-      "home_name": "Illinois Fighting Illini",
-      "home_short": "Illinois",
-      "home_primary": "#ff5f05",
-      "home_secondary": "#13294b",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/356.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "UAB",
-      "away_name": "UAB Blazers",
-      "away_short": "UAB",
-      "away_primary": "#1a5632",
-      "away_secondary": "#fdb913",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/5.png",
-      "away_conference": "American",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3899,7 +3615,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 65 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_sjsu_emu",
@@ -3918,25 +3635,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SJSU+vs+EMU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "EMU",
-      "home_name": "Eastern Michigan Eagles",
-      "home_short": "E Michigan",
-      "home_primary": "#006938",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
-      "home_conference": "MAC",
-      "home_division": null,
-      "away_code": "SJSU",
-      "away_name": "San José State Spartans",
-      "away_short": "San José St",
-      "away_primary": "#0038a8",
-      "away_secondary": "#ffb81a",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_inst_pur",
@@ -3955,22 +3657,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=INST+vs+PUR+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "PUR",
-      "home_name": "Purdue Boilermakers",
-      "home_short": "Purdue",
-      "home_primary": "#ceb888",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "INST",
-      "away_name": "Indiana State Sycamores",
-      "away_short": "Indiana St",
-      "away_primary": "#00669a",
-      "away_secondary": "#f0f0f0",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/282.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -3981,7 +3667,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 25 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ncat_gast",
@@ -4000,22 +3687,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NCAT+vs+GAST+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "GAST",
-      "home_name": "Georgia State Panthers",
-      "home_short": "Georgia St",
-      "home_primary": "#0039a6",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2247.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "NCAT",
-      "away_name": "North Carolina A&T Aggies",
-      "away_short": "NC A&T",
-      "away_primary": "#0505aa",
-      "away_secondary": "#004684",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2448.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4033,7 +3704,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 69 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_utep_ou",
@@ -4052,22 +3724,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UTEP+vs+OU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "OU",
-      "home_name": "Oklahoma Sooners",
-      "home_short": "Oklahoma",
-      "home_primary": "#990000",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "UTEP",
-      "away_name": "UTEP Miners",
-      "away_short": "UTEP",
-      "away_primary": "#ff8200",
-      "away_secondary": "#041e42",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4078,7 +3734,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 51 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_liu_ku",
@@ -4097,22 +3754,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=LIU+vs+KU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "KU",
-      "home_name": "Kansas Jayhawks",
-      "home_short": "Kansas",
-      "home_primary": "#0051ba",
-      "home_secondary": "#e8000d",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "LIU",
-      "away_name": "Long Island University Sharks",
-      "away_short": "Long Island",
-      "away_primary": "#002244",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2341.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4123,7 +3764,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 45 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_tol_msu",
@@ -4142,25 +3784,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=TOL+vs+MSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MSU",
-      "home_name": "Michigan State Spartans",
-      "home_short": "Michigan St",
-      "home_primary": "#173f35",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "TOL",
-      "away_name": "Toledo Rockets",
-      "away_short": "Toledo",
-      "away_primary": "#0b2240",
-      "away_secondary": "#ffcd00",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2649.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mia_stan",
@@ -4179,22 +3806,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MIA+vs+STAN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "STAN",
-      "home_name": "Stanford Cardinal",
-      "home_short": "Stanford",
-      "home_primary": "#8c1515",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "MIA",
-      "away_name": "Miami Hurricanes",
-      "away_short": "Miami",
-      "away_primary": "#f47423",
-      "away_secondary": "#035131",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2390.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4205,7 +3816,8 @@
           "fact_text": "Victoria categórica por paliza: Visitante aplastó a Local por 39 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_fres_usc",
@@ -4224,22 +3836,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=FRES+vs+USC+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "USC",
-      "home_name": "USC Trojans",
-      "home_short": "USC",
-      "home_primary": "#9d2235",
-      "home_secondary": "#ffc72c",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "FRES",
-      "away_name": "Fresno State Bulldogs",
-      "away_short": "Fresno St",
-      "away_primary": "#b1102b",
-      "away_secondary": "#13284c",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/278.png",
-      "away_conference": "Pac-12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4250,7 +3846,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 39 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_unt_iu",
@@ -4269,22 +3866,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UNT+vs+IU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "IU",
-      "home_name": "Indiana Hoosiers",
-      "home_short": "Indiana",
-      "home_primary": "#970310",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "UNT",
-      "away_name": "North Texas Mean Green",
-      "away_short": "North Texas",
-      "away_primary": "#068f33",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/249.png",
-      "away_conference": "American",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4302,7 +3883,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 68 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ecu_ala",
@@ -4321,22 +3903,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ECU+vs+ALA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ALA",
-      "home_name": "Alabama Crimson Tide",
-      "home_short": "Alabama",
-      "home_primary": "#9E1B32",
-      "home_secondary": "#828A8F",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "ECU",
-      "away_name": "East Carolina Pirates",
-      "away_short": "East Carolina",
-      "away_primary": "#582c83",
-      "away_secondary": "#ffc72c",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/151.png",
-      "away_conference": "American",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4347,7 +3913,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 38 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_orst_hou",
@@ -4366,25 +3933,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ORST+vs+HOU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "HOU",
-      "home_name": "Houston Cougars",
-      "home_short": "Houston",
-      "home_primary": "#c8102e",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/248.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "ORST",
-      "away_name": "Oregon State Beavers",
-      "away_short": "Oregon St",
-      "away_primary": "#dc4405",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/204.png",
-      "away_conference": "Pac-12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ccu_wvu",
@@ -4403,25 +3955,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=CCU+vs+WVU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "WVU",
-      "home_name": "West Virginia Mountaineers",
-      "home_short": "West Virginia",
-      "home_primary": "#eaaa00",
-      "home_secondary": "#002855",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/277.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "CCU",
-      "away_name": "Coastal Carolina Chanticleers",
-      "away_short": "Coastal",
-      "away_primary": "#006f71",
-      "away_secondary": "#a27752",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png",
-      "away_conference": "Sun Belt",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_unh_syr",
@@ -4440,22 +3977,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UNH+vs+SYR+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "SYR",
-      "home_name": "Syracuse Orange",
-      "home_short": "Syracuse",
-      "home_primary": "#000e54",
-      "home_secondary": "#ff431b",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/183.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "UNH",
-      "away_name": "New Hampshire Wildcats",
-      "away_short": "New Hampshire",
-      "away_primary": "#004990",
-      "away_secondary": "#c3c4c6",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/160.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4473,7 +3994,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 69 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ohio_neb",
@@ -4492,22 +4014,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=OHIO+vs+NEB+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NEB",
-      "home_name": "Nebraska Cornhuskers",
-      "home_short": "Nebraska",
-      "home_primary": "#e31937",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/158.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "OHIO",
-      "away_name": "Ohio Bobcats",
-      "away_short": "Ohio",
-      "away_primary": "#154734",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/195.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4525,7 +4031,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 70 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_laf_conn",
@@ -4544,22 +4051,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=LAF+vs+CONN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "CONN",
-      "home_name": "UConn Huskies",
-      "home_short": "UConn",
-      "home_primary": "#0c2340",
-      "home_secondary": "#a2aaad",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/41.png",
-      "home_conference": "FBS Independents",
-      "home_division": null,
-      "away_code": "LAF",
-      "away_name": "Lafayette Leopards",
-      "away_short": "Lafayette",
-      "away_primary": "#790000",
-      "away_secondary": "#a59474",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/322.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4570,7 +4061,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 49 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_bry_army",
@@ -4589,22 +4081,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=BRY+vs+ARMY+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ARMY",
-      "home_name": "Army Black Knights",
-      "home_short": "Army",
-      "home_primary": "#000000",
-      "home_secondary": "#d3bc8d",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/349.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "BRY",
-      "away_name": "Bryant Bulldogs",
-      "away_short": "Bryant",
-      "away_primary": "#000000",
-      "away_secondary": "#9f8343",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2803.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4615,7 +4091,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 56 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_tar_bgsu",
@@ -4634,25 +4111,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=TAR+vs+BGSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "BGSU",
-      "home_name": "Bowling Green Falcons",
-      "home_short": "Bowling Green",
-      "home_primary": "#fd5000",
-      "home_secondary": "#4f2c1d",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/189.png",
-      "home_conference": "MAC",
-      "home_division": null,
-      "away_code": "TAR",
-      "away_name": "Tarleton State Texans",
-      "away_short": "Tarleton St",
-      "away_primary": "#000000",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2627.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_lib_jmu",
@@ -4671,25 +4133,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=LIB+vs+JMU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "JMU",
-      "home_name": "James Madison Dukes",
-      "home_short": "James Madison",
-      "home_primary": "#450084",
-      "home_secondary": "#cbb677",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/256.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "LIB",
-      "away_name": "Liberty Flames",
-      "away_short": "Liberty",
-      "away_primary": "#0a254e",
-      "away_secondary": "#b72025",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2335.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ball_osu",
@@ -4708,22 +4155,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=BALL+vs+OSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "OSU",
-      "home_name": "Ohio State Buckeyes",
-      "home_short": "Ohio State",
-      "home_primary": "#BB0000",
-      "home_secondary": "#666666",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "BALL",
-      "away_name": "Ball State Cardinals",
-      "away_short": "Ball State",
-      "away_primary": "#ba0c2f",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2050.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_ball_osu_ball",
@@ -4872,7 +4303,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 53 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_m-oh_pitt",
@@ -4891,22 +4323,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=M-OH+vs+PITT+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "PITT",
-      "home_name": "Pittsburgh Panthers",
-      "home_short": "Pitt",
-      "home_primary": "#003594",
-      "home_secondary": "#ffb81c",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/221.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "M-OH",
-      "away_name": "Miami (OH) RedHawks",
-      "away_short": "Miami OH",
-      "away_primary": "#c41230",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/193.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4924,7 +4340,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 73 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_kent_sc",
@@ -4943,22 +4360,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=KENT+vs+SC+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "SC",
-      "home_name": "South Carolina Gamecocks",
-      "home_short": "South Carolina",
-      "home_primary": "#73000a",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2579.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "KENT",
-      "away_name": "Kent State Golden Flashes",
-      "away_short": "Kent State",
-      "away_primary": "#002664",
-      "away_secondary": "#eaab00",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2309.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -4969,7 +4370,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 57 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ysu_uk",
@@ -4988,22 +4390,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=YSU+vs+UK+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UK",
-      "home_name": "Kentucky Wildcats",
-      "home_short": "Kentucky",
-      "home_primary": "#0033a0",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "YSU",
-      "away_name": "Youngstown State Penguins",
-      "away_short": "Youngstown St",
-      "away_primary": "#E51936",
-      "away_secondary": "#690717",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2754.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5014,7 +4400,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 32 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_semo_isu",
@@ -5033,22 +4420,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SEMO+vs+ISU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ISU",
-      "home_name": "Iowa State Cyclones",
-      "home_short": "Iowa State",
-      "home_primary": "#ae192d",
-      "home_secondary": "#ffc72a",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/66.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "SEMO",
-      "away_name": "Southeast Missouri State Redhawks",
-      "away_short": "SE Missouri",
-      "away_primary": "#c8102e",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2546.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5059,7 +4430,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 28 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_duq_afa",
@@ -5078,22 +4450,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=DUQ+vs+AFA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "AFA",
-      "home_name": "Air Force Falcons",
-      "home_short": "Air Force",
-      "home_primary": "#003594",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2005.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "DUQ",
-      "away_name": "Duquesne Dukes",
-      "away_short": "Duquesne",
-      "away_primary": "#002D62",
-      "away_secondary": "#b90b2e",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2184.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5104,7 +4460,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 34 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_uri_tem",
@@ -5123,22 +4480,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=URI+vs+TEM+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TEM",
-      "home_name": "Temple Owls",
-      "home_short": "Temple",
-      "home_primary": "#a41e35",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/218.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "URI",
-      "away_name": "Rhode Island Rams",
-      "away_short": "Rhode Island",
-      "away_primary": "#091f3f",
-      "away_secondary": "#5ab3e8",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/227.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5149,7 +4490,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 24 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_tnst_uga",
@@ -5168,22 +4510,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=TNST+vs+UGA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UGA",
-      "home_name": "Georgia Bulldogs",
-      "home_short": "Georgia",
-      "home_primary": "#BA0C2F",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "TNST",
-      "away_name": "Tennessee State Tigers",
-      "away_short": "Tennessee St",
-      "away_primary": "#171796",
-      "away_secondary": "#f0f0f0",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2634.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5201,7 +4527,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 66 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_tuln_duke",
@@ -5220,22 +4547,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=TULN+vs+DUKE+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "DUKE",
-      "home_name": "Duke Blue Devils",
-      "home_short": "Duke",
-      "home_primary": "#00539b",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "TULN",
-      "away_name": "Tulane Green Wave",
-      "away_short": "Tulane",
-      "away_primary": "#006747",
-      "away_secondary": "#418fde",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2655.png",
-      "away_conference": "American",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_tuln_duke_duke",
@@ -5356,7 +4667,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_cit_clt",
@@ -5375,22 +4687,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=CIT+vs+CLT+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "CLT",
-      "home_name": "Charlotte 49ers",
-      "home_short": "Charlotte",
-      "home_primary": "#005035",
-      "home_secondary": "#a49665",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "CIT",
-      "away_name": "The Citadel Bulldogs",
-      "away_short": "The Citadel",
-      "away_primary": "#7badd3",
-      "away_secondary": "#002856",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2643.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_cit_clt_cit",
@@ -5531,7 +4827,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_bois_ore",
@@ -5550,22 +4847,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=BOIS+vs+ORE+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ORE",
-      "home_name": "Oregon Ducks",
-      "home_short": "Oregon",
-      "home_primary": "#154734",
-      "home_secondary": "#FEE123",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "BOIS",
-      "away_name": "Boise State Broncos",
-      "away_short": "Boise St",
-      "away_primary": "#0033a0",
-      "away_secondary": "#d64309",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
-      "away_conference": "Pac-12",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_bois_ore_bois",
@@ -5706,7 +4987,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_txst_tex",
@@ -5725,22 +5007,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=TXST+vs+TEX+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TEX",
-      "home_name": "Texas Longhorns",
-      "home_short": "Texas",
-      "home_primary": "#BF5700",
-      "home_secondary": "#FFFFFF",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "TXST",
-      "away_name": "Texas State Bobcats",
-      "away_short": "Texas St",
-      "away_primary": "#501214",
-      "away_secondary": "#6a5638",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/326.png",
-      "away_conference": "Pac-12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5758,7 +5024,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 66 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mrsh_psu",
@@ -5777,22 +5044,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MRSH+vs+PSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "PSU",
-      "home_name": "Penn State Nittany Lions",
-      "home_short": "Penn State",
-      "home_primary": "#041E42",
-      "home_secondary": "#FFFFFF",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/213.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "MRSH",
-      "away_name": "Marshall Thundering Herd",
-      "away_short": "Marshall",
-      "away_primary": "#00b140",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/276.png",
-      "away_conference": "Sun Belt",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5803,7 +5054,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 45 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_fur_tenn",
@@ -5822,22 +5074,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=FUR+vs+TENN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TENN",
-      "home_name": "Tennessee Volunteers",
-      "home_short": "Tennessee",
-      "home_primary": "#ff8200",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2633.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "FUR",
-      "away_name": "Furman Paladins",
-      "away_short": "Furman",
-      "away_primary": "#582c83",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/231.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5855,7 +5091,8 @@
           "fact_text": "Guerra de ofensivas: Se anotaron 65 puntos combinados, superando el promedio de la liga.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_bay_aub",
@@ -5874,22 +5111,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=BAY+vs+AUB+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "AUB",
-      "home_name": "Auburn Tigers",
-      "home_short": "Auburn",
-      "home_primary": "#002b5c",
-      "home_secondary": "#f26522",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "BAY",
-      "away_name": "Baylor Bears",
-      "away_short": "Baylor",
-      "away_primary": "#154734",
-      "away_secondary": "#ffb81c",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/239.png",
-      "away_conference": "Big 12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5900,7 +5121,8 @@
           "fact_text": "Final de una sola posesión: Local se impone a Visitante por apenas 1 punto(s).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_bc_cin",
@@ -5919,25 +5141,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=BC+vs+CIN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "CIN",
-      "home_name": "Cincinnati Bearcats",
-      "home_short": "Cincinnati",
-      "home_primary": "#000000",
-      "home_secondary": "#e00122",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2132.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "BC",
-      "away_name": "Boston College Eagles",
-      "away_short": "Boston College",
-      "away_primary": "#8c2232",
-      "away_secondary": "#dbcca6",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/103.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_tow_navy",
@@ -5956,22 +5163,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=TOW+vs+NAVY+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NAVY",
-      "home_name": "Navy Midshipmen",
-      "home_short": "Navy",
-      "home_primary": "#00225b",
-      "home_secondary": "#b5a67c",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2426.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "TOW",
-      "away_name": "Towson Tigers",
-      "away_short": "Towson",
-      "away_primary": "#FFC229",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/119.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -5982,7 +5173,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 27 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_rgv_utsa",
@@ -6001,22 +5193,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=RGV+vs+UTSA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UTSA",
-      "home_name": "UTSA Roadrunners",
-      "home_short": "UTSA",
-      "home_primary": "#0c2340",
-      "home_secondary": "#f15a22",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "RGV",
-      "away_name": "UT Rio Grande Valley Vaqueros",
-      "away_short": "UT Rio Grande",
-      "away_primary": "#002244",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/292.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -6027,7 +5203,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 29 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_for_ndsu",
@@ -6046,22 +5223,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=FOR+vs+NDSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NDSU",
-      "home_name": "North Dakota State Bison",
-      "home_short": "N Dakota St",
-      "home_primary": "#01402A",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2449.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "FOR",
-      "away_name": "Fordham Rams",
-      "away_short": "Fordham",
-      "away_primary": "#830032",
-      "away_secondary": "#909090",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2230.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -6072,7 +5233,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 38 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_me_app",
@@ -6091,22 +5253,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ME+vs+APP+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "APP",
-      "home_name": "App State Mountaineers",
-      "home_short": "App State",
-      "home_primary": "#000000",
-      "home_secondary": "#ffcd00",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2026.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "ME",
-      "away_name": "Maine Black Bears",
-      "away_short": "Maine",
-      "away_primary": "#127dbe",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/311.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -6117,7 +5263,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 52 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_okst_tlsa",
@@ -6136,25 +5283,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=OKST+vs+TLSA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TLSA",
-      "home_name": "Tulsa Golden Hurricane",
-      "home_short": "Tulsa",
-      "home_primary": "#003595",
-      "home_secondary": "#d0b787",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/202.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "OKST",
-      "away_name": "Oklahoma State Cowboys",
-      "away_short": "Oklahoma St",
-      "away_primary": "#fe5c00",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/197.png",
-      "away_conference": "Big 12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_niu_iowa",
@@ -6173,22 +5305,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NIU+vs+IOWA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "IOWA",
-      "home_name": "Iowa Hawkeyes",
-      "home_short": "Iowa",
-      "home_primary": "#231f20",
-      "home_secondary": "#fcd116",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "NIU",
-      "away_name": "Northern Illinois Huskies",
-      "away_short": "N Illinois",
-      "away_primary": "#c8102e",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2459.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -6199,7 +5315,8 @@
           "fact_text": "Victoria categórica por paliza: Local aplastó a Visitante por 40 puntos de diferencia.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_una_ark",
@@ -6218,25 +5335,10 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UNA+vs+ARK+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ARK",
-      "home_name": "Arkansas Razorbacks",
-      "home_short": "Arkansas",
-      "home_primary": "#9D2235",
-      "home_secondary": "#FFFFFF",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/8.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "UNA",
-      "away_name": "North Alabama Lions",
-      "away_short": "North Alabama",
-      "away_primary": "#000000",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2453.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_alcn_usm",
@@ -6255,22 +5357,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ALCN+vs+USM+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "USM",
-      "home_name": "Southern Miss Golden Eagles",
-      "home_short": "Southern Miss",
-      "home_primary": "#ffc72c",
-      "home_secondary": "#231f20",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2572.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "ALCN",
-      "away_name": "Alcorn State Braves",
-      "away_short": "Alcorn St",
-      "away_primary": "#4b0058",
-      "away_secondary": "#46166a",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2016.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_alcn_usm_alcn",
@@ -6426,7 +5512,8 @@
           "fact_text": "Factor entregas de balón: la visita cometió 4 pérdidas que marcaron el rumbo del encuentro.",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_wyo_csu",
@@ -6445,22 +5532,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=WYO+vs+CSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "CSU",
-      "home_name": "Colorado State Rams",
-      "home_short": "Colorado St",
-      "home_primary": "#004c23",
-      "home_secondary": "#c8c372",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
-      "home_conference": "Pac-12",
-      "home_division": null,
-      "away_code": "WYO",
-      "away_name": "Wyoming Cowboys",
-      "away_short": "Wyoming",
-      "away_primary": "#492f24",
-      "away_secondary": "#ffc425",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_wyo_csu_csu",
@@ -6581,7 +5652,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_norf_odu",
@@ -6600,22 +5672,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NORF+vs+ODU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ODU",
-      "home_name": "Old Dominion Monarchs",
-      "home_short": "Old Dominion",
-      "home_primary": "#003768",
-      "home_secondary": "#a1d2f1",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/295.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "NORF",
-      "away_name": "Norfolk State Spartans",
-      "away_short": "Norfolk St",
-      "away_primary": "#0c8968",
-      "away_secondary": "#fdb813",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2450.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_norf_odu_norf",
@@ -6736,7 +5792,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_most_tam",
@@ -6755,22 +5812,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MOST+vs+TAM+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TAM",
-      "home_name": "Texas A&M Aggies",
-      "home_short": "Texas A&M",
-      "home_primary": "#500000",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/245.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "MOST",
-      "away_name": "Missouri State Bears",
-      "away_short": "Missouri St",
-      "away_primary": "#5e0009",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2623.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_most_tam_most",
@@ -6851,7 +5892,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_acu_ttu",
@@ -6870,22 +5912,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ACU+vs+TTU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TTU",
-      "home_name": "Texas Tech Red Raiders",
-      "home_short": "Texas Tech",
-      "home_primary": "#da291c",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "ACU",
-      "away_name": "Abilene Christian Wildcats",
-      "away_short": "Abilene Chrstn",
-      "away_primary": "#592d82",
-      "away_secondary": "#b1b3b3",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_acu_ttu_acu",
@@ -6966,7 +5992,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_apsu_van",
@@ -6985,22 +6012,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=APSU+vs+VAN+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "VAN",
-      "home_name": "Vanderbilt Commodores",
-      "home_short": "Vanderbilt",
-      "home_primary": "#000000",
-      "home_secondary": "#cfae70",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/238.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "APSU",
-      "away_name": "Austin Peay Governors",
-      "away_short": "Austin Peay",
-      "away_primary": "#8e0b0b",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2046.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_apsu_van_apsu",
@@ -7141,7 +6152,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_nich_ksu",
@@ -7160,22 +6172,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NICH+vs+KSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "KSU",
-      "home_name": "Kansas State Wildcats",
-      "home_short": "Kansas St",
-      "home_primary": "#330a57",
-      "home_secondary": "#e2e3e4",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2306.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "NICH",
-      "away_name": "Nicholls Colonels",
-      "away_short": "Nicholls",
-      "away_primary": "#C41230",
-      "away_secondary": "#f0f0f0",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2447.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_nich_ksu_ksu",
@@ -7276,7 +6272,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_idst_usu",
@@ -7295,22 +6292,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=IDST+vs+USU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "USU",
-      "home_name": "Utah State Aggies",
-      "home_short": "Utah State",
-      "home_primary": "#0f2439",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/328.png",
-      "home_conference": "Pac-12",
-      "home_division": null,
-      "away_code": "IDST",
-      "away_name": "Idaho State Bengals",
-      "away_short": "Idaho St",
-      "away_primary": "#ef8c00",
-      "away_secondary": "#e9a126",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/304.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_idst_usu_idst",
@@ -7419,7 +6400,8 @@
           "fact_text": "Final de una sola posesión: Local se impone a Visitante por apenas 1 punto(s).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_arst_mem",
@@ -7438,22 +6420,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ARST+vs+MEM+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MEM",
-      "home_name": "Memphis Tigers",
-      "home_short": "Memphis",
-      "home_primary": "#004991",
-      "home_secondary": "#8e908f",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "ARST",
-      "away_name": "Arkansas State Red Wolves",
-      "away_short": "Arkansas St",
-      "away_primary": "#cc092f",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2032.png",
-      "away_conference": "Sun Belt",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_arst_mem_arst",
@@ -7534,7 +6500,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_hcu_rice",
@@ -7553,22 +6520,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=HCU+vs+RICE+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "RICE",
-      "home_name": "Rice Owls",
-      "home_short": "Rice",
-      "home_primary": "#00205b",
-      "home_secondary": "#c1c6c8",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/242.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "HCU",
-      "away_name": "Houston Christian Huskies",
-      "away_short": "Hou Christian",
-      "away_primary": "#00539c",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2277.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_hcu_rice_hcu",
@@ -7649,7 +6600,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_fiu_usf",
@@ -7668,22 +6620,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=FIU+vs+USF+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "USF",
-      "home_name": "South Florida Bulls",
-      "home_short": "South Florida",
-      "home_primary": "#006747",
-      "home_secondary": "#cfc493",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
-      "home_conference": "American",
-      "home_division": null,
-      "away_code": "FIU",
-      "away_name": "Florida International Panthers",
-      "away_short": "FIU",
-      "away_primary": "#091f3f",
-      "away_secondary": "#c3993f",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_fiu_usf_fiu",
@@ -7764,7 +6700,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_eku_jvst",
@@ -7783,22 +6720,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=EKU+vs+JVST+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "JVST",
-      "home_name": "Jacksonville State Gamecocks",
-      "home_short": "Jax State",
-      "home_primary": "#cc0000",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/55.png",
-      "home_conference": "Conference USA",
-      "home_division": null,
-      "away_code": "EKU",
-      "away_name": "Eastern Kentucky Colonels",
-      "away_short": "E Kentucky",
-      "away_primary": "#660819",
-      "away_secondary": "#f0f0f0",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2198.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_eku_jvst_eku",
@@ -7899,7 +6820,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_chso_gaso",
@@ -7918,22 +6840,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=CHSO+vs+GASO+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "GASO",
-      "home_name": "Georgia Southern Eagles",
-      "home_short": "GA Southern",
-      "home_primary": "#041e42",
-      "home_secondary": "#a3aaae",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/290.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "CHSO",
-      "away_name": "Charleston Southern Buccaneers",
-      "away_short": "Charleston So",
-      "away_primary": "#2e3192",
-      "away_secondary": "#ded090",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2127.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_chso_gaso_chso",
@@ -8034,7 +6940,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_sela_usa",
@@ -8053,22 +6960,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SELA+vs+USA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "USA",
-      "home_name": "South Alabama Jaguars",
-      "home_short": "South Alabama",
-      "home_primary": "#00205b",
-      "home_secondary": "#bf0d3e",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/6.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "SELA",
-      "away_name": "SE Louisiana Lions",
-      "away_short": "SE Louisiana",
-      "away_primary": "#215732",
-      "away_secondary": "#ffc72c",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2545.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_sela_usa_sela",
@@ -8189,7 +7080,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_shsu_troy",
@@ -8208,22 +7100,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SHSU+vs+TROY+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "TROY",
-      "home_name": "Troy Trojans",
-      "home_short": "Troy",
-      "home_primary": "#862633",
-      "home_secondary": "#b1b1b1",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2653.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "SHSU",
-      "away_name": "Sam Houston Bearkats",
-      "away_short": "Sam Houston",
-      "away_primary": "#f56423",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2534.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_shsu_troy_shsu",
@@ -8352,7 +7228,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (14-14).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_clem_lsu",
@@ -8371,22 +7248,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=CLEM+vs+LSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "LSU",
-      "home_name": "LSU Tigers",
-      "home_short": "LSU",
-      "home_primary": "#461D7C",
-      "home_secondary": "#FDD023",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "CLEM",
-      "away_name": "Clemson Tigers",
-      "away_short": "Clemson",
-      "away_primary": "#F56600",
-      "away_secondary": "#522D80",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_clem_lsu_clem",
@@ -8434,7 +7295,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_wmu_mich",
@@ -8453,22 +7315,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=WMU+vs+MICH+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MICH",
-      "home_name": "Michigan Wolverines",
-      "home_short": "Michigan",
-      "home_primary": "#00274C",
-      "home_secondary": "#FFCB05",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "WMU",
-      "away_name": "Western Michigan Broncos",
-      "away_short": "W Michigan",
-      "away_primary": "#532e1f",
-      "away_secondary": "#f1c500",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2711.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_wmu_mich_mich",
@@ -8549,7 +7395,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ulm_msst",
@@ -8568,22 +7415,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=ULM+vs+MSST+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MSST",
-      "home_name": "Mississippi State Bulldogs",
-      "home_short": "Mississippi St",
-      "home_primary": "#5d1725",
-      "home_secondary": "#c1c6c8",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/344.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "ULM",
-      "away_name": "UL Monroe Warhawks",
-      "away_short": "UL Monroe",
-      "away_primary": "#840029",
-      "away_secondary": "#fdb913",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2433.png",
-      "away_conference": "Sun Belt",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_ulm_msst_msst",
@@ -8664,7 +7495,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_vmi_vt",
@@ -8683,22 +7515,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=VMI+vs+VT+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "VT",
-      "home_name": "Virginia Tech Hokies",
-      "home_short": "Virginia Tech",
-      "home_primary": "#6a2c3e",
-      "home_secondary": "#cf4520",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/259.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "VMI",
-      "away_name": "VMI Keydets",
-      "away_short": "VMI",
-      "away_primary": "#ae122a",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2678.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_vmi_vt_vmi",
@@ -8779,7 +7595,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_nwst_lt",
@@ -8798,22 +7615,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NWST+vs+LT+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "LT",
-      "home_name": "Louisiana Tech Bulldogs",
-      "home_short": "Louisiana Tech",
-      "home_primary": "#003087",
-      "home_secondary": "#cb333b",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2348.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "NWST",
-      "away_name": "Northwestern State Demons",
-      "away_short": "N'Western St",
-      "away_primary": "#492F91",
-      "away_secondary": "#ed6118",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2466.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_nwst_lt_lt",
@@ -8914,7 +7715,8 @@
           "highlight_timestamp": null
         }
       ],
-      "trivia": []
+      "trivia": [],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mur_mtsu",
@@ -8933,22 +7735,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MUR+vs+MTSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MTSU",
-      "home_name": "Middle Tennessee Blue Raiders",
-      "home_short": "MTSU",
-      "home_primary": "#036eb7",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2393.png",
-      "home_conference": "Conference USA",
-      "home_division": null,
-      "away_code": "MUR",
-      "away_name": "Murray State Racers",
-      "away_short": "Murray St",
-      "away_primary": "#002148",
-      "away_secondary": "#000e00",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/93.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [
         {
           "id": "stat_ncaa_2026_w1_mur_mtsu_mtsu",
@@ -8996,7 +7782,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_fau_fla",
@@ -9015,22 +7802,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=FAU+vs+FLA+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "FLA",
-      "home_name": "Florida Gators",
-      "home_short": "Florida",
-      "home_primary": "#0021a5",
-      "home_secondary": "#fa4616",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "FAU",
-      "away_name": "Florida Atlantic Owls",
-      "away_short": "FAU",
-      "away_primary": "#003366",
-      "away_secondary": "#cc0000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
-      "away_conference": "American",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9041,7 +7812,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_utu_byu",
@@ -9060,22 +7832,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UTU+vs+BYU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "BYU",
-      "home_name": "BYU Cougars",
-      "home_short": "BYU",
-      "home_primary": "#0047ba",
-      "home_secondary": "#002e5d",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "UTU",
-      "away_name": "Utah Tech Trailblazers",
-      "away_short": "Utah Tech",
-      "away_primary": "#000000",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/3101.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9086,7 +7842,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_hamp_md",
@@ -9105,22 +7862,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=HAMP+vs+MD+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MD",
-      "home_name": "Maryland Terrapins",
-      "home_short": "Maryland",
-      "home_primary": "#ce1126",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/120.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "HAMP",
-      "away_name": "Hampton Pirates",
-      "away_short": "Hampton",
-      "away_primary": "#0067AC",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2261.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9131,7 +7872,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_sdst_nu",
@@ -9150,22 +7892,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SDST+vs+NU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NU",
-      "home_name": "Northwestern Wildcats",
-      "home_short": "Northwestern",
-      "home_primary": "#492f92",
-      "home_secondary": "#ffffff",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/77.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "SDST",
-      "away_name": "South Dakota State Jackrabbits",
-      "away_short": "S Dakota St",
-      "away_primary": "#0033a0",
-      "away_secondary": "#ffd100",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9176,7 +7902,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_lam_ul",
@@ -9195,22 +7922,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=LAM+vs+UL+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UL",
-      "home_name": "Louisiana Ragin' Cajuns",
-      "home_short": "Louisiana",
-      "home_primary": "#ce181e",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/309.png",
-      "home_conference": "Sun Belt",
-      "home_division": null,
-      "away_code": "LAM",
-      "away_name": "Lamar Cardinals",
-      "away_short": "Lamar",
-      "away_primary": "#000000",
-      "away_secondary": "#ebebeb",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2320.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9221,7 +7932,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_merc_nmsu",
@@ -9240,22 +7952,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MERC+vs+NMSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NMSU",
-      "home_name": "New Mexico State Aggies",
-      "home_short": "New Mexico St",
-      "home_primary": "#7e141b",
-      "home_secondary": "#231f20",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/166.png",
-      "home_conference": "Conference USA",
-      "home_division": null,
-      "away_code": "MERC",
-      "away_name": "Mercyhurst Lakers",
-      "away_short": "Mercyhurst",
-      "away_primary": "#000000",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2385.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9266,7 +7962,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_nau_ariz",
@@ -9285,22 +7982,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=NAU+vs+ARIZ+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ARIZ",
-      "home_name": "Arizona Wildcats",
-      "home_short": "Arizona",
-      "home_primary": "#cc0033",
-      "home_secondary": "#003366",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/12.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "NAU",
-      "away_name": "Northern Arizona Lumberjacks",
-      "away_short": "N Arizona",
-      "away_primary": "#003976",
-      "away_secondary": "#1b3069",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2464.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9311,7 +7992,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_prst_sdsu",
@@ -9330,22 +8012,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=PRST+vs+SDSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "SDSU",
-      "home_name": "San Diego State Aztecs",
-      "home_short": "San Diego St",
-      "home_primary": "#a6192e",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/21.png",
-      "home_conference": "Pac-12",
-      "home_division": null,
-      "away_code": "PRST",
-      "away_name": "Portland State Vikings",
-      "away_short": "Portland St",
-      "away_primary": "#00311e",
-      "away_secondary": "#ebebeb",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2502.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9356,7 +8022,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_morg_asu",
@@ -9375,22 +8042,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MORG+vs+ASU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ASU",
-      "home_name": "Arizona State Sun Devils",
-      "home_short": "Arizona St",
-      "home_primary": "#ffc627",
-      "home_secondary": "#8c1d40",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/9.png",
-      "home_conference": "Big 12",
-      "home_division": null,
-      "away_code": "MORG",
-      "away_name": "Morgan State Bears",
-      "away_short": "Morgan St",
-      "away_primary": "#014786",
-      "away_secondary": "#f47937",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2415.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9401,7 +8052,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_unlv_haw",
@@ -9420,22 +8072,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UNLV+vs+HAW+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "HAW",
-      "home_name": "Hawai'i Rainbow Warriors",
-      "home_short": "Hawai'i",
-      "home_primary": "#005737",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "UNLV",
-      "away_name": "UNLV Rebels",
-      "away_short": "UNLV",
-      "away_primary": "#cf0a2c",
-      "away_secondary": "#cac8c8",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2439.png",
-      "away_conference": "Mountain West",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9446,7 +8082,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_cmu_unm",
@@ -9465,22 +8102,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=CMU+vs+UNM+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "UNM",
-      "home_name": "New Mexico Lobos",
-      "home_short": "New Mexico",
-      "home_primary": "#ba0c2f",
-      "home_secondary": "#a7a8aa",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/167.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "CMU",
-      "away_name": "Central Michigan Chippewas",
-      "away_short": "C Michigan",
-      "away_primary": "#4c0027",
-      "away_secondary": "#fbab18",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2117.png",
-      "away_conference": "MAC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9491,7 +8112,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_mvsu_sac",
@@ -9510,22 +8132,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=MVSU+vs+SAC+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "SAC",
-      "home_name": "Sacramento State Hornets",
-      "home_short": "Sacramento St",
-      "home_primary": "#00573C",
-      "home_secondary": "#cdb97d",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/16.png",
-      "home_conference": "MAC",
-      "home_division": null,
-      "away_code": "MVSU",
-      "away_name": "Mississippi Valley State Delta Devils",
-      "away_short": "Miss Valley St",
-      "away_primary": "#005328",
-      "away_secondary": "#cf2d34",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2400.png",
-      "away_conference": "NCAA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9536,7 +8142,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_ucla_cal",
@@ -9555,22 +8162,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=UCLA+vs+CAL+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "CAL",
-      "home_name": "California Golden Bears",
-      "home_short": "California",
-      "home_primary": "#041e42",
-      "home_secondary": "#ffc72c",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/25.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "UCLA",
-      "away_name": "UCLA Bruins",
-      "away_short": "UCLA",
-      "away_primary": "#2774ae",
-      "away_secondary": "#f2a900",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/26.png",
-      "away_conference": "Big Ten",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9581,7 +8172,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_wku_nev",
@@ -9600,22 +8192,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=WKU+vs+NEV+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "NEV",
-      "home_name": "Nevada Wolf Pack",
-      "home_short": "Nevada",
-      "home_primary": "#041e42",
-      "home_secondary": "#8a8d8f",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2440.png",
-      "home_conference": "Mountain West",
-      "home_division": null,
-      "away_code": "WKU",
-      "away_name": "Western Kentucky Hilltoppers",
-      "away_short": "Western KY",
-      "away_primary": "#e13a3e",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/98.png",
-      "away_conference": "Conference USA",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9626,7 +8202,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:51"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_wsu_wash",
@@ -9645,22 +8222,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=WSU+vs+WASH+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "WASH",
-      "home_name": "Washington Huskies",
-      "home_short": "Washington",
-      "home_primary": "#33006f",
-      "home_secondary": "#e8d3a2",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png",
-      "home_conference": "Big Ten",
-      "home_division": null,
-      "away_code": "WSU",
-      "away_name": "Washington State Cougars",
-      "away_short": "Washington St",
-      "away_primary": "#a60f2d",
-      "away_secondary": "#4d4d4d",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/265.png",
-      "away_conference": "Pac-12",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9671,7 +8232,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_wis_nd",
@@ -9690,22 +8252,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=WIS+vs+ND+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "ND",
-      "home_name": "Notre Dame Fighting Irish",
-      "home_short": "Notre Dame",
-      "home_primary": "#0C2340",
-      "home_secondary": "#C99700",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
-      "home_conference": "FBS Independent",
-      "home_division": null,
-      "away_code": "WIS",
-      "away_name": "Wisconsin Badgers",
-      "away_short": "Wisconsin",
-      "away_primary": "#a00000",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png",
-      "away_conference": "Big Ten",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9716,7 +8262,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_lou_miss",
@@ -9735,22 +8282,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=LOU+vs+MISS+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "MISS",
-      "home_name": "Ole Miss Rebels",
-      "home_short": "Ole Miss",
-      "home_primary": "#CE1126",
-      "home_secondary": "#00205B",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
-      "home_conference": "SEC",
-      "home_division": null,
-      "away_code": "LOU",
-      "away_name": "Louisville Cardinals",
-      "away_short": "Louisville",
-      "away_primary": "#c9001f",
-      "away_secondary": "#ffffff",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9761,7 +8292,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "ncaa_2026_w1_smu_fsu",
@@ -9780,22 +8312,6 @@
       "weather_desc": null,
       "highlight_url": "https://www.youtube.com/results?search_query=SMU+vs+FSU+highlights+2026",
       "created_at": "2026-09-05 23:57:19",
-      "home_code": "FSU",
-      "home_name": "Florida State Seminoles",
-      "home_short": "Florida St",
-      "home_primary": "#782f40",
-      "home_secondary": "#ceb888",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
-      "home_conference": "ACC",
-      "home_division": null,
-      "away_code": "SMU",
-      "away_name": "SMU Mustangs",
-      "away_short": "SMU",
-      "away_primary": "#a80000",
-      "away_secondary": "#0033a1",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
-      "away_conference": "ACC",
-      "away_division": null,
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9806,7 +8322,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:52"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_ne_sea",
@@ -9825,22 +8342,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=NE+vs+SEA+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "SEA",
-      "home_name": "Seattle Seahawks",
-      "home_short": "Seahawks",
-      "home_primary": "#002244",
-      "home_secondary": "#69BE28",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "home_conference": "NFC",
-      "home_division": "West",
-      "away_code": "NE",
-      "away_name": "New England Patriots",
-      "away_short": "Patriots",
-      "away_primary": "#002244",
-      "away_secondary": "#C60C30",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "away_conference": "AFC",
-      "away_division": "East",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9851,7 +8352,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_sf_la",
@@ -9870,22 +8372,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=SF+vs+LAR+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "LAR",
-      "home_name": "Los Angeles Rams",
-      "home_short": "Rams",
-      "home_primary": "#003594",
-      "home_secondary": "#FFA300",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
-      "home_conference": "NFC",
-      "home_division": "West",
-      "away_code": "SF",
-      "away_name": "San Francisco 49ers",
-      "away_short": "49ers",
-      "away_primary": "#AA0000",
-      "away_secondary": "#B3995D",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-      "away_conference": "NFC",
-      "away_division": "West",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9896,7 +8382,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_chi_car",
@@ -9915,22 +8402,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=CHI+vs+CAR+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "CAR",
-      "home_name": "Carolina Panthers",
-      "home_short": "Panthers",
-      "home_primary": "#0085CA",
-      "home_secondary": "#101820",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/car.png",
-      "home_conference": "NFC",
-      "home_division": "South",
-      "away_code": "CHI",
-      "away_name": "Chicago Bears",
-      "away_short": "Bears",
-      "away_primary": "#0B162A",
-      "away_secondary": "#C83803",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
-      "away_conference": "NFC",
-      "away_division": "North",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9941,7 +8412,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_tb_cin",
@@ -9960,22 +8432,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=TB+vs+CIN+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "CIN",
-      "home_name": "Cincinnati Bengals",
-      "home_short": "Bengals",
-      "home_primary": "#FB4F14",
-      "home_secondary": "#000000",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
-      "home_conference": "AFC",
-      "home_division": "North",
-      "away_code": "TB",
-      "away_name": "Tampa Bay Buccaneers",
-      "away_short": "Buccaneers",
-      "away_primary": "#D50A0A",
-      "away_secondary": "#0A0A08",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "away_conference": "NFC",
-      "away_division": "South",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -9986,7 +8442,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_no_det",
@@ -10005,22 +8462,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=NO+vs+DET+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "DET",
-      "home_name": "Detroit Lions",
-      "home_short": "Lions",
-      "home_primary": "#0076B6",
-      "home_secondary": "#B0B7BC",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-      "home_conference": "NFC",
-      "home_division": "North",
-      "away_code": "NO",
-      "away_name": "New Orleans Saints",
-      "away_short": "Saints",
-      "away_primary": "#D3BC8D",
-      "away_secondary": "#101820",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
-      "away_conference": "NFC",
-      "away_division": "South",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10031,7 +8472,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_buf_hou",
@@ -10050,22 +8492,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=BUF+vs+HOU+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "HOU",
-      "home_name": "Houston Texans",
-      "home_short": "Texans",
-      "home_primary": "#03202F",
-      "home_secondary": "#A71930",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-      "home_conference": "AFC",
-      "home_division": "South",
-      "away_code": "BUF",
-      "away_name": "Buffalo Bills",
-      "away_short": "Bills",
-      "away_primary": "#00338D",
-      "away_secondary": "#C60C30",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-      "away_conference": "AFC",
-      "away_division": "East",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10076,7 +8502,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_bal_ind",
@@ -10095,22 +8522,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=BAL+vs+IND+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "IND",
-      "home_name": "Indianapolis Colts",
-      "home_short": "Colts",
-      "home_primary": "#002C5F",
-      "home_secondary": "#A2AAAD",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "home_conference": "AFC",
-      "home_division": "South",
-      "away_code": "BAL",
-      "away_name": "Baltimore Ravens",
-      "away_short": "Ravens",
-      "away_primary": "#241773",
-      "away_secondary": "#9E7C0C",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-      "away_conference": "AFC",
-      "away_division": "North",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10121,7 +8532,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_cle_jax",
@@ -10140,22 +8552,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=CLE+vs+JAX+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "JAX",
-      "home_name": "Jacksonville Jaguars",
-      "home_short": "Jaguars",
-      "home_primary": "#006778",
-      "home_secondary": "#D7A22A",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-      "home_conference": "AFC",
-      "home_division": "South",
-      "away_code": "CLE",
-      "away_name": "Cleveland Browns",
-      "away_short": "Browns",
-      "away_primary": "#311D00",
-      "away_secondary": "#FF3C00",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-      "away_conference": "AFC",
-      "away_division": "North",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10166,7 +8562,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_atl_pit",
@@ -10185,22 +8582,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=ATL+vs+PIT+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "PIT",
-      "home_name": "Pittsburgh Steelers",
-      "home_short": "Steelers",
-      "home_primary": "#FFB612",
-      "home_secondary": "#101820",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-      "home_conference": "AFC",
-      "home_division": "North",
-      "away_code": "ATL",
-      "away_name": "Atlanta Falcons",
-      "away_short": "Falcons",
-      "away_primary": "#A71930",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-      "away_conference": "NFC",
-      "away_division": "South",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10211,7 +8592,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_nyj_ten",
@@ -10230,22 +8612,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=NYJ+vs+TEN+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "TEN",
-      "home_name": "Tennessee Titans",
-      "home_short": "Titans",
-      "home_primary": "#0C2340",
-      "home_secondary": "#4B92DB",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-      "home_conference": "AFC",
-      "home_division": "South",
-      "away_code": "NYJ",
-      "away_name": "New York Jets",
-      "away_short": "Jets",
-      "away_primary": "#125740",
-      "away_secondary": "#FFFFFF",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-      "away_conference": "AFC",
-      "away_division": "East",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10256,7 +8622,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_ari_lac",
@@ -10275,22 +8642,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=ARI+vs+LAC+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "LAC",
-      "home_name": "Los Angeles Chargers",
-      "home_short": "Chargers",
-      "home_primary": "#0080C6",
-      "home_secondary": "#FFC20E",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-      "home_conference": "AFC",
-      "home_division": "West",
-      "away_code": "ARI",
-      "away_name": "Arizona Cardinals",
-      "away_short": "Cardinals",
-      "away_primary": "#97233F",
-      "away_secondary": "#000000",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-      "away_conference": "NFC",
-      "away_division": "West",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10301,7 +8652,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_mia_lv",
@@ -10320,22 +8672,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=MIA+vs+LV+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "LV",
-      "home_name": "Las Vegas Raiders",
-      "home_short": "Raiders",
-      "home_primary": "#000000",
-      "home_secondary": "#A5ACAF",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-      "home_conference": "AFC",
-      "home_division": "West",
-      "away_code": "MIA",
-      "away_name": "Miami Dolphins",
-      "away_short": "Dolphins",
-      "away_primary": "#008E97",
-      "away_secondary": "#FC4C02",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
-      "away_conference": "AFC",
-      "away_division": "East",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10346,7 +8682,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_gb_min",
@@ -10365,22 +8702,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=GB+vs+MIN+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "MIN",
-      "home_name": "Minnesota Vikings",
-      "home_short": "Vikings",
-      "home_primary": "#4F2683",
-      "home_secondary": "#FFC62F",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-      "home_conference": "NFC",
-      "home_division": "North",
-      "away_code": "GB",
-      "away_name": "Green Bay Packers",
-      "away_short": "Packers",
-      "away_primary": "#203731",
-      "away_secondary": "#FFB612",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "away_conference": "NFC",
-      "away_division": "North",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10391,7 +8712,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_was_phi",
@@ -10410,22 +8732,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=WAS+vs+PHI+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "PHI",
-      "home_name": "Philadelphia Eagles",
-      "home_short": "Eagles",
-      "home_primary": "#004C54",
-      "home_secondary": "#A5ACAF",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-      "home_conference": "NFC",
-      "home_division": "East",
-      "away_code": "WAS",
-      "away_name": "Washington Commanders",
-      "away_short": "Commanders",
-      "away_primary": "#5A1414",
-      "away_secondary": "#FFB612",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-      "away_conference": "NFC",
-      "away_division": "East",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10436,7 +8742,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_dal_nyg",
@@ -10455,22 +8762,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=DAL+vs+NYG+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "NYG",
-      "home_name": "New York Giants",
-      "home_short": "Giants",
-      "home_primary": "#0B2265",
-      "home_secondary": "#A71930",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "home_conference": "NFC",
-      "home_division": "East",
-      "away_code": "DAL",
-      "away_name": "Dallas Cowboys",
-      "away_short": "Cowboys",
-      "away_primary": "#003594",
-      "away_secondary": "#041E42",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
-      "away_conference": "NFC",
-      "away_division": "East",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10481,7 +8772,8 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
+      ],
+      "tactical_analysis": null
     },
     {
       "id": "nfl_2026_01_den_kc",
@@ -10500,22 +8792,6 @@
       "weather_desc": "",
       "highlight_url": "https://www.youtube.com/results?search_query=DEN+vs+KC+Week+1+2026+highlights",
       "created_at": "2026-09-05 23:57:59",
-      "home_code": "KC",
-      "home_name": "Kansas City Chiefs",
-      "home_short": "Chiefs",
-      "home_primary": "#E31837",
-      "home_secondary": "#FFB81C",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-      "home_conference": "AFC",
-      "home_division": "West",
-      "away_code": "DEN",
-      "away_name": "Denver Broncos",
-      "away_short": "Broncos",
-      "away_primary": "#FB4F14",
-      "away_secondary": "#002244",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "away_conference": "AFC",
-      "away_division": "West",
       "team_stats": [],
       "key_plays": [],
       "trivia": [
@@ -10526,308 +8802,11 @@
           "fact_text": "Empate histórico entre Local y Visitante (0-0).",
           "created_at": "2026-09-05 23:57:59"
         }
-      ]
-    },
-    {
-      "id": "nfl_2025_22_sea_ne",
-      "league": "nfl",
-      "season": 2025,
-      "season_type": "postseason",
-      "week": 22,
-      "game_date": "2026-02-08T18:30:00Z",
-      "home_team_id": "nfl_NE",
-      "away_team_id": "nfl_SEA",
-      "home_score": 13,
-      "away_score": 29,
-      "status": "final",
-      "venue": "Levi's Stadium",
-      "weather_temp": 67,
-      "weather_desc": "",
-      "highlight_url": "https://www.youtube.com/results?search_query=SEA+vs+NE+Week+22+2025+highlights",
-      "created_at": "2026-09-05 23:58:05",
-      "home_code": "NE",
-      "home_name": "New England Patriots",
-      "home_short": "Patriots",
-      "home_primary": "#002244",
-      "home_secondary": "#C60C30",
-      "home_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "home_conference": "AFC",
-      "home_division": "East",
-      "away_code": "SEA",
-      "away_name": "Seattle Seahawks",
-      "away_short": "Seahawks",
-      "away_primary": "#002244",
-      "away_secondary": "#69BE28",
-      "away_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "away_conference": "NFC",
-      "away_division": "West",
-      "team_stats": [
-        {
-          "id": "stat_nfl_2025_22_sea_ne_ne",
-          "game_id": "nfl_2025_22_sea_ne",
-          "team_id": "nfl_NE",
-          "is_home": 1,
-          "total_yards": 331,
-          "passing_yards": 295,
-          "rushing_yards": 79,
-          "turnovers": 3,
-          "epa_total": -15.33,
-          "epa_pass": -21.48,
-          "epa_rush": 0.75,
-          "third_down_comp": 6,
-          "third_down_att": 16,
-          "red_zone_comp": 1,
-          "red_zone_att": 2,
-          "time_of_possession": "30:00"
-        },
-        {
-          "id": "stat_nfl_2025_22_sea_ne_sea",
-          "game_id": "nfl_2025_22_sea_ne",
-          "team_id": "nfl_SEA",
-          "is_home": 0,
-          "total_yards": 335,
-          "passing_yards": 202,
-          "rushing_yards": 141,
-          "turnovers": 0,
-          "epa_total": 4.57,
-          "epa_pass": 0.42,
-          "epa_rush": -3.94,
-          "third_down_comp": 4,
-          "third_down_att": 17,
-          "red_zone_comp": 1,
-          "red_zone_att": 5,
-          "time_of_possession": "30:00"
-        }
       ],
-      "key_plays": [
-        {
-          "id": "play_nfl_2025_22_sea_ne_1015.0",
-          "game_id": "nfl_2025_22_sea_ne",
-          "play_id": "1015.0",
-          "quarter": 2,
-          "time_remaining": "14:04",
-          "down": 2,
-          "ydstogo": 10,
-          "yardline": "SEA 24",
-          "possession_team_id": "nfl_SEA",
-          "play_type": "run",
-          "description": "(14:04) (Shotgun) 9-K.Walker left end pushed ob at NE 46 for 30 yards (25-M.Jones).",
-          "epa": 2.62,
-          "wp_before": 0.466,
-          "wp_after": 0.389,
-          "wp_swing": 0.077,
-          "is_turnover": 0,
-          "is_touchdown": 0,
-          "highlight_timestamp": null
-        },
-        {
-          "id": "play_nfl_2025_22_sea_ne_3021.0",
-          "game_id": "nfl_2025_22_sea_ne",
-          "play_id": "3021.0",
-          "quarter": 3,
-          "time_remaining": "00:16",
-          "down": 3,
-          "ydstogo": 6,
-          "yardline": "NE 44",
-          "possession_team_id": "nfl_NE",
-          "play_type": "pass",
-          "description": "(:16) (Shotgun) 10-D.Maye sacked at NE 37 for -7 yards (58-D.Hall). FUMBLES (58-D.Hall) [58-D.Hall], RECOVERED by SEA-91-B.Murphy at NE 37.",
-          "epa": -4.37,
-          "wp_before": 0.12,
-          "wp_after": 0.065,
-          "wp_swing": 0.055,
-          "is_turnover": 1,
-          "is_touchdown": 0,
-          "highlight_timestamp": null
-        },
-        {
-          "id": "play_nfl_2025_22_sea_ne_3618.0",
-          "game_id": "nfl_2025_22_sea_ne",
-          "play_id": "3618.0",
-          "quarter": 4,
-          "time_remaining": "08:49",
-          "down": 2,
-          "ydstogo": 3,
-          "yardline": "NE 44",
-          "possession_team_id": "nfl_NE",
-          "play_type": "pass",
-          "description": "(8:49) (No Huddle, Shotgun) 10-D.Maye pass deep middle intended for 18-K.Williams INTERCEPTED by 20-J.Love at SEA 27. 20-J.Love pushed ob at NE 38 for 35 yards (32-T.Henderson).",
-          "epa": -5.44,
-          "wp_before": 0.07,
-          "wp_after": 0.029,
-          "wp_swing": 0.041,
-          "is_turnover": 1,
-          "is_touchdown": 0,
-          "highlight_timestamp": null
-        },
-        {
-          "id": "play_nfl_2025_22_sea_ne_3910.0",
-          "game_id": "nfl_2025_22_sea_ne",
-          "play_id": "3910.0",
-          "quarter": 4,
-          "time_remaining": "04:37",
-          "down": 1,
-          "ydstogo": 10,
-          "yardline": "SEA 44",
-          "possession_team_id": "nfl_NE",
-          "play_type": "pass",
-          "description": "(4:37) (No Huddle, Shotgun) 10-D.Maye pass short middle intended for 9-K.Boutte INTERCEPTED by 7-U.Nwosu (21-D.Witherspoon) [21-D.Witherspoon] at NE 45. 7-U.Nwosu for 45 yards, TOUCHDOWN.",
-          "epa": -9.81,
-          "wp_before": 0.03,
-          "wp_after": 0.001,
-          "wp_swing": 0.03,
-          "is_turnover": 1,
-          "is_touchdown": 1,
-          "highlight_timestamp": null
-        },
-        {
-          "id": "play_nfl_2025_22_sea_ne_3278.0",
-          "game_id": "nfl_2025_22_sea_ne",
-          "play_id": "3278.0",
-          "quarter": 4,
-          "time_remaining": "12:33",
-          "down": 1,
-          "ydstogo": 10,
-          "yardline": "SEA 35",
-          "possession_team_id": "nfl_NE",
-          "play_type": "pass",
-          "description": "(12:33) (No Huddle, Shotgun) 10-D.Maye pass deep left to 13-M.Hollins for 35 yards, TOUCHDOWN.",
-          "epa": 3.38,
-          "wp_before": 0.029,
-          "wp_after": 0.048,
-          "wp_swing": 0.018,
-          "is_turnover": 0,
-          "is_touchdown": 1,
-          "highlight_timestamp": null
-        }
-      ],
-      "trivia": [
-        {
-          "id": "triv_nfl_2025_22_sea_ne_to_nfl_NE",
-          "game_id": "nfl_2025_22_sea_ne",
-          "category": "streak",
-          "fact_text": "Factor entregas de balón: el anfitrión cometió 3 pérdidas que marcaron el rumbo del encuentro.",
-          "created_at": "2026-09-05 23:58:08"
-        }
-      ],
-      "tactical_analysis": {
-        "id": "analysis_nfl_2025_22_sea_ne",
-        "game_id": "nfl_2025_22_sea_ne",
-        "headline": "Defensive Mastery and Tactical Supremacy: A Comprehensive Analysis of Super Bowl LX",
-        "narrative_summary": "The narrative of Super Bowl LX, held on February 8, 2026, at Levi's Stadium, was defined by the relentless defensive architecture of the Seattle Seahawks. In a decisive 29-13 victory over the New England Patriots, Mike Macdonald’s 'Dark Side' defense delivered a historic performance, shutting out the Patriots for three full quarters and stifling an offense that had been prolific throughout the postseason.",
-        "historic_facts": [
-          {
-            "description": "With New England trailing 9-0 at halftime, Super Bowl history held firm; teams that are held scoreless in the first half are now 0-15 all-time in the Super Bowl.",
-            "title": "The Post-Half Curse"
-          },
-          {
-            "description": "The Seahawks became the first Super Bowl champion in NFL history to complete an entire postseason run without committing a single turnover.",
-            "title": "The Perfect Champion"
-          },
-          {
-            "description": "New England was 0-for-2 in red zone opportunities during the competitive phases of the game, forced into 6 punts and 2 turnovers.",
-            "title": "Red Zone Suffocation"
-          },
-          {
-            "description": "Seattle generated a 48.6% pressure rate while rushing 5 or more defenders on only 14% of snaps.",
-            "title": "Pressure Rate Without Blitzing"
-          }
-        ],
-        "award_deep_dives": [
-          {
-            "bullets": [
-              {
-                "detail": "Generated 6 sacks, 21 pressures, 2 forced fumbles, and an interception while holding NE to 218 total yards.",
-                "label": "Statistical Impact"
-              },
-              {
-                "detail": "Held New England to 2-of-13 on third down conversions.",
-                "label": "Third Down Lockdown"
-              }
-            ],
-            "player": "Mike Macdonald's 'Dark Side' Defense",
-            "role": "Defensive MVP (Collective)",
-            "team_code": "SEA"
-          },
-          {
-            "bullets": [
-              {
-                "detail": "Mafe beat the right tackle with an inside spin move to strip the football, leading directly to a Seattle touchdown.",
-                "label": "Strip-Sack Climax"
-              }
-            ],
-            "player": "Boye Mafe & Derick Hall",
-            "role": "Linebacker & Sack of the Game",
-            "team_code": "SEA"
-          },
-          {
-            "bullets": [
-              {
-                "detail": "Targeted 5 times, allowing only 1 catch for 4 yards with 2 pass breakups in man coverage.",
-                "label": "Island Lockdown"
-              }
-            ],
-            "player": "Devon Witherspoon",
-            "role": "Defensive Back of the Game",
-            "team_code": "SEA"
-          },
-          {
-            "bullets": [
-              {
-                "detail": "135 rushing yards on 22 carries (6.1 YPC) with 2 touchdowns, chewing up clock throughout the second half.",
-                "label": "Ground Domination"
-              }
-            ],
-            "player": "Kenneth Walker III",
-            "role": "The Engine (Official Game MVP)",
-            "team_code": "SEA"
-          }
-        ],
-        "tactical_dos_donts": [
-          {
-            "logic": "Confused the young quarterback by showing blitz with 6 men at the line of scrimmage then dropping two into underneath flats.",
-            "strategy": "Disguise Pre-Snap Cover-3 Match with Simulated Creepers",
-            "type": "DO"
-          },
-          {
-            "logic": "Allowed Kenneth Walker cutback lanes against an aggressive front, racking up 135 rushing yards.",
-            "strategy": "Establish Outside Zone Stretch to Tire Opposing Linebackers",
-            "type": "DO"
-          },
-          {
-            "logic": "Patriots surrendered 4 sacks on 7 play-action attempts due to rapid edge penetration by Seattle.",
-            "strategy": "Call Slow-Developing Play-Action in Obvious Pass Situations",
-            "type": "DONT"
-          },
-          {
-            "logic": "Resulted in 2 pass breakups and an incomplete 4th-down attempt.",
-            "strategy": "Challenge Devon Witherspoon on Boundary Fades Without Leverage",
-            "type": "DONT"
-          }
-        ],
-        "created_at": "2026-09-05 22:55:06"
-      }
+      "tactical_analysis": null
     }
   ],
   "awards": [
-    {
-      "id": "awd_2026_w1_ncaa_do",
-      "league": "ncaa",
-      "season": 2026,
-      "week": 1,
-      "category": "DO",
-      "candidate_name": "Jeremiyah Love (RB, ND)",
-      "team_id": "ncaa_ND",
-      "stat_summary": "DO: Atacar el centro de la línea defensiva con acarreos norte-sur con menos de 2 minutos (+4.8 EPA).",
-      "metric_value": 0.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Jeremiyah+Love+21+yard+TD+Kyle+Field",
-      "rank": 1,
-      "created_at": "2026-09-05 23:25:04",
-      "team_name": "Notre Dame Fighting Irish",
-      "team_short": "Notre Dame",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
-      "team_primary": "#0C2340"
-    },
     {
       "id": "award_ncaa_2026_w1_do_1",
       "league": "ncaa",
@@ -10840,11 +8819,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 1,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Duke Blue Devils",
-      "team_short": "Duke",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "team_primary": "#00539b"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_do_2",
@@ -10858,11 +8833,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 2,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Duke Blue Devils",
-      "team_short": "Duke",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "team_primary": "#00539b"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_do_3",
@@ -10876,29 +8847,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 3,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Tulane Green Wave",
-      "team_short": "Tulane",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2655.png",
-      "team_primary": "#006747"
-    },
-    {
-      "id": "awd_2026_w1_ncaa_dont",
-      "league": "ncaa",
-      "season": 2026,
-      "week": 1,
-      "category": "DONT",
-      "candidate_name": "Cade Klubnik & Dabo Swinney (CLEM)",
-      "team_id": "ncaa_CLEM",
-      "stat_summary": "DON'T: Lanzar en pase estático a la ranura sin lectura de safety contra la trampa match de Kirby Smart.",
-      "metric_value": 0.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Georgia+defense+stops+Clemson+Aflac",
-      "rank": 1,
-      "created_at": "2026-09-05 23:25:04",
-      "team_name": "Clemson Tigers",
-      "team_short": "Clemson",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png",
-      "team_primary": "#F56600"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_dont_1",
@@ -10912,11 +8861,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 1,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Oregon Ducks",
-      "team_short": "Oregon",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
-      "team_primary": "#154734"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_dont_2",
@@ -10930,11 +8875,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 2,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Boise State Broncos",
-      "team_short": "Boise St",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
-      "team_primary": "#0033a0"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_dont_3",
@@ -10948,83 +8889,133 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 3,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Boise State Broncos",
-      "team_short": "Boise St",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
-      "team_primary": "#0033a0"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
-      "id": "awd_2026_w1_ncaa_dpow",
+      "id": "award_ncaa_2026_w1_dpow_1",
       "league": "ncaa",
       "season": 2026,
       "week": 1,
       "category": "DPOW",
-      "candidate_name": "Malaki Starks (S, UGA)",
-      "team_id": "ncaa_UGA",
-      "stat_summary": "Intercepción acrobática de espaldas, cero pases permitidos en su zona y asfixia total al ataque de Clemson.",
-      "metric_value": 0.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Malaki+Starks+interception+Clemson+Georgia",
+      "candidate_name": "Defensa South Carolina Gamecocks",
+      "team_id": "ncaa_SC",
+      "stat_summary": "2 INT, 4.0 Sacks, 18 Tackles",
+      "metric_value": 69.2,
+      "clip_url": "https://www.youtube.com/results?search_query=Defensa+South+Carolina+Gamecocks+SC+defensive+plays",
       "rank": 1,
-      "created_at": "2026-09-05 23:25:04",
-      "team_name": "Georgia Bulldogs",
-      "team_short": "Georgia",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
-      "team_primary": "#BA0C2F"
+      "created_at": "2026-09-07 04:02:23"
     },
     {
-      "id": "awd_2026_w1_ncaa_mvp",
+      "id": "award_ncaa_2026_w1_dpow_2",
+      "league": "ncaa",
+      "season": 2026,
+      "week": 1,
+      "category": "DPOW",
+      "candidate_name": "Defensa Oklahoma Sooners",
+      "team_id": "ncaa_OU",
+      "stat_summary": "2 INT, 4.0 Sacks, 18 Tackles",
+      "metric_value": 66.8,
+      "clip_url": "https://www.youtube.com/results?search_query=Defensa+Oklahoma+Sooners+OU+defensive+plays",
+      "rank": 2,
+      "created_at": "2026-09-07 04:02:23"
+    },
+    {
+      "id": "award_ncaa_2026_w1_dpow_3",
+      "league": "ncaa",
+      "season": 2026,
+      "week": 1,
+      "category": "DPOW",
+      "candidate_name": "Defensa UCF Knights",
+      "team_id": "ncaa_UCF",
+      "stat_summary": "1 INT, 4.0 Sacks, 18 Tackles",
+      "metric_value": 65.2,
+      "clip_url": "https://www.youtube.com/results?search_query=Defensa+UCF+Knights+UCF+defensive+plays",
+      "rank": 3,
+      "created_at": "2026-09-07 04:02:23"
+    },
+    {
+      "id": "award_ncaa_2026_w1_mvp_1",
       "league": "ncaa",
       "season": 2026,
       "week": 1,
       "category": "MVP",
-      "candidate_name": "Carson Beck (QB, UGA)",
-      "team_id": "ncaa_UGA",
-      "stat_summary": "278 yardas, 2 TDs, 0 INTs y un demoledor 28-3 en la segunda mitad para aplastar a Clemson.",
-      "metric_value": 0.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Carson+Beck+highlights+vs+Clemson+2026",
+      "candidate_name": "C. Creel",
+      "team_id": "ncaa_JVST",
+      "stat_summary": "Mayor impacto global neto: +7.5 EPA",
+      "metric_value": 7.5,
+      "clip_url": "https://www.youtube.com/results?search_query=C.+Creel+JVST+mvp+performance",
       "rank": 1,
-      "created_at": "2026-09-05 23:25:04",
-      "team_name": "Georgia Bulldogs",
-      "team_short": "Georgia",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
-      "team_primary": "#BA0C2F"
+      "created_at": "2026-09-07 04:02:23"
     },
     {
-      "id": "awd_2026_w1_ncaa_opow",
+      "id": "award_ncaa_2026_w1_mvp_2",
+      "league": "ncaa",
+      "season": 2026,
+      "week": 1,
+      "category": "MVP",
+      "candidate_name": "Defensa UCF Knights",
+      "team_id": "ncaa_UCF",
+      "stat_summary": "Mayor impacto global neto: +6.7 EPA",
+      "metric_value": 6.7,
+      "clip_url": "https://www.youtube.com/results?search_query=Defensa+UCF+Knights+UCF+mvp+performance",
+      "rank": 2,
+      "created_at": "2026-09-07 04:02:23"
+    },
+    {
+      "id": "award_ncaa_2026_w1_mvp_3",
+      "league": "ncaa",
+      "season": 2026,
+      "week": 1,
+      "category": "MVP",
+      "candidate_name": "Defensa Syracuse Orange",
+      "team_id": "ncaa_SYR",
+      "stat_summary": "Mayor impacto global neto: +6.3 EPA",
+      "metric_value": 6.3,
+      "clip_url": "https://www.youtube.com/results?search_query=Defensa+Syracuse+Orange+SYR+mvp+performance",
+      "rank": 3,
+      "created_at": "2026-09-07 04:02:23"
+    },
+    {
+      "id": "award_ncaa_2026_w1_opow_1",
       "league": "ncaa",
       "season": 2026,
       "week": 1,
       "category": "OPOW",
-      "candidate_name": "Quinn Ewers (QB, TEX)",
-      "team_id": "ncaa_TEX",
-      "stat_summary": "246 yardas, 3 TDs, 62.5% de éxito en 3ra oportunidad conquistando The Big House de Michigan.",
-      "metric_value": 0.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Quinn+Ewers+highlights+vs+Michigan+Big+House",
+      "candidate_name": "C. Creel",
+      "team_id": "ncaa_JVST",
+      "stat_summary": "3 TD pase | +7.5 EPA",
+      "metric_value": 7.5,
+      "clip_url": "https://www.youtube.com/results?search_query=C.+Creel+JVST+week+highlights",
       "rank": 1,
-      "created_at": "2026-09-05 23:25:04",
-      "team_name": "Texas Longhorns",
-      "team_short": "Texas",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png",
-      "team_primary": "#BF5700"
+      "created_at": "2026-09-07 04:02:23"
     },
     {
-      "id": "awd_2026_w1_ncaa_st",
+      "id": "award_ncaa_2026_w1_opow_2",
       "league": "ncaa",
       "season": 2026,
       "week": 1,
-      "category": "SPECIAL_TEAMS",
-      "candidate_name": "Mitch Jeter (K, ND)",
-      "team_id": "ncaa_ND",
-      "stat_summary": "3 de 3 en goles de campo, incluyendo patadas de 46 y 42 yardas bajo el ensordecedor ruido de Kyle Field.",
-      "metric_value": 0.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Mitch+Jeter+field+goals+Notre+Dame+Texas+AM",
-      "rank": 1,
-      "created_at": "2026-09-05 23:25:04",
-      "team_name": "Notre Dame Fighting Irish",
-      "team_short": "Notre Dame",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
-      "team_primary": "#0C2340"
+      "category": "OPOW",
+      "candidate_name": "S. Robinson",
+      "team_id": "ncaa_USM",
+      "stat_summary": "5 yds corrida, 2 TD corrida | +5.0 EPA",
+      "metric_value": 5.0,
+      "clip_url": "https://www.youtube.com/results?search_query=S.+Robinson+USM+week+highlights",
+      "rank": 2,
+      "created_at": "2026-09-07 04:02:23"
+    },
+    {
+      "id": "award_ncaa_2026_w1_opow_3",
+      "league": "ncaa",
+      "season": 2026,
+      "week": 1,
+      "category": "OPOW",
+      "candidate_name": "M. Madsen",
+      "team_id": "ncaa_BOIS",
+      "stat_summary": "2 TD pase | +5.0 EPA",
+      "metric_value": 5.0,
+      "clip_url": "https://www.youtube.com/results?search_query=M.+Madsen+BOIS+week+highlights",
+      "rank": 3,
+      "created_at": "2026-09-07 04:02:23"
     },
     {
       "id": "award_ncaa_2026_w1_special_teams_1",
@@ -11034,15 +9025,11 @@
       "category": "SPECIAL_TEAMS",
       "candidate_name": "N. Sheppard run for 9 yds, for a TD (C. Salas KICK)...",
       "team_id": "ncaa_DUKE",
-      "stat_summary": "Impacto EPA: 2.5 | Q1 5:07",
+      "stat_summary": "Impacto EPA: 2.5 | Q1 12:14",
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 1,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Duke Blue Devils",
-      "team_short": "Duke",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "team_primary": "#00539b"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_special_teams_2",
@@ -11052,15 +9039,11 @@
       "category": "SPECIAL_TEAMS",
       "candidate_name": "N. Sheppard run for 14 yds, for a TD (C. Salas KICK)...",
       "team_id": "ncaa_DUKE",
-      "stat_summary": "Impacto EPA: 2.5 | Q4 6:44",
+      "stat_summary": "Impacto EPA: 2.5 | Q1 2:22",
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 2,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Duke Blue Devils",
-      "team_short": "Duke",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "team_primary": "#00539b"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_special_teams_3",
@@ -11070,15 +9053,11 @@
       "category": "SPECIAL_TEAMS",
       "candidate_name": "G. Garcia run for 2 yds, for a TD (E. Kiely KICK)...",
       "team_id": "ncaa_CIT",
-      "stat_summary": "Impacto EPA: 2.5 | Q1 7:23",
+      "stat_summary": "Impacto EPA: 2.5 | Q1 2:29",
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 3,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "The Citadel Bulldogs",
-      "team_short": "The Citadel",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2643.png",
-      "team_primary": "#7badd3"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_td_of_week_1",
@@ -11092,11 +9071,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 1,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Duke Blue Devils",
-      "team_short": "Duke",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "team_primary": "#00539b"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_td_of_week_2",
@@ -11106,15 +9081,11 @@
       "category": "TD_OF_WEEK",
       "candidate_name": "N. Sheppard run for 14 yds, for a TD (C. Salas KICK)...",
       "team_id": "ncaa_DUKE",
-      "stat_summary": "+2.5 EPA | WP Swing: 15.0% | Q4",
+      "stat_summary": "+2.5 EPA | WP Swing: 15.0% | Q1",
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 2,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "Duke Blue Devils",
-      "team_short": "Duke",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
-      "team_primary": "#00539b"
+      "created_at": "2026-09-05 23:57:51"
     },
     {
       "id": "award_ncaa_2026_w1_td_of_week_3",
@@ -11128,407 +9099,7 @@
       "metric_value": 2.5,
       "clip_url": "https://youtube.com",
       "rank": 3,
-      "created_at": "2026-09-05 23:57:51",
-      "team_name": "The Citadel Bulldogs",
-      "team_short": "The Citadel",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2643.png",
-      "team_primary": "#7badd3"
-    },
-    {
-      "id": "award_nfl_2025_w22_do_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DO",
-      "candidate_name": "(12:33) (No Huddle, Shotgun) 10-D.Maye pass deep left to 13-...",
-      "team_id": "nfl_NE",
-      "stat_summary": "Jugada Maestra (+3.38 EPA) | SEA 35",
-      "metric_value": 3.38,
-      "clip_url": "https://youtube.com",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_do_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DO",
-      "candidate_name": "(14:04) (Shotgun) 9-K.Walker left end pushed ob at NE 46 for...",
-      "team_id": "nfl_SEA",
-      "stat_summary": "Jugada Maestra (+2.62 EPA) | SEA 24",
-      "metric_value": 2.62,
-      "clip_url": "https://youtube.com",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_do_3",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DO",
-      "candidate_name": "(:16) (Shotgun) 10-D.Maye sacked at NE 37 for -7 yards (58-D...",
-      "team_id": "nfl_NE",
-      "stat_summary": "Jugada Maestra (+-4.37 EPA) | NE 44",
-      "metric_value": -4.37,
-      "clip_url": "https://youtube.com",
-      "rank": 3,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_dont_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DONT",
-      "candidate_name": "(4:37) (No Huddle, Shotgun) 10-D.Maye pass short middle inte...",
-      "team_id": "nfl_NE",
-      "stat_summary": "Error Garrafal (-9.81 EPA) | SEA 44",
-      "metric_value": -9.81,
-      "clip_url": "https://youtube.com",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_dont_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DONT",
-      "candidate_name": "(8:49) (No Huddle, Shotgun) 10-D.Maye pass deep middle inten...",
-      "team_id": "nfl_NE",
-      "stat_summary": "Error Garrafal (-5.44 EPA) | NE 44",
-      "metric_value": -5.44,
-      "clip_url": "https://youtube.com",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_dont_3",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DONT",
-      "candidate_name": "(:16) (Shotgun) 10-D.Maye sacked at NE 37 for -7 yards (58-D...",
-      "team_id": "nfl_NE",
-      "stat_summary": "Error Garrafal (-4.37 EPA) | NE 44",
-      "metric_value": -4.37,
-      "clip_url": "https://youtube.com",
-      "rank": 3,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "mock_award_sb_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DPOW",
-      "candidate_name": "Defensa 'Dark Side' de Mike Macdonald (Seattle Seahawks)",
-      "team_id": "nfl_SEA",
-      "stat_summary": "6 sacks, 21 presiones, blanqueada durante 3 cuartos completos (19-0)",
-      "metric_value": 6.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Mike+Macdonald+Dark+Side+defense",
-      "rank": 1,
-      "created_at": "2026-09-05 22:55:05",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_dpow_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DPOW",
-      "candidate_name": "Julian Love",
-      "team_id": "nfl_SEA",
-      "stat_summary": "1 INT, 2 Tackles",
-      "metric_value": 17.6,
-      "clip_url": "https://www.youtube.com/results?search_query=Julian+Love+SEA+defensive+plays",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_dpow_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DPOW",
-      "candidate_name": "Uchenna Nwosu",
-      "team_id": "nfl_SEA",
-      "stat_summary": "1 INT",
-      "metric_value": 16.0,
-      "clip_url": "https://www.youtube.com/results?search_query=Uchenna+Nwosu+SEA+defensive+plays",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_dpow_3",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "DPOW",
-      "candidate_name": "Derick Hall",
-      "team_id": "nfl_SEA",
-      "stat_summary": "2.0 Sacks, 2 Tackles",
-      "metric_value": 15.6,
-      "clip_url": "https://www.youtube.com/results?search_query=Derick+Hall+SEA+defensive+plays",
-      "rank": 3,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_int_of_week_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "INT_OF_WEEK",
-      "candidate_name": "(:16) (Shotgun) 10-D.Maye sacked at NE 37 for -7 yards (58-D...",
-      "team_id": "nfl_NE",
-      "stat_summary": "WP Swing: +5.5% | 00:16 Q3",
-      "metric_value": 0.055,
-      "clip_url": "https://youtube.com",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_int_of_week_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "INT_OF_WEEK",
-      "candidate_name": "(8:49) (No Huddle, Shotgun) 10-D.Maye pass deep middle inten...",
-      "team_id": "nfl_NE",
-      "stat_summary": "WP Swing: +4.1% | 08:49 Q4",
-      "metric_value": 0.041,
-      "clip_url": "https://youtube.com",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_int_of_week_3",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "INT_OF_WEEK",
-      "candidate_name": "(4:37) (No Huddle, Shotgun) 10-D.Maye pass short middle inte...",
-      "team_id": "nfl_NE",
-      "stat_summary": "WP Swing: +3.0% | 04:37 Q4",
-      "metric_value": 0.03,
-      "clip_url": "https://youtube.com",
-      "rank": 3,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "mock_award_sb_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "MVP",
-      "candidate_name": "Kenneth Walker III (Seattle Seahawks)",
-      "team_id": "nfl_SEA",
-      "stat_summary": "135 yardas terrestres, 2 Touchdowns (6.1 YPC) | MVP de Super Bowl LX",
-      "metric_value": 19.5,
-      "clip_url": "https://www.youtube.com/results?search_query=Kenneth+Walker+Super+Bowl+LX",
-      "rank": 1,
-      "created_at": "2026-09-05 22:55:05",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_mvp_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "MVP",
-      "candidate_name": "AJ Barner",
-      "team_id": "nfl_SEA",
-      "stat_summary": "Mayor impacto global neto: +6.83 EPA",
-      "metric_value": 6.83,
-      "clip_url": "https://www.youtube.com/results?search_query=AJ+Barner+SEA+mvp+performance",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_mvp_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "MVP",
-      "candidate_name": "Mack Hollins",
-      "team_id": "nfl_NE",
-      "stat_summary": "Mayor impacto global neto: +3.3 EPA",
-      "metric_value": 3.3,
-      "clip_url": "https://www.youtube.com/results?search_query=Mack+Hollins+NE+mvp+performance",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_mvp_3",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "MVP",
-      "candidate_name": "Rhamondre Stevenson",
-      "team_id": "nfl_NE",
-      "stat_summary": "Mayor impacto global neto: +3.28 EPA",
-      "metric_value": 3.28,
-      "clip_url": "https://www.youtube.com/results?search_query=Rhamondre+Stevenson+NE+mvp+performance",
-      "rank": 3,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_opow_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "OPOW",
-      "candidate_name": "AJ Barner",
-      "team_id": "nfl_SEA",
-      "stat_summary": "54 yds rec, 1 TD rec | +6.83 EPA",
-      "metric_value": 6.83,
-      "clip_url": "https://www.youtube.com/results?search_query=AJ+Barner+SEA+week+highlights",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "Seattle Seahawks",
-      "team_short": "Seahawks",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_opow_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "OPOW",
-      "candidate_name": "Mack Hollins",
-      "team_id": "nfl_NE",
-      "stat_summary": "78 yds rec, 1 TD rec | +3.3 EPA",
-      "metric_value": 3.3,
-      "clip_url": "https://www.youtube.com/results?search_query=Mack+Hollins+NE+week+highlights",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_opow_3",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "OPOW",
-      "candidate_name": "Rhamondre Stevenson",
-      "team_id": "nfl_NE",
-      "stat_summary": "23 yds corrida, 40 yds rec, 1 TD rec | +3.28 EPA",
-      "metric_value": 3.28,
-      "clip_url": "https://www.youtube.com/results?search_query=Rhamondre+Stevenson+NE+week+highlights",
-      "rank": 3,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_td_of_week_1",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "TD_OF_WEEK",
-      "candidate_name": "(12:33) (No Huddle, Shotgun) 10-D.Maye pass deep left to 13-...",
-      "team_id": "nfl_NE",
-      "stat_summary": "+3.38 EPA | WP Swing: 1.8% | Q4",
-      "metric_value": 3.38,
-      "clip_url": "https://youtube.com",
-      "rank": 1,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
-    },
-    {
-      "id": "award_nfl_2025_w22_td_of_week_2",
-      "league": "nfl",
-      "season": 2025,
-      "week": 22,
-      "category": "TD_OF_WEEK",
-      "candidate_name": "(4:37) (No Huddle, Shotgun) 10-D.Maye pass short middle inte...",
-      "team_id": "nfl_NE",
-      "stat_summary": "+-9.81 EPA | WP Swing: 3.0% | Q4",
-      "metric_value": -9.81,
-      "clip_url": "https://youtube.com",
-      "rank": 2,
-      "created_at": "2026-09-05 23:58:08",
-      "team_name": "New England Patriots",
-      "team_short": "Patriots",
-      "team_logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_primary": "#002244"
+      "created_at": "2026-09-05 23:57:51"
     }
   ]
 }
