@@ -1,4 +1,4 @@
-api/
+# Vercel Ignore Rules
 ingestion/
 processing/
 security/

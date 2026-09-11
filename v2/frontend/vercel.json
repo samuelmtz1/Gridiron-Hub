@@ -1,12 +1,5 @@
 {
-  "outputDirectory": "v2/frontend",
   "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/api/v2/auth/login",
-      "destination": "/api/v2/auth/login.js"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
