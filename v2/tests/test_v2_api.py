@@ -109,3 +109,23 @@ def test_login_flow_and_authenticated_games_query(client, monkeypatch):
     verify_res = c.get("/api/v2/auth/verify", headers=headers)
     assert verify_res.status_code == 200
     assert verify_res.json()["user"] == "test_sam"
+
+
+def test_frontend_static_serving(client):
+    c, _ = client
+    # When browser requests root with Accept: text/html
+    res = c.get("/", headers={"Accept": "text/html,application/xhtml+xml"})
+    assert res.status_code == 200
+    assert "Gridiron Hub 2.0" in res.text
+    assert "pitch-black" in res.text or "lookbook" in res.text or "gridiron" in res.text.lower()
+
+
+def test_vercel_serverless_login_file():
+    from pathlib import Path
+    login_js = Path(__file__).resolve().parent.parent.parent / "api" / "v2" / "auth" / "login.js"
+    assert login_js.exists(), "api/v2/auth/login.js debe existir para el runtime de Vercel"
+    content = login_js.read_text(encoding="utf-8")
+    assert "GRIDIRON_USERS_JSON" in content
+    assert "crypto.pbkdf2Sync" in content
+    assert "crypto.timingSafeEqual" in content
+

@@ -11,3 +11,4 @@ El usuario requiere preservar la versión 1.0 como respaldo de contingencia inmu
 ## Consecuencias
 - **Positivas:** Cero riesgo de regresión para la versión operativa. Posibilidad de alternar entre versiones instantáneamente.
 - **Compromisos:** Duplicación intencional y aislada de los módulos base en `v2/`, justificada por la necesidad de contingencia.
+

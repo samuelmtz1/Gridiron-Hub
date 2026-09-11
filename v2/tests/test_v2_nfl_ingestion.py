@@ -112,3 +112,4 @@ def test_event_id_retention_in_db(test_db):
     assert retrieved["home_division"] == "West"
     assert retrieved["away_conference"] == "AFC"
     assert retrieved["away_division"] == "East"
+

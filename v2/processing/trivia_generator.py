@@ -75,3 +75,4 @@ def generate_game_trivia(game: Dict[str, Any]) -> List[Dict[str, Any]]:
         })
 
     return trivia
+

@@ -102,3 +102,4 @@ def ingest_ncaa_week(
         logger.info(f"Guardados {len(games_to_save)} partidos de NCAA.")
 
     return {"games_count": len(games_to_save), "status": "success"}
+

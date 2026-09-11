@@ -167,3 +167,4 @@ gridiron-hub/
 3. **Producción de YouTube:**
    * Navegan a la pestaña "Premios de la Semana" para revisar los candidatos automáticos a OPOW, DPOW y MVP.
    * Generan el guion con teleprompter interactivo para la grabación del video semanal.
+

@@ -97,3 +97,4 @@ def test_env_json_user_support(monkeypatch, tmp_path):
 
     assert authenticate_user("cloud_sam", "CloudSecret2026!", db_path=empty_db) is True
     assert authenticate_user("cloud_sam", "WrongPassword", db_path=empty_db) is False
+

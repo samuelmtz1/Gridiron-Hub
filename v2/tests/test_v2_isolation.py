@@ -17,3 +17,4 @@ def test_sensitive_files_are_gitignored():
     """Verifies that all secret stores and local databases are listed in .gitignore."""
     missing = verify_gitignore(GITIGNORE_PATH)
     assert len(missing) == 0, f"Archivos sensibles faltantes en .gitignore: {missing}"
+

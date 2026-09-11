@@ -134,3 +134,4 @@ CREATE TABLE IF NOT EXISTS tactical_analysis (
 );
 
 CREATE INDEX IF NOT EXISTS idx_tactical_game ON tactical_analysis(game_id);
+

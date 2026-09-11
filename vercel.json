@@ -1,5 +1,5 @@
 {
-  "outputDirectory": "frontend",
+  "outputDirectory": "v2/frontend",
   "cleanUrls": true,
   "headers": [
     {

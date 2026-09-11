@@ -70,3 +70,4 @@ def verify_gitignore(gitignore_path: Path) -> List[str]:
             missing.append(s)
 
     return missing
+

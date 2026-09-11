@@ -14,3 +14,4 @@ __all__ = [
     "rank_top_plays",
     "generate_game_trivia",
 ]
+

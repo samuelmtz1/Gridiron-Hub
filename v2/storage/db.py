@@ -394,3 +394,4 @@ def get_tactical_analysis(game_id: str, custom_path: Optional[Union[str, Path]] 
         cursor = conn.execute("SELECT * FROM tactical_analysis WHERE game_id = ?", (game_id,))
         row = cursor.fetchone()
         return dict(row) if row else None
+

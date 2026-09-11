@@ -45,8 +45,25 @@ def cmd_add_user(args: argparse.Namespace) -> None:
 
     pwhash = hash_password(password)
     save_user(username, pwhash, role=args.role)
+    sync_frontend_auth()
     print(f"✅ Usuario '{username}' registrado exitosamente en {AUTH_DB_PATH} (Rol: {args.role}).")
     print("🔒 La contraseña fue hasheada con PBKDF2 (100,000 iteraciones) y está protegida contra fugas a Git.")
+    print(f"📁 Credenciales locales sincronizadas para el frontend en {FRONTEND_AUTH_FILE.name} (ignorado por Git).")
+
+
+FRONTEND_AUTH_FILE = Path(__file__).resolve().parent.parent / "frontend" / "auth_users.json"
+
+
+def sync_frontend_auth() -> None:
+    """Exports user hashes to gitignored auth_users.json for seamless client-side verification."""
+    if not AUTH_DB_PATH.exists():
+        return
+    with sqlite3.connect(AUTH_DB_PATH) as conn:
+        rows = conn.execute("SELECT username, password_hash, role FROM team_users").fetchall()
+    users_data = [{"username": r[0], "password_hash": r[1], "role": r[2]} for r in rows]
+    FRONTEND_AUTH_FILE.parent.mkdir(parents=True, exist_ok=True)
+    FRONTEND_AUTH_FILE.write_text(json.dumps(users_data, indent=2), encoding="utf-8")
+
 
 
 def cmd_list_users(args: argparse.Namespace) -> None:
@@ -74,9 +91,15 @@ def cmd_delete_user(args: argparse.Namespace) -> None:
         cursor = conn.execute("DELETE FROM team_users WHERE username = ?", (username,))
         conn.commit()
         if cursor.rowcount > 0:
+            sync_frontend_auth()
             print(f"✅ Usuario '{username}' eliminado correctamente.")
         else:
             print(f"⚠️ El usuario '{username}' no fue encontrado.")
+
+
+def cmd_sync_frontend(args: argparse.Namespace) -> None:
+    sync_frontend_auth()
+    print(f"✅ Credenciales sincronizadas con {FRONTEND_AUTH_FILE}.")
 
 
 def cmd_generate_secret(args: argparse.Namespace) -> None:
@@ -120,6 +143,10 @@ def main() -> None:
     p_del.add_argument("username", help="Nombre del usuario a eliminar")
     p_del.set_defaults(func=cmd_delete_user)
 
+    # sync-frontend
+    p_sync = subparsers.add_parser("sync-frontend", help="Sincroniza usuarios locales con el frontend")
+    p_sync.set_defaults(func=cmd_sync_frontend)
+
     # generate-secret
     p_sec = subparsers.add_parser("generate-secret", help="Genera una clave criptográfica para TEAM_SHARED_SECRET")
     p_sec.set_defaults(func=cmd_generate_secret)
@@ -134,3 +161,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

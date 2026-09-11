@@ -12,3 +12,4 @@ En la versión 1.0 existía un botón de autocompletado y credenciales predeterm
 ## Consecuencias
 - **Positivas:** Seguridad de nivel industrial. Ninguna contraseña o hash se expone a GitHub o al público.
 - **Compromisos:** El administrador (Sam) debe inicializar al menos una cuenta de usuario para poder acceder al sistema.
+

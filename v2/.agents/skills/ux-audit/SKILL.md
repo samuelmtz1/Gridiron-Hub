@@ -21,3 +21,4 @@ Auditar la interfaz de Gridiron Hub 2.0 para garantizar que cumple con el Lookbo
 3. **Ficha del Partido (Drawer):**
    - El boxscore debe estructurarse estrictamente en 3 columnas: Métrica, Visita, Local.
    - Rendimiento instantáneo de apertura y cierre mediante delegación de eventos y transiciones aceleradas por hardware.
+

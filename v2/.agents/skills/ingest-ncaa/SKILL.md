@@ -21,3 +21,4 @@ Sincronizar partidos de NCAA Football Bowl Subdivision (FBS), agrupando los equi
 2. Enlazar `event.id` a cada partido.
 3. Almacenar equipos y conferencias validadas.
 4. Generar candidatos a premios semanales (Heisman Watch, OPOW, DPOW).
+

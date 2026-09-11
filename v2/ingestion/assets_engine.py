@@ -111,3 +111,4 @@ def get_team_by_code(code: str, league: str = "nfl") -> Optional[Dict[str, Any]]
         if t["code"].upper() == clean or t["id"].upper().endswith(f"_{clean}"):
             return t
     return None
+

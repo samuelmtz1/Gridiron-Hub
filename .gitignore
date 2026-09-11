@@ -32,7 +32,11 @@ v2/storage/*.db
 v2/storage/*.sqlite3
 *.db
 *.sqlite3
+*.db-shm
+*.db-wal
 auth.db
+auth_users.json
+v2/frontend/auth_users.json
 data/
 *.parquet
 NFLREADPY_CACHE/

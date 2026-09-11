@@ -82,3 +82,4 @@ def test_ncaa_conference_filtering():
     assert matches_division_logic(sec_game, "Big Ten") is False
     assert matches_division_logic(big10_game, "Big Ten") is True
     assert matches_division_logic(big10_game, "SEC") is False
+

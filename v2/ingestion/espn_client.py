@@ -295,3 +295,4 @@ def fetch_espn_game_summary(
         logger.warning(f"Error al descargar resumen ESPN ({event_id}): {exc}")
 
     return {}
+

@@ -20,3 +20,4 @@ Verificar que ningún secreto, token, contraseña en texto claro ni archivo sens
    - Confirmar 100,000 iteraciones en PBKDF2-HMAC-SHA256 con sal aleatoria de 16 bytes.
 4. **Verificación de Tokens:**
    - Validar que los tokens de sesión expiren en el plazo establecido y utilicen firmas HMAC-SHA256 con `hmac.compare_digest`.
+

@@ -8,9 +8,14 @@
  * Cost: $0 perpetual.
  */
 
-const API_BASE_URL = window.location.origin.includes("localhost") || window.location.origin.includes("127.0.0.1")
-  ? "http://127.0.0.1:8000"
-  : window.location.origin;
+const API_BASE_URL = (
+  !window.location.origin ||
+  window.location.origin === "null" ||
+  window.location.protocol === "file:" ||
+  window.location.port === "5500" ||
+  window.location.port === "3000" ||
+  window.location.port === "5173"
+) ? "http://127.0.0.1:8000" : window.location.origin;
 
 // Application Reactive State
 const state = {
@@ -85,6 +90,44 @@ function checkAuthSession() {
   }
 }
 
+async function verifyPBKDF2Client(password, storedHash) {
+  if (!storedHash || !storedHash.includes("$") || !window.crypto || !window.crypto.subtle) {
+    return false;
+  }
+  try {
+    const [saltB64, keyB64] = storedHash.split("$");
+    const saltBin = Uint8Array.from(atob(saltB64), c => c.charCodeAt(0));
+    const enc = new TextEncoder();
+    const keyMaterial = await window.crypto.subtle.importKey(
+      "raw",
+      enc.encode(password),
+      { name: "PBKDF2" },
+      false,
+      ["deriveBits"]
+    );
+    const derivedBits = await window.crypto.subtle.deriveBits(
+      {
+        name: "PBKDF2",
+        salt: saltBin,
+        iterations: 100000,
+        hash: "SHA-256",
+      },
+      keyMaterial,
+      256
+    );
+    const derivedBytes = new Uint8Array(derivedBits);
+    let binary = "";
+    for (let i = 0; i < derivedBytes.byteLength; i++) {
+      binary += String.fromCharCode(derivedBytes[i]);
+    }
+    const derivedB64 = btoa(binary);
+    return derivedB64 === keyB64;
+  } catch (e) {
+    console.error("Error en WebCrypto PBKDF2:", e);
+    return false;
+  }
+}
+
 async function handleLoginSubmit(event) {
   event.preventDefault();
   const usernameInput = document.getElementById("login-username");
@@ -92,7 +135,7 @@ async function handleLoginSubmit(event) {
   const errorBox = document.getElementById("auth-error");
   const submitBtn = document.getElementById("btn-submit-login");
 
-  const username = usernameInput ? usernameInput.value.trim() : "";
+  const username = usernameInput ? usernameInput.value.trim().toLowerCase() : "";
   const password = passwordInput ? passwordInput.value : "";
 
   if (!username || !password) return;
@@ -113,24 +156,53 @@ async function handleLoginSubmit(event) {
     if (res.ok) {
       const data = await res.json();
       state.authToken = data.token;
-      state.currentUser = data.username;
+      state.currentUser = data.username || username;
       sessionStorage.setItem("gridiron_v2_token", data.token);
-      sessionStorage.setItem("gridiron_v2_user", data.username);
+      sessionStorage.setItem("gridiron_v2_user", data.username || username);
       checkAuthSession();
-      showToast(`✅ Bienvenido, ${data.username}`);
+      showToast(`✅ Bienvenido, ${data.username || username}`);
       await loadInitialData();
+      return;
     } else {
       const err = await res.json().catch(() => ({ detail: "Credenciales inválidas" }));
       if (errorBox) {
-        errorBox.textContent = err.detail || "Error de autenticación";
+        errorBox.textContent = err.detail || "Credenciales incorrectas.";
         errorBox.style.display = "block";
       }
+      return;
     }
   } catch (err) {
-    // If backend isn't running locally yet, provide clear feedback or mock developer entry
-    console.warn("API de autenticación no alcanzable, verificando entorno:", err);
+    console.warn("API de autenticación no alcanzable en " + API_BASE_URL + ", comprobando respaldo local:", err);
+    try {
+      // Local offline fallback using WebCrypto against gitignored local auth_users.json
+      const localAuthRes = await fetch(`./auth_users.json?_v=${Date.now()}`);
+      if (localAuthRes.ok) {
+        const localUsers = await localAuthRes.json();
+        const foundUser = Array.isArray(localUsers)
+          ? localUsers.find(u => (u.username || "").toLowerCase() === username)
+          : null;
+
+        if (foundUser && foundUser.password_hash) {
+          const isValid = await verifyPBKDF2Client(password, foundUser.password_hash);
+          if (isValid) {
+            const token = `local_session_${username}_${Date.now()}`;
+            state.authToken = token;
+            state.currentUser = username;
+            sessionStorage.setItem("gridiron_v2_token", token);
+            sessionStorage.setItem("gridiron_v2_user", username);
+            checkAuthSession();
+            showToast(`✅ Bienvenido (modo local), ${username}`);
+            await loadInitialData();
+            return;
+          }
+        }
+      }
+    } catch (clientErr) {
+      console.warn("Respaldo local no disponible:", clientErr);
+    }
+
     if (errorBox) {
-      errorBox.textContent = "Servidor backend no disponible en 8000. Inicia la API con 'uvicorn v2.api.main:app' o crea tu usuario con manage_users.py.";
+      errorBox.textContent = "Servidor no disponible en 8000. Inicia la plataforma ejecutando 'python3 run_v2.py'.";
       errorBox.style.display = "block";
     }
   } finally {
@@ -798,3 +870,4 @@ function showToast(msg) {
   toast.classList.add("active");
   setTimeout(() => toast.classList.remove("active"), 3500);
 }
+

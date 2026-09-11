@@ -11,3 +11,4 @@ En la versión 1.0, el botón "Actualizar datos" actualizaba los marcadores de l
 
 ## Consecuencias
 - **Positivas:** La ficha de cada partido de NFL se llena de forma instantánea y reactiva con datos verificados. El filtrado de las 8 divisiones opera sin inconsistencias.
+

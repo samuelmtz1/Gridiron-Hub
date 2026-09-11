@@ -27,3 +27,4 @@ Ingestar los partidos de la NFL, asociar estrictamente el `event_id` de ESPN a c
    - Computar estadísticas analíticas por equipo mediante `v2.processing.epa_calculator`.
    - Filtrar las 5 jugadas con mayor variación en la probabilidad de victoria (`v2.processing.wp_calculator`).
 4. Persistir los registros en la base de datos `v2/storage/gridiron_v2.db`.
+

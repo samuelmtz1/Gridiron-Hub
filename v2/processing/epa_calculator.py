@@ -50,3 +50,4 @@ def calculate_play_epa(play_type: str, yards_gained: int, is_touchdown: bool = F
     elif "rush" in pt or "run" in pt:
         return round((yards_gained * 0.04) - 0.12, 2)
     return round(yards_gained * 0.03, 2)
+

@@ -20,6 +20,8 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from starlette.middleware.base import BaseHTTPMiddleware
 
@@ -33,6 +35,7 @@ from v2.storage import db
 
 logger = logging.getLogger("v2.api.main")
 SNAPSHOT_FILE = Path(__file__).resolve().parent.parent / "storage" / "v2_snapshot.json"
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 
 @asynccontextmanager
@@ -88,6 +91,7 @@ if not allowed_origins:
         "http://127.0.0.1:3000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "null",
     ]
 
 app.add_middleware(
@@ -158,7 +162,11 @@ class SyncRequest(BaseModel):
 # --- ENDPOINTS ---
 
 @app.get("/")
-def root():
+def root(request: Request):
+    accept = request.headers.get("accept", "")
+    index_file = FRONTEND_DIR / "index.html"
+    if "text/html" in accept and index_file.exists():
+        return FileResponse(str(index_file))
     return {
         "system": "Gridiron Hub 2.0",
         "status": "operational",
@@ -310,3 +318,9 @@ def sync_week(
         from v2.ingestion.ncaa_engine import ingest_ncaa_week
         result = ingest_ncaa_week(season=req.season, week=req.week)
     return result
+
+
+# Mount Static Frontend (Lookbook Theme)
+if FRONTEND_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+

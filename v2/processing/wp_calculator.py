@@ -13,3 +13,4 @@ def calculate_wp_swing(wp_before: float, wp_after: float) -> float:
 def rank_top_plays(plays: List[Dict[str, Any]], top_n: int = 5) -> List[Dict[str, Any]]:
     """Ranks plays by win probability swing descending and EPA impact."""
     return sorted(plays, key=lambda p: (p.get("wp_swing", 0.0), abs(p.get("epa", 0.0))), reverse=True)[:top_n]
+

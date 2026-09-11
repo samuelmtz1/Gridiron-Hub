@@ -116,3 +116,4 @@ def ingest_nfl_week(
                     db.save_key_plays(summary["key_plays"], custom_path=custom_db_path)
 
     return {"games_count": len(games_to_save), "status": "success"}
+

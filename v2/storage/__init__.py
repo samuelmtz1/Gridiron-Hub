@@ -31,3 +31,4 @@ __all__ = [
     "save_awards_candidates",
     "get_awards",
 ]
+
