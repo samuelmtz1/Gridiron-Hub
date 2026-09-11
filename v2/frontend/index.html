@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gridiron Hub 2.0 — NFL & NCAA YouTube Intelligence</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏈</text></svg>">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <span class="brand-logo-badge">GH 2.0</span>
+      <h1 class="brand-title">Gridiron Hub</h1>
+      <span class="brand-version">v2.0 Lookbook</span>
+    </div>
+
+    <div class="header-controls">
+      <!-- League Selector (NFL / NCAA) -->
+      <div class="pill-group" role="tablist" aria-label="Selección de Liga">
+        <button class="pill-btn active" id="btn-league-nfl" onclick="setLeague('nfl')">NFL</button>
+        <button class="pill-btn" id="btn-league-ncaa" onclick="setLeague('ncaa')">NCAA</button>
+      </div>
+
+      <!-- Season Selector -->
+      <select class="select-control" id="select-season" onchange="handleSeasonChange(this.value)">
+        <option value="2026" selected>2026</option>
+        <option value="2024">2024</option>
+      </select>
+
+      <!-- Week Selector -->
+      <select class="select-control" id="select-week" onchange="handleWeekChange(this.value)">
+        <!-- Dynamically populated in app.js -->
+      </select>
+
+      <!-- Team Filter Dropdown -->
+      <select class="select-control" id="select-team" onchange="handleTeamChange(this.value)">
+        <option value="ALL">Todos los Equipos</option>
+      </select>
+
+      <!-- Sync On-Demand Button -->
+      <button class="btn-primary-action" id="btn-sync-data" onclick="triggerOnDemandSync()" title="Sincronizar marcadores y boxscores con ESPN">
+        <span id="sync-icon">⚡</span>
+        <span id="sync-text">Actualizar Datos</span>
+      </button>
+
+      <!-- User Badge & Logout -->
+      <div id="user-badge-container" style="display: none; align-items: center; gap: 0.5rem;">
+        <span id="auth-user-badge" style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); border: 1px solid var(--border-white-50); padding: 0.35rem 0.65rem; border-radius: var(--radius-xs);"></span>
+        <button class="pill-btn" onclick="handleLogout()" style="font-size: 0.75rem; padding: 0.35rem 0.55rem;">Cerrar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- View Switcher (Partidos / Premios / Guion) -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+      <div class="pill-group">
+        <button class="pill-btn active" id="tab-view-games" onclick="switchMainView('games')">Partidos & Boxscores</button>
+        <button class="pill-btn" id="tab-view-awards" onclick="switchMainView('awards')">Premios Semanales</button>
+        <button class="pill-btn" id="tab-view-script" onclick="switchMainView('script')">Guion YouTube</button>
+      </div>
+
+      <div id="sync-status-indicator" style="font-size: 0.78rem; color: var(--text-muted);">
+        ● Datos verificados en tiempo real
+      </div>
+    </div>
+
+    <!-- Division and Conference Filter Bar -->
+    <nav class="division-filter-bar" id="division-filter-bar" aria-label="Filtrar por Conferencia y División">
+      <!-- Populated dynamically: 8 NFL divisions or NCAA conferences -->
+    </nav>
+
+    <!-- VIEW 1: GAMES & METRICS -->
+    <section id="view-games">
+      <!-- KPI Banner -->
+      <div class="kpi-banner">
+        <div class="kpi-card">
+          <span class="kpi-label">Partidos en Vista</span>
+          <span class="kpi-value" id="kpi-games-count">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Finalizados</span>
+          <span class="kpi-value" id="kpi-final-count" style="color: var(--text-primary);">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">En Vivo / Próximos</span>
+          <span class="kpi-value" id="kpi-live-count" style="color: var(--accent-red);">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Promedio Puntos / Juego</span>
+          <span class="kpi-value" id="kpi-avg-points">0.0</span>
+        </div>
+      </div>
+
+      <!-- Games Grid -->
+      <div class="games-grid" id="games-grid">
+        <!-- Rendered via app.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: WEEKLY AWARDS -->
+    <section id="view-awards" style="display: none;">
+      <div class="section-header" style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 900; text-transform: uppercase;">🏆 Candidatos a Premios Semanales (SOP A.6)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">Preselección cuantitativa basada en EPA acumulado y swing de probabilidad de victoria.</p>
+      </div>
+      <div id="awards-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem;">
+        <!-- Rendered via app.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 3: YOUTUBE SCRIPT & TELEPROMPTER -->
+    <section id="view-script" style="display: none;">
+      <div class="section-header" style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 900; text-transform: uppercase;">🎙️ Teleprompter y Guion para YouTube</h2>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">Estructura narrativa en 5 bloques lista para grabación del episodio semanal.</p>
+      </div>
+      <div id="script-container" style="background: var(--bg-surface); border: 1px solid var(--border-white); border-radius: var(--radius-md); padding: 1.75rem; line-height: 1.8;">
+        <!-- Rendered via app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Detailed Game Drawer (Modal) -->
+  <div class="drawer-modal" id="drawer-modal" onclick="handleDrawerBackdropClick(event)">
+    <div class="drawer-card">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <h2 class="drawer-game-title" id="drawer-title">DETALLES DEL PARTIDO</h2>
+          <div class="drawer-game-meta" id="drawer-meta">Cargando métricas...</div>
+        </div>
+        <button class="btn-close-drawer" onclick="closeGameDrawer()" aria-label="Cerrar Ficha">✕</button>
+      </div>
+
+      <nav class="drawer-tabs">
+        <button class="drawer-tab active" id="dtab-boxscore" onclick="switchDrawerTab('boxscore')">📊 Boxscore & EPA</button>
+        <button class="drawer-tab" id="dtab-plays" onclick="switchDrawerTab('plays')">⚡ Top Jugadas Clave</button>
+        <button class="drawer-tab" id="dtab-trivia" onclick="switchDrawerTab('trivia')">🎙️ Trivia & Táctica</button>
+      </nav>
+
+      <div class="drawer-content">
+        <!-- Tab 1: Boxscore & EPA -->
+        <div id="drawer-pane-boxscore">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Métrica Analítica</th>
+                <th id="th-away-team">VISITA</th>
+                <th id="th-home-team">LOCAL</th>
+              </tr>
+            </thead>
+            <tbody id="drawer-stats-body">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 2: Top Key Plays -->
+        <div id="drawer-pane-plays" style="display: none;">
+          <div class="plays-list" id="drawer-plays-list">
+            <!-- Rendered via app.js -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Trivia and Tactical Analysis -->
+        <div id="drawer-pane-trivia" style="display: none; display: flex; flex-direction: column; gap: 1rem;">
+          <div id="drawer-trivia-list">
+            <!-- Rendered via app.js -->
+          </div>
+          <div id="drawer-tactical-container" style="margin-top: 1rem;">
+            <!-- Rendered via app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zero-Leak Authentication Gate (No autofill button) -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="auth-badge">GRIDIRON HUB 2.0</span>
+        <h2 class="auth-title">Acceso de Equipo</h2>
+        <p class="auth-subtitle">Ingresa tus credenciales personales autorizadas para acceder al panel de producción.</p>
+      </div>
+
+      <div class="auth-error-msg" id="auth-error"></div>
+
+      <form class="auth-form" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="login-username">Usuario</label>
+          <input class="form-input" type="text" id="login-username" required autocomplete="username" placeholder="Tu nombre de usuario">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Contraseña</label>
+          <input class="form-input" type="password" id="login-password" required autocomplete="current-password" placeholder="••••••••••••">
+        </div>
+
+        <button class="btn-submit-login" type="submit" id="btn-submit-login">Iniciar Sesión</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-msg" id="toast-msg"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

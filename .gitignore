@@ -28,6 +28,11 @@ wheels/
 storage/*.sqlite
 storage/*.duckdb
 storage/*.db
+v2/storage/*.db
+v2/storage/*.sqlite3
+*.db
+*.sqlite3
+auth.db
 data/
 *.parquet
 NFLREADPY_CACHE/
